@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Cache::Entry</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveSupport::Cache::Entry 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/cache_rb.html">activesupport/lib/active_support/cache.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><a href="Entry.html">Entry</a> that is put into caches. It supports
+expiration time on entries and can compress values to save space in the
+cache.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-compressed-3F">compressed?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-create">create</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-expired-3F">expired?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-expires_at">expires_at</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-expires_at-3D">expires_at=</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-raw_value">raw_value</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-size">size</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-value">value</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">DEFAULT_COMPRESS_LIMIT</td>
+            <td>=</td>
+            <td class="attr-value">16.kilobytes</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>created_at</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>expires_in</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-create">
+            
+              <b>create</b>(raw_value, created_at, options = {})
+            
+            <a href="../../../classes/ActiveSupport/Cache/Entry.html#method-c-create" name="method-c-create" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Create an entry with internal attributes set. This method is intended to be
+used by implementations that store cache entries in a native format instead
+of as serialized Ruby objects.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-create_source')" id="l_method-c-create_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/f78cb5583f77952aa35e063a660a11aad5f8de7f/activesupport/lib/active_support/cache.rb#L541" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-create_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/cache.rb, line 541</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create</span>(<span class="ruby-identifier">raw_value</span>, <span class="ruby-identifier">created_at</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@value</span>, <span class="ruby-identifier">raw_value</span>)
+  <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@created_at</span>, <span class="ruby-identifier">created_at</span>.<span class="ruby-identifier">to_f</span>)
+  <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@compressed</span>, <span class="ruby-identifier">options</span>[<span class="ruby-value">:compressed</span>])
+  <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@expires_in</span>, <span class="ruby-identifier">options</span>[<span class="ruby-value">:expires_in</span>])
+  <span class="ruby-identifier">entry</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(value, options = {})
+            
+            <a href="../../../classes/ActiveSupport/Cache/Entry.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Create a new cache entry for the specified value. Options supported are
+<code>:compress</code>, <code>:compress_threshold</code>, and
+<code>:expires_in</code>.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/f78cb5583f77952aa35e063a660a11aad5f8de7f/activesupport/lib/active_support/cache.rb#L553" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/cache.rb, line 553</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-ivar">@compressed</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@expires_in</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:expires_in</span>]
+  <span class="ruby-ivar">@expires_in</span> = <span class="ruby-ivar">@expires_in</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@expires_in</span>
+  <span class="ruby-ivar">@created_at</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_f</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-ivar">@value</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@value</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-identifier">value</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">should_compress?</span>(<span class="ruby-ivar">@value</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-ivar">@value</span> = <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">Deflate</span>.<span class="ruby-identifier">deflate</span>(<span class="ruby-ivar">@value</span>)
+      <span class="ruby-ivar">@compressed</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-compressed-3F">
+            
+              <b>compressed?</b>()
+            
+            <a href="../../../classes/ActiveSupport/Cache/Entry.html#method-i-compressed-3F" name="method-i-compressed-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-compressed-3F_source')" id="l_method-i-compressed-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/f78cb5583f77952aa35e063a660a11aad5f8de7f/activesupport/lib/active_support/cache.rb#L594" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-compressed-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/cache.rb, line 594</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compressed?</span>
+  <span class="ruby-ivar">@compressed</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-expired-3F">
+            
+              <b>expired?</b>()
+            
+            <a href="../../../classes/ActiveSupport/Cache/Entry.html#method-i-expired-3F" name="method-i-expired-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Check if the entry is expired. The <code>expires_in</code> parameter can
+override the value set when the entry was created.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-expired-3F_source')" id="l_method-i-expired-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/f78cb5583f77952aa35e063a660a11aad5f8de7f/activesupport/lib/active_support/cache.rb#L600" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-expired-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/cache.rb, line 600</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">expired?</span>
+  <span class="ruby-ivar">@expires_in</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@created_at</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@expires_in</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_f</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-expires_at">
+            
+              <b>expires_at</b>()
+            
+            <a href="../../../classes/ActiveSupport/Cache/Entry.html#method-i-expires_at" name="method-i-expires_at" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Seconds since the epoch when the entry will expire.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-expires_at_source')" id="l_method-i-expires_at_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/f78cb5583f77952aa35e063a660a11aad5f8de7f/activesupport/lib/active_support/cache.rb#L614" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-expires_at_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/cache.rb, line 614</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">expires_at</span>
+  <span class="ruby-ivar">@expires_in</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@created_at</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@expires_in</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-expires_at-3D">
+            
+              <b>expires_at=</b>(time)
+            
+            <a href="../../../classes/ActiveSupport/Cache/Entry.html#method-i-expires_at-3D" name="method-i-expires_at-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Set a new time when the entry will expire.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-expires_at-3D_source')" id="l_method-i-expires_at-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/f78cb5583f77952aa35e063a660a11aad5f8de7f/activesupport/lib/active_support/cache.rb#L605" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-expires_at-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/cache.rb, line 605</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">expires_at=</span>(<span class="ruby-identifier">time</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">time</span>
+    <span class="ruby-ivar">@expires_in</span> = <span class="ruby-identifier">time</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@created_at</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@expires_in</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-raw_value">
+            
+              <b>raw_value</b>()
+            
+            <a href="../../../classes/ActiveSupport/Cache/Entry.html#method-i-raw_value" name="method-i-raw_value" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Get the raw value. This value may be serialized and compressed.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-raw_value_source')" id="l_method-i-raw_value_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/f78cb5583f77952aa35e063a660a11aad5f8de7f/activesupport/lib/active_support/cache.rb#L570" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-raw_value_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/cache.rb, line 570</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">raw_value</span>
+  <span class="ruby-ivar">@value</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-size">
+            
+              <b>size</b>()
+            
+            <a href="../../../classes/ActiveSupport/Cache/Entry.html#method-i-size" name="method-i-size" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns the size of the cached value. This could be less than value.size if
+the data is compressed.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-size_source')" id="l_method-i-size_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/f78cb5583f77952aa35e063a660a11aad5f8de7f/activesupport/lib/active_support/cache.rb#L620" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-size_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/cache.rb, line 620</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">size</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@value</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-number">0</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@value</span>.<span class="ruby-identifier">bytesize</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-value">
+            
+              <b>value</b>()
+            
+            <a href="../../../classes/ActiveSupport/Cache/Entry.html#method-i-value" name="method-i-value" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Get the value stored in the cache.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-value_source')" id="l_method-i-value_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/f78cb5583f77952aa35e063a660a11aad5f8de7f/activesupport/lib/active_support/cache.rb#L575" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-value_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/cache.rb, line 575</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">value</span>
+  <span class="ruby-comment"># If the original value was exactly false @value is still true because</span>
+  <span class="ruby-comment"># it is marshalled and eventually compressed. Both operations yield</span>
+  <span class="ruby-comment"># strings.</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@value</span>
+    <span class="ruby-comment"># In rails 3.1 and earlier values in entries did not marshaled without</span>
+    <span class="ruby-comment"># options[:compress] and if it's Numeric.</span>
+    <span class="ruby-comment"># But after commit a263f377978fc07515b42808ebc1f7894fafaa3a</span>
+    <span class="ruby-comment"># all values in entries are marshalled. And after that code below expects</span>
+    <span class="ruby-comment"># that all values in entries will be marshaled (and will be strings). </span>
+    <span class="ruby-comment"># So here we need a check for old ones.</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">compressed?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflate</span>.<span class="ruby-identifier">inflate</span>(<span class="ruby-ivar">@value</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@value</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">TypeError</span>
+      <span class="ruby-identifier">compressed?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflate</span>.<span class="ruby-identifier">inflate</span>(<span class="ruby-ivar">@value</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@value</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

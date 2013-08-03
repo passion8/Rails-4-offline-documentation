@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::Scoping::Default::ClassMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveRecord::Scoping::Default::ClassMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/activerecord/lib/active_record/scoping/default_rb.html">activerecord/lib/active_record/scoping/default.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-default_scope">default_scope</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-evaluate_default_scope">evaluate_default_scope</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-default_scope">
+            
+              <b>default_scope</b>(scope = {})
+            
+            <a href="../../../../classes/ActiveRecord/Scoping/Default/ClassMethods.html#method-i-default_scope" name="method-i-default_scope" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Use this macro in your model to set a default scope for all operations on
+the model.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Article</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-identifier">default_scope</span> <span class="ruby-identifier">where</span>(:<span class="ruby-identifier">published</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-constant">Article</span>.<span class="ruby-identifier">all</span> <span class="ruby-comment"># =&gt; SELECT * FROM articles WHERE published = true</span>
+</pre>
+
+<p>The <code>default_scope</code> is also applied while creating/building a
+record. It is not applied while updating a record.</p>
+
+<pre class="ruby"><span class="ruby-constant">Article</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">published</span>    <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-constant">Article</span>.<span class="ruby-identifier">create</span>.<span class="ruby-identifier">published</span> <span class="ruby-comment"># =&gt; true</span>
+</pre>
+
+<p>You can also use <code>default_scope</code> with a block, in order to have
+it lazily evaluated:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Article</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-identifier">default_scope</span> { <span class="ruby-identifier">where</span>(:<span class="ruby-identifier">published_at</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">week</span>) }
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>(You can also pass any object which responds to <code>call</code> to the
+<code>default_scope</code> macro, and it will be called when building the
+default scope.)</p>
+
+<p>If you use multiple <code>default_scope</code> declarations in your model
+then they will be merged together:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Article</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-identifier">default_scope</span> <span class="ruby-identifier">where</span>(:<span class="ruby-identifier">published</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
+  <span class="ruby-identifier">default_scope</span> <span class="ruby-identifier">where</span>(:<span class="ruby-identifier">rating</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'G'</span>)
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-constant">Article</span>.<span class="ruby-identifier">all</span> <span class="ruby-comment"># =&gt; SELECT * FROM articles WHERE published = true AND rating = 'G'</span>
+</pre>
+
+<p>This is also the case with inheritance and module includes where the parent
+or module defines a <code>default_scope</code> and the child or including
+class defines a second one.</p>
+
+<p>If you need to do more complex things with a default scope, you can
+alternatively define it as a class method:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Article</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span>
+    <span class="ruby-comment"># Should return a scope, you can call 'super' here etc.</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-default_scope_source')" id="l_method-i-default_scope_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/e149d5059b420449ab010f7d0596b1cb84725df1/activerecord/lib/active_record/scoping/default.rb#L95" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-default_scope_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/scoping/default.rb, line 95</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">default_scope</span>(<span class="ruby-identifier">scope</span> = {})
+  <span class="ruby-identifier">scope</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scopes</span> = <span class="ruby-identifier">default_scopes</span> <span class="ruby-operator">+</span> [<span class="ruby-identifier">scope</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-evaluate_default_scope">
+            
+              <b>evaluate_default_scope</b>()
+            
+            <a href="../../../../classes/ActiveRecord/Scoping/Default/ClassMethods.html#method-i-evaluate_default_scope" name="method-i-evaluate_default_scope" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>The ignore_default_scope flag is used to prevent an infinite recursion
+situation where a default scope references a scope which has a default
+scope which references a scope…</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-evaluate_default_scope_source')" id="l_method-i-evaluate_default_scope_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/e149d5059b420449ab010f7d0596b1cb84725df1/activerecord/lib/active_record/scoping/default.rb#L128" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-evaluate_default_scope_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/scoping/default.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">evaluate_default_scope</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ignore_default_scope?</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ignore_default_scope</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">yield</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ignore_default_scope</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

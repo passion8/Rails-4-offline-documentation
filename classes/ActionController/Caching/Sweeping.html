@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::Caching::Sweeping</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActionController::Caching::Sweeping 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_controller/caching/sweeping_rb.html">actionpack/lib/action_controller/caching/sweeping.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Sweepers are the terminators of the caching world and responsible for
+expiring caches when model objects change. They do this by being
+half-observers, half-filters and implementing callbacks for both roles. A
+Sweeper example:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">ListSweeper</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Caching</span><span class="ruby-operator">::</span><span class="ruby-constant">Sweeper</span>
+  <span class="ruby-identifier">observe</span> <span class="ruby-constant">List</span>, <span class="ruby-constant">Item</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">after_save</span>(<span class="ruby-identifier">record</span>)
+    <span class="ruby-identifier">list</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">List</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">record</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">list</span>
+    <span class="ruby-identifier">expire_page</span>(:<span class="ruby-identifier">controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;lists&quot;</span>, :<span class="ruby-identifier">action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">%w( show public feed )</span>, :<span class="ruby-identifier">id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">expire_action</span>(:<span class="ruby-identifier">controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;lists&quot;</span>, :<span class="ruby-identifier">action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;all&quot;</span>)
+    <span class="ruby-identifier">list</span>.<span class="ruby-identifier">shares</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">share</span><span class="ruby-operator">|</span> <span class="ruby-identifier">expire_page</span>(:<span class="ruby-identifier">controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;lists&quot;</span>, :<span class="ruby-identifier">action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;show&quot;</span>, :<span class="ruby-identifier">id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">share</span>.<span class="ruby-identifier">url_key</span>) }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>The sweeper is assigned in the controllers that wish to have its job
+performed using the <code>cache_sweeper</code> class method:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">ListsController</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ApplicationController</span>
+  <span class="ruby-identifier">caches_action</span> :<span class="ruby-identifier">index</span>, :<span class="ruby-identifier">show</span>, :<span class="ruby-identifier">public</span>, :<span class="ruby-identifier">feed</span>
+  <span class="ruby-identifier">cache_sweeper</span> :<span class="ruby-identifier">list_sweeper</span>, :<span class="ruby-identifier">only</span> =<span class="ruby-operator">&gt;</span> [ :<span class="ruby-identifier">edit</span>, :<span class="ruby-identifier">destroy</span>, :<span class="ruby-identifier">share</span> ]
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>In the example above, four actions are cached and three actions are
+responsible for expiring those caches.</p>
+
+<p>You can also name an explicit class in the declaration of a sweeper, which
+is needed if the sweeper is in a module:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">ListsController</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ApplicationController</span>
+  <span class="ruby-identifier">caches_action</span> :<span class="ruby-identifier">index</span>, :<span class="ruby-identifier">show</span>, :<span class="ruby-identifier">public</span>, :<span class="ruby-identifier">feed</span>
+  <span class="ruby-identifier">cache_sweeper</span> <span class="ruby-constant">OpenBar</span><span class="ruby-operator">::</span><span class="ruby-constant">Sweeper</span>, :<span class="ruby-identifier">only</span> =<span class="ruby-operator">&gt;</span> [ :<span class="ruby-identifier">edit</span>, :<span class="ruby-identifier">destroy</span>, :<span class="ruby-identifier">share</span> ]
+<span class="ruby-keyword">end</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>    

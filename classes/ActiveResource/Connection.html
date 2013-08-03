@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveResource::Connection</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveResource::Connection 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activeresource/lib/active_resource/connection_rb.html">activeresource/lib/active_resource/connection.rb</a></li>
+            
+            <li><a href="../../files/activeresource/lib/active_resource/http_mock_rb.html">activeresource/lib/active_resource/http_mock.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><a href="../Class.html">Class</a> to handle connections to remote web
+services. This class is used by <a
+href="Base.html">ActiveResource::Base</a> to interface with REST services.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-auth_type-3D">auth_type=</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-delete">delete</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>G</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-get">get</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-head">head</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-password-3D">password=</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-post">post</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-proxy-3D">proxy=</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-put">put</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-requests">requests</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-site-3D">site=</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-ssl_options-3D">ssl_options=</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-timeout-3D">timeout=</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-user-3D">user=</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">HTTP_FORMAT_HEADER_NAMES</td>
+            <td>=</td>
+            <td class="attr-value">{  :get =&gt; 'Accept',
+:put =&gt; 'Content-Type',
+:post =&gt; 'Content-Type',
+:delete =&gt; 'Accept',
+:head =&gt; 'Accept'
+}</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>auth_type</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>format</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>password</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>proxy</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>site</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>ssl_options</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>timeout</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>user</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(site, format = ActiveResource::Formats::JsonFormat)
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>The <code>site</code> parameter is required and will set the
+<code>site</code> attribute to the <a href="../URI.html">URI</a> for the
+remote resource service.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L33" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">site</span>, <span class="ruby-identifier">format</span> = <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">Formats</span><span class="ruby-operator">::</span><span class="ruby-constant">JsonFormat</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">'Missing site URI'</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">site</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-ivar">@password</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">site</span> = <span class="ruby-identifier">site</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">format</span> = <span class="ruby-identifier">format</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-requests">
+            
+              <b>requests</b>()
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-c-requests" name="method-c-requests" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-requests_source')" id="l_method-c-requests_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L26" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-requests_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">requests</span>
+  <span class="ruby-identifier">@@requests</span> <span class="ruby-operator">||=</span> []
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-auth_type-3D">
+            
+              <b>auth_type=</b>(auth_type)
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-i-auth_type-3D" name="method-i-auth_type-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Sets the auth type for remote service.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-auth_type-3D_source')" id="l_method-i-auth_type-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L63" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-auth_type-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">auth_type=</span>(<span class="ruby-identifier">auth_type</span>)
+  <span class="ruby-ivar">@auth_type</span> = <span class="ruby-identifier">legitimize_auth_type</span>(<span class="ruby-identifier">auth_type</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-delete">
+            
+              <b>delete</b>(path, headers = {})
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-i-delete" name="method-i-delete" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Executes a DELETE request (see HTTP protocol documentation if unfamiliar).
+Used to delete resources.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-delete_source')" id="l_method-i-delete_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L85" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-delete_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">delete</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">headers</span> = {})
+  <span class="ruby-identifier">with_auth</span> { <span class="ruby-identifier">request</span>(<span class="ruby-value">:delete</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">build_request_headers</span>(<span class="ruby-identifier">headers</span>, <span class="ruby-value">:delete</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">site</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">path</span>))) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-get">
+            
+              <b>get</b>(path, headers = {})
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-i-get" name="method-i-get" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Executes a GET request. Used to get (find) resources.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-get_source')" id="l_method-i-get_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L79" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-get_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">headers</span> = {})
+  <span class="ruby-identifier">with_auth</span> { <span class="ruby-identifier">request</span>(<span class="ruby-value">:get</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">build_request_headers</span>(<span class="ruby-identifier">headers</span>, <span class="ruby-value">:get</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">site</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">path</span>))) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-head">
+            
+              <b>head</b>(path, headers = {})
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-i-head" name="method-i-head" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Executes a HEAD request. Used to obtain meta-information about resources,
+such as whether they exist and their size (via response headers).</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-head_source')" id="l_method-i-head_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L103" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-head_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">head</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">headers</span> = {})
+  <span class="ruby-identifier">with_auth</span> { <span class="ruby-identifier">request</span>(<span class="ruby-value">:head</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">build_request_headers</span>(<span class="ruby-identifier">headers</span>, <span class="ruby-value">:head</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">site</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">path</span>))) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-password-3D">
+            
+              <b>password=</b>(password)
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-i-password-3D" name="method-i-password-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Sets the password for remote service.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-password-3D_source')" id="l_method-i-password-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L58" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-password-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">password=</span>(<span class="ruby-identifier">password</span>)
+  <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">password</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-post">
+            
+              <b>post</b>(path, body = '', headers = {})
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-i-post" name="method-i-post" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Executes a POST request. Used to create new resources.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-post_source')" id="l_method-i-post_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L97" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-post_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">post</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">body</span> = <span class="ruby-string">''</span>, <span class="ruby-identifier">headers</span> = {})
+  <span class="ruby-identifier">with_auth</span> { <span class="ruby-identifier">request</span>(<span class="ruby-value">:post</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">body</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">build_request_headers</span>(<span class="ruby-identifier">headers</span>, <span class="ruby-value">:post</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">site</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">path</span>))) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-proxy-3D">
+            
+              <b>proxy=</b>(proxy)
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-i-proxy-3D" name="method-i-proxy-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Set the proxy for remote service.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-proxy-3D_source')" id="l_method-i-proxy-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L48" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-proxy-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">proxy=</span>(<span class="ruby-identifier">proxy</span>)
+  <span class="ruby-ivar">@proxy</span> = <span class="ruby-identifier">proxy</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">URI</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">proxy</span> <span class="ruby-operator">:</span> <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parser</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">proxy</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-put">
+            
+              <b>put</b>(path, body = '', headers = {})
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-i-put" name="method-i-put" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Executes a PUT request (see HTTP protocol documentation if unfamiliar).
+Used to update resources.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-put_source')" id="l_method-i-put_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L91" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-put_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">put</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">body</span> = <span class="ruby-string">''</span>, <span class="ruby-identifier">headers</span> = {})
+  <span class="ruby-identifier">with_auth</span> { <span class="ruby-identifier">request</span>(<span class="ruby-value">:put</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">body</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">build_request_headers</span>(<span class="ruby-identifier">headers</span>, <span class="ruby-value">:put</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">site</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">path</span>))) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-site-3D">
+            
+              <b>site=</b>(site)
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-i-site-3D" name="method-i-site-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Set <a href="../URI.html">URI</a> for remote service.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-site-3D_source')" id="l_method-i-site-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L41" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-site-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">site=</span>(<span class="ruby-identifier">site</span>)
+  <span class="ruby-ivar">@site</span> = <span class="ruby-identifier">site</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">URI</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">site</span> <span class="ruby-operator">:</span> <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parser</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">site</span>)
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parser</span>.<span class="ruby-identifier">unescape</span>(<span class="ruby-ivar">@site</span>.<span class="ruby-identifier">user</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@site</span>.<span class="ruby-identifier">user</span>
+  <span class="ruby-ivar">@password</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parser</span>.<span class="ruby-identifier">unescape</span>(<span class="ruby-ivar">@site</span>.<span class="ruby-identifier">password</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@site</span>.<span class="ruby-identifier">password</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-ssl_options-3D">
+            
+              <b>ssl_options=</b>(opts={})
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-i-ssl_options-3D" name="method-i-ssl_options-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p><a href="../Hash.html">Hash</a> of options applied to Net::HTTP instance
+when <code>site</code> protocol is 'https'.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-ssl_options-3D_source')" id="l_method-i-ssl_options-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L73" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-ssl_options-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ssl_options=</span>(<span class="ruby-identifier">opts</span>={})
+  <span class="ruby-ivar">@ssl_options</span> = <span class="ruby-identifier">opts</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-timeout-3D">
+            
+              <b>timeout=</b>(timeout)
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-i-timeout-3D" name="method-i-timeout-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Sets the number of seconds after which HTTP requests to the remote service
+should time out.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-timeout-3D_source')" id="l_method-i-timeout-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L68" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-timeout-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">timeout=</span>(<span class="ruby-identifier">timeout</span>)
+  <span class="ruby-ivar">@timeout</span> = <span class="ruby-identifier">timeout</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-user-3D">
+            
+              <b>user=</b>(user)
+            
+            <a href="../../classes/ActiveResource/Connection.html#method-i-user-3D" name="method-i-user-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Sets the user for remote service.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-user-3D_source')" id="l_method-i-user-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/b8bb5f44c8ba02786ed42d04f66641f236ef42c3/activeresource/lib/active_resource/connection.rb#L53" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-user-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/connection.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">user=</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

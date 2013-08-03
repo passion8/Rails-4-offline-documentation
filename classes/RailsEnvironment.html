@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>RailsEnvironment</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            RailsEnvironment 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/railties/lib/rails/commands/plugin_rb.html">railties/lib/rails/commands/plugin.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>B</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-best_install_method">best_install_method</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-default">default</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-default-3D">default=</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-externals">externals</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-externals-3D">externals=</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-find">find</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-install">install</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-use_checkout-3F">use_checkout?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-use_externals-3F">use_externals?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-use_svn-3F">use_svn?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>root</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-default">
+            
+              <b>default</b>()
+            
+            <a href="../classes/RailsEnvironment.html#method-c-default" name="method-c-default" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-default_source')" id="l_method-c-default_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/325abe9fbad58b6a0e119a678039b195247a57bc/railties/lib/rails/commands/plugin.rb#L43" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-default_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/commands/plugin.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">default</span>
+  <span class="ruby-ivar">@default</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">find</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-default-3D">
+            
+              <b>default=</b>(rails_env)
+            
+            <a href="../classes/RailsEnvironment.html#method-c-default-3D" name="method-c-default-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-default-3D_source')" id="l_method-c-default-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/325abe9fbad58b6a0e119a678039b195247a57bc/railties/lib/rails/commands/plugin.rb#L47" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-default-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/commands/plugin.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">default=</span>(<span class="ruby-identifier">rails_env</span>)
+  <span class="ruby-ivar">@default</span> = <span class="ruby-identifier">rails_env</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-find">
+            
+              <b>find</b>(dir=nil)
+            
+            <a href="../classes/RailsEnvironment.html#method-c-find" name="method-c-find" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-find_source')" id="l_method-c-find_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/325abe9fbad58b6a0e119a678039b195247a57bc/railties/lib/rails/commands/plugin.rb#L35" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-find_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/commands/plugin.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">dir</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">dir</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">pwd</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">dir</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">1</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">new</span>(<span class="ruby-identifier">dir</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">dir</span>, <span class="ruby-string">'config'</span>, <span class="ruby-string">'environment.rb'</span>))
+    <span class="ruby-identifier">dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">dir</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(dir)
+            
+            <a href="../classes/RailsEnvironment.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/325abe9fbad58b6a0e119a678039b195247a57bc/railties/lib/rails/commands/plugin.rb#L31" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/commands/plugin.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">dir</span>)
+  <span class="ruby-ivar">@root</span> = <span class="ruby-identifier">dir</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-best_install_method">
+            
+              <b>best_install_method</b>()
+            
+            <a href="../classes/RailsEnvironment.html#method-i-best_install_method" name="method-i-best_install_method" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-best_install_method_source')" id="l_method-i-best_install_method_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/325abe9fbad58b6a0e119a678039b195247a57bc/railties/lib/rails/commands/plugin.rb#L85" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-best_install_method_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/commands/plugin.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">best_install_method</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-value">:http</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">use_svn?</span>
+  <span class="ruby-keyword">case</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-identifier">use_externals?</span> <span class="ruby-keyword">then</span> <span class="ruby-value">:externals</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-identifier">use_checkout?</span> <span class="ruby-keyword">then</span> <span class="ruby-value">:checkout</span>
+    <span class="ruby-keyword">else</span> <span class="ruby-value">:export</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-externals">
+            
+              <b>externals</b>()
+            
+            <a href="../classes/RailsEnvironment.html#method-i-externals" name="method-i-externals" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-externals_source')" id="l_method-i-externals_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/325abe9fbad58b6a0e119a678039b195247a57bc/railties/lib/rails/commands/plugin.rb#L94" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-externals_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/commands/plugin.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">externals</span>
+  <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">use_externals?</span>
+  <span class="ruby-identifier">ext</span> = <span class="ruby-node">%xsvn propget svn:externals &quot;#{root}/vendor/plugins&quot;`</span>
+  <span class="ruby-identifier">lines</span> = <span class="ruby-identifier">ext</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:lines</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">ext</span>.<span class="ruby-identifier">lines</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">ext</span>
+  <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">reject</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">strip</span> <span class="ruby-operator">==</span> <span class="ruby-string">''</span> }.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">line</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/\s+/</span>, <span class="ruby-number">2</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-externals-3D">
+            
+              <b>externals=</b>(items)
+            
+            <a href="../classes/RailsEnvironment.html#method-i-externals-3D" name="method-i-externals-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-externals-3D_source')" id="l_method-i-externals-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/325abe9fbad58b6a0e119a678039b195247a57bc/railties/lib/rails/commands/plugin.rb#L103" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-externals-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/commands/plugin.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">externals=</span>(<span class="ruby-identifier">items</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">items</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">String</span>
+    <span class="ruby-identifier">items</span> = <span class="ruby-identifier">items</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">name</span>,<span class="ruby-identifier">uri</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{name.ljust(29)} #{uri.chomp('/')}&quot;</span>}.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&quot;svn-set-prop&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">items</span>)
+    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">flush</span>
+    <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;svn propset -q svn:externals -F \&quot;#{file.path}\&quot; \&quot;#{root}/vendor/plugins\&quot;&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-install">
+            
+              <b>install</b>(name_uri_or_plugin)
+            
+            <a href="../classes/RailsEnvironment.html#method-i-install" name="method-i-install" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-install_source')" id="l_method-i-install_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/325abe9fbad58b6a0e119a678039b195247a57bc/railties/lib/rails/commands/plugin.rb#L51" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-install_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/commands/plugin.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">install</span>(<span class="ruby-identifier">name_uri_or_plugin</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">name_uri_or_plugin</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">String</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">name_uri_or_plugin</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/:\/\//</span>
+      <span class="ruby-identifier">plugin</span> = <span class="ruby-constant">Plugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name_uri_or_plugin</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">plugin</span> = <span class="ruby-constant">Plugins</span>[<span class="ruby-identifier">name_uri_or_plugin</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">plugin</span> = <span class="ruby-identifier">name_uri_or_plugin</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">plugin</span>
+    <span class="ruby-identifier">plugin</span>.<span class="ruby-identifier">install</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Plugin not found: #{name_uri_or_plugin}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-use_checkout-3F">
+            
+              <b>use_checkout?</b>()
+            
+            <a href="../classes/RailsEnvironment.html#method-i-use_checkout-3F" name="method-i-use_checkout-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-use_checkout-3F_source')" id="l_method-i-use_checkout-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/325abe9fbad58b6a0e119a678039b195247a57bc/railties/lib/rails/commands/plugin.rb#L78" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-use_checkout-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/commands/plugin.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">use_checkout?</span>
+  <span class="ruby-comment"># this is a bit of a guess. we assume that if the rails environment</span>
+  <span class="ruby-comment"># is under subversion then they probably want the plugin checked out</span>
+  <span class="ruby-comment"># instead of exported. This can be overridden on the command line</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-node">&quot;#{root}/.svn&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-use_externals-3F">
+            
+              <b>use_externals?</b>()
+            
+            <a href="../classes/RailsEnvironment.html#method-i-use_externals-3F" name="method-i-use_externals-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-use_externals-3F_source')" id="l_method-i-use_externals-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/325abe9fbad58b6a0e119a678039b195247a57bc/railties/lib/rails/commands/plugin.rb#L74" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-use_externals-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/commands/plugin.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">use_externals?</span>
+  <span class="ruby-identifier">use_svn?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-node">&quot;#{root}/vendor/plugins/.svn&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-use_svn-3F">
+            
+              <b>use_svn?</b>()
+            
+            <a href="../classes/RailsEnvironment.html#method-i-use_svn-3F" name="method-i-use_svn-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-use_svn-3F_source')" id="l_method-i-use_svn-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/325abe9fbad58b6a0e119a678039b195247a57bc/railties/lib/rails/commands/plugin.rb#L68" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-use_svn-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/commands/plugin.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">use_svn?</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">'active_support/core_ext/kernel'</span>
+  <span class="ruby-identifier">silence_stderr</span> {<span class="ruby-value">%xsvn --version`</span> <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span>}
+  <span class="ruby-operator">!</span><span class="ruby-identifier">$?</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">success?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

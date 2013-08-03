@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::ForceSSL::ClassMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActionController::ForceSSL::ClassMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_controller/metal/force_ssl_rb.html">actionpack/lib/action_controller/metal/force_ssl.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-force_ssl">force_ssl</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-force_ssl">
+            
+              <b>force_ssl</b>(options = {})
+            
+            <a href="../../../classes/ActionController/ForceSSL/ClassMethods.html#method-i-force_ssl" name="method-i-force_ssl" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Force the request to this particular controller or specified actions to be
+under HTTPS protocol.</p>
+
+<p>Note that this method will not be effective on development environment.</p>
+
+<h4 id="method-i-force_ssl-label-Options">Options</h4>
+<ul><li>
+<p><code>only</code>   - The callback should be run only for this action</p>
+</li><li>
+<p>&lt;tt&gt;except&lt;tt&gt;  - The callback should be run for all actions
+except this action</p>
+</li></ul>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-force_ssl_source')" id="l_method-i-force_ssl_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/391e6a47dbd46fdce0a472819e8d27792cc91984/actionpack/lib/action_controller/metal/force_ssl.rb#L26" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-force_ssl_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/metal/force_ssl.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">force_ssl</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">host</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:host</span>)
+  <span class="ruby-identifier">before_filter</span>(<span class="ruby-identifier">options</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">request</span>.<span class="ruby-identifier">ssl?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">development?</span>
+      <span class="ruby-identifier">redirect_options</span> = {<span class="ruby-value">:protocol</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'https://'</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:moved_permanently</span>}
+      <span class="ruby-identifier">redirect_options</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-value">:host</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">host</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">host</span>
+      <span class="ruby-identifier">redirect_options</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-value">:params</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">query_parameters</span>)
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">redirect_options</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

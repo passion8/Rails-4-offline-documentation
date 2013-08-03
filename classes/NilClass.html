@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>NilClass</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            NilClass 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/blank_rb.html">activesupport/lib/active_support/core_ext/object/blank.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/duplicable_rb.html">activesupport/lib/active_support/core_ext/object/duplicable.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/to_param_rb.html">activesupport/lib/active_support/core_ext/object/to_param.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/try_rb.html">activesupport/lib/active_support/core_ext/object/try.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/json/encoding_rb.html">activesupport/lib/active_support/json/encoding.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/whiny_nil_rb.html">activesupport/lib/active_support/whiny_nil.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Extensions to <code>nil</code> which allow for more helpful error messages
+for people who are new to <a href="Rails.html">Rails</a>.</p>
+
+<p><a href="NilClass.html#method-i-id">#id</a> exists in Ruby 1.8 (though it
+is deprecated). Since <code>id</code> is a fundamental method of Active
+Record models <a href="NilClass.html#method-i-id">#id</a> is redefined as
+well to raise a RuntimeError and warn the user. She probably wanted a model
+database identifier and the 4 returned by the original method could result
+in obscure bugs.</p>
+
+<p>The flag <code>config.whiny_nils</code> determines whether this feature is
+enabled. By default it is on in development and test modes, and it is off
+in production mode.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-add_whiner">add_whiner</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-as_json">as_json</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>B</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-blank-3F">blank?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-duplicable-3F">duplicable?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-encode_json">encode_json</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-id">id</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-to_param">to_param</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-try">try</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-add_whiner">
+            
+              <b>add_whiner</b>(klass)
+            
+            <a href="../classes/NilClass.html#method-c-add_whiner" name="method-c-add_whiner" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-add_whiner_source')" id="l_method-c-add_whiner_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2380a2d76c9b73408ca248d2926a304d8e28158f/activesupport/lib/active_support/whiny_nil.rb#L15" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-add_whiner_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/whiny_nil.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">add_whiner</span>(<span class="ruby-identifier">klass</span>)
+  <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;NilClass.add_whiner is deprecated and this functionality is &quot;</span>        <span class="ruby-string">&quot;removed from Rails versions as it affects Ruby 1.9 performance.&quot;</span>, <span class="ruby-identifier">caller</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-as_json">
+            
+              <b>as_json</b>(options = nil)
+            
+            <a href="../classes/NilClass.html#method-i-as_json" name="method-i-as_json" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-as_json_source')" id="l_method-i-as_json_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/815a9431ab61376a7e8e1bdff21f87bc557992f8/activesupport/lib/active_support/json/encoding.rb#L165" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-as_json_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/json/encoding.rb, line 165</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">as_json</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword">nil</span>) <span class="ruby-keyword">self</span> <span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-blank-3F">
+            
+              <b>blank?</b>()
+            
+            <a href="../classes/NilClass.html#method-i-blank-3F" name="method-i-blank-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p><code>nil</code> is blank:</p>
+
+<pre class="ruby"><span class="ruby-keyword">nil</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-comment"># =&gt; true</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-blank-3F_source')" id="l_method-i-blank-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a371368c91789a4d689d6a84eb20b238c37678a/activesupport/lib/active_support/core_ext/object/blank.rb#L47" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-blank-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/core_ext/object/blank.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">blank?</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-duplicable-3F">
+            
+              <b>duplicable?</b>()
+            
+            <a href="../classes/NilClass.html#method-i-duplicable-3F" name="method-i-duplicable-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p><code>nil</code> is not duplicable:</p>
+
+<pre class="ruby"><span class="ruby-keyword">nil</span>.<span class="ruby-identifier">duplicable?</span> <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-keyword">nil</span>.<span class="ruby-identifier">dup</span>         <span class="ruby-comment"># =&gt; TypeError: can't dup NilClass</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-duplicable-3F_source')" id="l_method-i-duplicable-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fedd87cc0542461b3f04f8a7fb9aa5a89a7e1992/activesupport/lib/active_support/core_ext/object/duplicable.rb#L35" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-duplicable-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/core_ext/object/duplicable.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">duplicable?</span>
+  <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-encode_json">
+            
+              <b>encode_json</b>(encoder)
+            
+            <a href="../classes/NilClass.html#method-i-encode_json" name="method-i-encode_json" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-encode_json_source')" id="l_method-i-encode_json_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/815a9431ab61376a7e8e1bdff21f87bc557992f8/activesupport/lib/active_support/json/encoding.rb#L166" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-encode_json_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/json/encoding.rb, line 166</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">encode_json</span>(<span class="ruby-identifier">encoder</span>) <span class="ruby-string">'null'</span> <span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-id">
+            
+              <b>id</b>()
+            
+            <a href="../classes/NilClass.html#method-i-id" name="method-i-id" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Raises a RuntimeError when you attempt to call <code>id</code> on
+<code>nil</code>.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-id_source')" id="l_method-i-id_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2380a2d76c9b73408ca248d2926a304d8e28158f/activesupport/lib/active_support/whiny_nil.rb#L21" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-id_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/whiny_nil.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">id</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">RuntimeError</span>, <span class="ruby-node">&quot;Called id for nil, which would mistakenly be #{object_id} -- if you really wanted the id of nil, use object_id&quot;</span>, <span class="ruby-identifier">caller</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_param">
+            
+              <b>to_param</b>()
+            
+            <a href="../classes/NilClass.html#method-i-to_param" name="method-i-to_param" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-to_param_source')" id="l_method-i-to_param_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/a0d7247d1509762283c61182ad82c2eed8d54757/activesupport/lib/active_support/core_ext/object/to_param.rb#L9" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-to_param_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/core_ext/object/to_param.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_param</span>
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-try">
+            
+              <b>try</b>(*args)
+            
+            <a href="../classes/NilClass.html#method-i-try" name="method-i-try" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Calling <code>try</code> on <code>nil</code> always returns
+<code>nil</code>. It becomes specially helpful when navigating through
+associations that may return <code>nil</code>.</p>
+
+<h3 id="method-i-try-label-Examples">Examples</h3>
+
+<pre class="ruby"><span class="ruby-keyword">nil</span>.<span class="ruby-identifier">try</span>(:<span class="ruby-identifier">name</span>) <span class="ruby-comment"># =&gt; nil</span>
+</pre>
+
+<p>Without <code>try</code></p>
+
+<pre>@person &amp;&amp; !@person.children.blank? &amp;&amp; @person.children.first.name</pre>
+
+<p>With <code>try</code></p>
+
+<pre>@person.try(:children).try(:first).try(:name)</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-try_source')" id="l_method-i-try_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6ef9fda1a39f45e2d18aba4881f60a19589a2c77/activesupport/lib/active_support/core_ext/object/try.rb#L54" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-try_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/core_ext/object/try.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">try</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

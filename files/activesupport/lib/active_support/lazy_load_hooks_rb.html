@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>lazy_load_hooks.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            lazy_load_hooks.rb
+        </h1>
+        <ul class="files">
+            
+            <li>
+                activesupport/lib/active_support/lazy_load_hooks.rb
+                
+                    <a href="https://github.com/rails/rails/blob/c0a5b8505d0fa9095cbee8b709f9aadf630a3716/activesupport/lib/active_support/lazy_load_hooks.rb" target="_blank" class="github_url">on GitHub</a>
+                
+            </li>
+            <li>Last modified: 2013-08-03 14:59:47 +0530</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>lazy_load_hooks allows rails to lazily load a lot of components and thus
+making the app boot faster. Because of this feature now there is no need to
+require <code>ActiveRecord::Base</code> at boot time purely to apply
+configuration. Instead a hook is registered that applies configuration once
+<code>ActiveRecord::Base</code> is loaded. Here
+<code>ActiveRecord::Base</code> is used as example but this feature can be
+applied elsewhere too.</p>
+
+<p>Here is an example where <code>on_load</code> method is called to register
+a hook.</p>
+
+<pre>initializer &quot;active_record.initialize_timezone&quot; do
+  ActiveSupport.on_load(:active_record) do
+    self.time_zone_aware_attributes = true
+    self.default_timezone = :utc
+  end
+end</pre>
+
+<p>When the entirety of <code>activerecord/lib/active_record/base.rb</code>
+has been evaluated then <code>run_load_hooks</code> is invoked. The very
+last line of <code>activerecord/lib/active_record/base.rb</code> is:</p>
+
+<pre>ActiveSupport.run_load_hooks(:active_record, ActiveRecord::Base)</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="../../../../classes/ActiveSupport.html">ActiveSupport</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

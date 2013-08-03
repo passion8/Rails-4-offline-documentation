@@ -1,0 +1,1076 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionView::Helpers::InstanceTag</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActionView::Helpers::InstanceTag 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_view/helpers/date_helper_rb.html">actionpack/lib/action_view/helpers/date_helper.rb</a></li>
+            
+            <li><a href="../../../files/actionpack/lib/action_view/helpers/form_helper_rb.html">actionpack/lib/action_view/helpers/form_helper.rb</a></li>
+            
+            <li><a href="../../../files/actionpack/lib/action_view/helpers/form_options_helper_rb.html">actionpack/lib/action_view/helpers/form_options_helper.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-check_box_checked-3F">check_box_checked?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-radio_button_checked-3F">radio_button_checked?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-retrieve_autoindex">retrieve_autoindex</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-retrieve_object">retrieve_object</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-to_boolean_select_tag">to_boolean_select_tag</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-to_check_box_tag">to_check_box_tag</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-to_content_tag">to_content_tag</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-to_input_field_tag">to_input_field_tag</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-to_label_tag">to_label_tag</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-to_number_field_tag">to_number_field_tag</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-to_radio_button_tag">to_radio_button_tag</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-to_text_area_tag">to_text_area_tag</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-value">value</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-value">value</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-value_before_type_cast">value_before_type_cast</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-value_before_type_cast">value_before_type_cast</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+    <!-- Includes -->
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+      
+        <li>
+          
+            <a href="ActiveModelInstanceTag.html">
+              ActionView::Helpers::ActiveModelInstanceTag
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="TagHelper.html">
+              ActionView::Helpers::TagHelper
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="FormTagHelper.html">
+              ActionView::Helpers::FormTagHelper
+            </a>
+          
+        </li>
+      
+    </ul>
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">DEFAULT_FIELD_OPTIONS</td>
+            <td>=</td>
+            <td class="attr-value">{ &quot;size&quot; =&gt; 30 }</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">DEFAULT_RADIO_OPTIONS</td>
+            <td>=</td>
+            <td class="attr-value">{ }</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">DEFAULT_TEXT_AREA_OPTIONS</td>
+            <td>=</td>
+            <td class="attr-value">{ &quot;cols&quot; =&gt; 40, &quot;rows&quot; =&gt; 20 }</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>method_name</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>object</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>object_name</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-check_box_checked-3F">
+            
+              <b>check_box_checked?</b>(value, checked_value)
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-c-check_box_checked-3F" name="method-c-check_box_checked-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-check_box_checked-3F_source')" id="l_method-c-check_box_checked-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1163" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-check_box_checked-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1163</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">check_box_checked?</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">checked_value</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">TrueClass</span>, <span class="ruby-constant">FalseClass</span>
+    <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">NilClass</span>
+    <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Integer</span>
+    <span class="ruby-identifier">value</span> <span class="ruby-operator">!=</span> <span class="ruby-number">0</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>
+    <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">checked_value</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Array</span>
+    <span class="ruby-identifier">value</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">checked_value</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">!=</span> <span class="ruby-number">0</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(object_name, method_name, template_object, object = nil)
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L980" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 980</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">object_name</span>, <span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">template_object</span>, <span class="ruby-identifier">object</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@object_name</span>, <span class="ruby-ivar">@method_name</span> = <span class="ruby-identifier">object_name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">dup</span>, <span class="ruby-identifier">method_name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-ivar">@template_object</span> = <span class="ruby-identifier">template_object</span>
+
+  <span class="ruby-ivar">@object_name</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\[\]$/</span>,<span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">||</span> <span class="ruby-ivar">@object_name</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\[\]\]$/</span>,<span class="ruby-string">&quot;]&quot;</span>)
+  <span class="ruby-ivar">@object</span> = <span class="ruby-identifier">retrieve_object</span>(<span class="ruby-identifier">object</span>)
+  <span class="ruby-ivar">@auto_index</span> = <span class="ruby-identifier">retrieve_autoindex</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">last_match</span>.<span class="ruby-identifier">pre_match</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">last_match</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-radio_button_checked-3F">
+            
+              <b>radio_button_checked?</b>(value, checked_value)
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-c-radio_button_checked-3F" name="method-c-radio_button_checked-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-radio_button_checked-3F_source')" id="l_method-c-radio_button_checked-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1180" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-radio_button_checked-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">radio_button_checked?</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">checked_value</span>)
+  <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">checked_value</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-value">
+            
+              <b>value</b>(object, method_name)
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-c-value" name="method-c-value" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-value_source')" id="l_method-c-value_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1151" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-value_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1151</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">value</span>(<span class="ruby-identifier">object</span>, <span class="ruby-identifier">method_name</span>)
+  <span class="ruby-identifier">object</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">method_name</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-value_before_type_cast">
+            
+              <b>value_before_type_cast</b>(object, method_name)
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-c-value_before_type_cast" name="method-c-value_before_type_cast" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-value_before_type_cast_source')" id="l_method-c-value_before_type_cast_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1155" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-value_before_type_cast_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1155</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">value_before_type_cast</span>(<span class="ruby-identifier">object</span>, <span class="ruby-identifier">method_name</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">method_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_before_type_cast&quot;</span>) <span class="ruby-operator">?</span>
+    <span class="ruby-identifier">object</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">method_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_before_type_cast&quot;</span>) <span class="ruby-operator">:</span>
+    <span class="ruby-identifier">object</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">method_name</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-retrieve_autoindex">
+            
+              <b>retrieve_autoindex</b>(pre_match)
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-i-retrieve_autoindex" name="method-i-retrieve_autoindex" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-retrieve_autoindex_source')" id="l_method-i-retrieve_autoindex_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1133" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-retrieve_autoindex_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1133</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">retrieve_autoindex</span>(<span class="ruby-identifier">pre_match</span>)
+  <span class="ruby-identifier">object</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">object</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@template_object</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-node">&quot;@#{pre_match}&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:to_param</span>)
+    <span class="ruby-identifier">object</span>.<span class="ruby-identifier">to_param</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;object[] naming but object param and @object var don't exist or don't respond to to_param: #{object.inspect}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-retrieve_object">
+            
+              <b>retrieve_object</b>(object)
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-i-retrieve_object" name="method-i-retrieve_object" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-retrieve_object_source')" id="l_method-i-retrieve_object_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1122" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-retrieve_object_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1122</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">retrieve_object</span>(<span class="ruby-identifier">object</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>
+    <span class="ruby-identifier">object</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@template_object</span>.<span class="ruby-identifier">instance_variable_defined?</span>(<span class="ruby-node">&quot;@#{@object_name}&quot;</span>)
+    <span class="ruby-ivar">@template_object</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-node">&quot;@#{@object_name}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">NameError</span>
+  <span class="ruby-comment"># As @object_name may contain the nested syntax (item[subobject]) we need to fallback to nil.</span>
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_boolean_select_tag">
+            
+              <b>to_boolean_select_tag</b>(options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-i-to_boolean_select_tag" name="method-i-to_boolean_select_tag" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-to_boolean_select_tag_source')" id="l_method-i-to_boolean_select_tag_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1105" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-to_boolean_select_tag_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_boolean_select_tag</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">stringify_keys</span>
+  <span class="ruby-identifier">add_default_name_and_id</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>(<span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">tag_text</span> = <span class="ruby-string">&quot;&lt;select&quot;</span>
+  <span class="ruby-identifier">tag_text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tag_options</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">tag_text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&gt;&lt;option value=\&quot;false\&quot;&quot;</span>
+  <span class="ruby-identifier">tag_text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot; selected&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">tag_text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&gt;False&lt;/option&gt;&lt;option value=\&quot;true\&quot;&quot;</span>
+  <span class="ruby-identifier">tag_text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot; selected&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>
+  <span class="ruby-identifier">tag_text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&gt;True&lt;/option&gt;&lt;/select&gt;&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_check_box_tag">
+            
+              <b>to_check_box_tag</b>(options = {}, checked_value = &quot;1&quot;, unchecked_value = &quot;0&quot;)
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-i-to_check_box_tag" name="method-i-to_check_box_tag" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-to_check_box_tag_source')" id="l_method-i-to_check_box_tag_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1083" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-to_check_box_tag_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1083</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_check_box_tag</span>(<span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">checked_value</span> = <span class="ruby-string">&quot;1&quot;</span>, <span class="ruby-identifier">unchecked_value</span> = <span class="ruby-string">&quot;0&quot;</span>)
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">stringify_keys</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;type&quot;</span>]     = <span class="ruby-string">&quot;checkbox&quot;</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;value&quot;</span>]    = <span class="ruby-identifier">checked_value</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-string">&quot;checked&quot;</span>)
+    <span class="ruby-identifier">cv</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span> <span class="ruby-string">&quot;checked&quot;</span>
+    <span class="ruby-identifier">checked</span> = <span class="ruby-identifier">cv</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">cv</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;checked&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">checked</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">check_box_checked?</span>(<span class="ruby-identifier">value</span>(<span class="ruby-identifier">object</span>), <span class="ruby-identifier">checked_value</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;checked&quot;</span>] = <span class="ruby-string">&quot;checked&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">checked</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;multiple&quot;</span>]
+    <span class="ruby-identifier">add_default_name_and_id_for_value</span>(<span class="ruby-identifier">checked_value</span>, <span class="ruby-identifier">options</span>)
+    <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;multiple&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">add_default_name_and_id</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">hidden</span> = <span class="ruby-identifier">unchecked_value</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">tag</span>(<span class="ruby-string">&quot;input&quot;</span>, <span class="ruby-string">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;name&quot;</span>], <span class="ruby-string">&quot;type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;hidden&quot;</span>, <span class="ruby-string">&quot;value&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unchecked_value</span>, <span class="ruby-string">&quot;disabled&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;disabled&quot;</span>]) <span class="ruby-operator">:</span> <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">checkbox</span> = <span class="ruby-identifier">tag</span>(<span class="ruby-string">&quot;input&quot;</span>, <span class="ruby-identifier">options</span>)
+  (<span class="ruby-identifier">hidden</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">checkbox</span>).<span class="ruby-identifier">html_safe</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_content_tag">
+            
+              <b>to_content_tag</b>(tag_name, options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-i-to_content_tag" name="method-i-to_content_tag" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-to_content_tag_source')" id="l_method-i-to_content_tag_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1118" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-to_content_tag_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_content_tag</span>(<span class="ruby-identifier">tag_name</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">tag_name</span>, <span class="ruby-identifier">value</span>(<span class="ruby-identifier">object</span>), <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_input_field_tag">
+            
+              <b>to_input_field_tag</b>(field_type, options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-i-to_input_field_tag" name="method-i-to_input_field_tag" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-to_input_field_tag_source')" id="l_method-i-to_input_field_tag_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1033" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-to_input_field_tag_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1033</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_input_field_tag</span>(<span class="ruby-identifier">field_type</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">stringify_keys</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;size&quot;</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;maxlength&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_FIELD_OPTIONS</span>[<span class="ruby-string">&quot;size&quot;</span>] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-string">&quot;size&quot;</span>)
+  <span class="ruby-identifier">options</span> = <span class="ruby-constant">DEFAULT_FIELD_OPTIONS</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">field_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;hidden&quot;</span>
+    <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;size&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;type&quot;</span>]  <span class="ruby-operator">||=</span> <span class="ruby-identifier">field_type</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;value&quot;</span>] = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-string">&quot;value&quot;</span>){ <span class="ruby-identifier">value_before_type_cast</span>(<span class="ruby-identifier">object</span>) } <span class="ruby-keyword">unless</span> <span class="ruby-identifier">field_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;file&quot;</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;value&quot;</span>] <span class="ruby-operator">&amp;&amp;=</span> <span class="ruby-constant">ERB</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">html_escape</span>(<span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;value&quot;</span>])
+  <span class="ruby-identifier">add_default_name_and_id</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">tag</span>(<span class="ruby-string">&quot;input&quot;</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_label_tag">
+            
+              <b>to_label_tag</b>(text = nil, options = {}, &amp;block)
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-i-to_label_tag" name="method-i-to_label_tag" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-to_label_tag_source')" id="l_method-i-to_label_tag_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L989" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-to_label_tag_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 989</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_label_tag</span>(<span class="ruby-identifier">text</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {}, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">stringify_keys</span>
+  <span class="ruby-identifier">tag_value</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;value&quot;</span>)
+  <span class="ruby-identifier">name_and_id</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">dup</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">name_and_id</span>[<span class="ruby-string">&quot;for&quot;</span>]
+    <span class="ruby-identifier">name_and_id</span>[<span class="ruby-string">&quot;id&quot;</span>] = <span class="ruby-identifier">name_and_id</span>[<span class="ruby-string">&quot;for&quot;</span>]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">name_and_id</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;id&quot;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_default_name_and_id_for_value</span>(<span class="ruby-identifier">tag_value</span>, <span class="ruby-identifier">name_and_id</span>)
+  <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;index&quot;</span>)
+  <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;namespace&quot;</span>)
+  <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;for&quot;</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">name_and_id</span>[<span class="ruby-string">&quot;id&quot;</span>]
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-ivar">@template_object</span>.<span class="ruby-identifier">label_tag</span>(<span class="ruby-identifier">name_and_id</span>[<span class="ruby-string">&quot;id&quot;</span>], <span class="ruby-identifier">options</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">content</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">blank?</span>
+      <span class="ruby-identifier">object_name</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/\[(.*)_attributes\]\[\d\]/</span>, <span class="ruby-string">'.\1'</span>)
+      <span class="ruby-identifier">method_and_value</span> = <span class="ruby-identifier">tag_value</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;#{method_name}.#{tag_value}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">method_name</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:to_model</span>)
+        <span class="ruby-identifier">key</span> = <span class="ruby-identifier">object</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">model_name</span>.<span class="ruby-identifier">i18n_key</span>
+        <span class="ruby-identifier">i18n_default</span> = [<span class="ruby-node">&quot;#{key}.#{method_and_value}&quot;</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-string">&quot;&quot;</span>]
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">i18n_default</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;&quot;</span>
+      <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-node">&quot;#{object_name}.#{method_and_value}&quot;</span>, <span class="ruby-value">:default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">i18n_default</span>, <span class="ruby-value">:scope</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;helpers.label&quot;</span>).<span class="ruby-identifier">presence</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_s</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">content</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:human_attribute_name</span>)
+      <span class="ruby-identifier">object</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">human_attribute_name</span>(<span class="ruby-identifier">method_name</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">content</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">method_name</span>.<span class="ruby-identifier">humanize</span>
+
+    <span class="ruby-identifier">label_tag</span>(<span class="ruby-identifier">name_and_id</span>[<span class="ruby-string">&quot;id&quot;</span>], <span class="ruby-identifier">content</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_number_field_tag">
+            
+              <b>to_number_field_tag</b>(field_type, options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-i-to_number_field_tag" name="method-i-to_number_field_tag" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-to_number_field_tag_source')" id="l_method-i-to_number_field_tag_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1047" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-to_number_field_tag_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1047</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_number_field_tag</span>(<span class="ruby-identifier">field_type</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">stringify_keys</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-string">'size'</span>] <span class="ruby-operator">||=</span> <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">range</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;in&quot;</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;within&quot;</span>)
+    <span class="ruby-identifier">options</span>.<span class="ruby-identifier">update</span>(<span class="ruby-string">&quot;min&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">range</span>.<span class="ruby-identifier">min</span>, <span class="ruby-string">&quot;max&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">range</span>.<span class="ruby-identifier">max</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">to_input_field_tag</span>(<span class="ruby-identifier">field_type</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_radio_button_tag">
+            
+              <b>to_radio_button_tag</b>(tag_value, options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-i-to_radio_button_tag" name="method-i-to_radio_button_tag" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-to_radio_button_tag_source')" id="l_method-i-to_radio_button_tag_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1057" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-to_radio_button_tag_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1057</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_radio_button_tag</span>(<span class="ruby-identifier">tag_value</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">options</span> = <span class="ruby-constant">DEFAULT_RADIO_OPTIONS</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">stringify_keys</span>)
+  <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;type&quot;</span>]     = <span class="ruby-string">&quot;radio&quot;</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;value&quot;</span>]    = <span class="ruby-identifier">tag_value</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-string">&quot;checked&quot;</span>)
+    <span class="ruby-identifier">cv</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span> <span class="ruby-string">&quot;checked&quot;</span>
+    <span class="ruby-identifier">checked</span> = <span class="ruby-identifier">cv</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">cv</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;checked&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">checked</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">radio_button_checked?</span>(<span class="ruby-identifier">value</span>(<span class="ruby-identifier">object</span>), <span class="ruby-identifier">tag_value</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;checked&quot;</span>]  = <span class="ruby-string">&quot;checked&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">checked</span>
+  <span class="ruby-identifier">add_default_name_and_id_for_value</span>(<span class="ruby-identifier">tag_value</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">tag</span>(<span class="ruby-string">&quot;input&quot;</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_text_area_tag">
+            
+              <b>to_text_area_tag</b>(options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-i-to_text_area_tag" name="method-i-to_text_area_tag" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-to_text_area_tag_source')" id="l_method-i-to_text_area_tag_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1072" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-to_text_area_tag_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1072</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_text_area_tag</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">options</span> = <span class="ruby-constant">DEFAULT_TEXT_AREA_OPTIONS</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">stringify_keys</span>)
+  <span class="ruby-identifier">add_default_name_and_id</span>(<span class="ruby-identifier">options</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">size</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;size&quot;</span>)
+    <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;cols&quot;</span>], <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;rows&quot;</span>] = <span class="ruby-identifier">size</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;x&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">size</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:split</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;textarea&quot;</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">'value'</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">value_before_type_cast</span>(<span class="ruby-identifier">object</span>), <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-value">
+            
+              <b>value</b>(object)
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-i-value" name="method-i-value" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-value_source')" id="l_method-i-value_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1142" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-value_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1142</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">value</span>(<span class="ruby-identifier">object</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">value</span>(<span class="ruby-identifier">object</span>, <span class="ruby-ivar">@method_name</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-value_before_type_cast">
+            
+              <b>value_before_type_cast</b>(object)
+            
+            <a href="../../../classes/ActionView/Helpers/InstanceTag.html#method-i-value_before_type_cast" name="method-i-value_before_type_cast" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-value_before_type_cast_source')" id="l_method-i-value_before_type_cast_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1146" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-value_before_type_cast_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">value_before_type_cast</span>(<span class="ruby-identifier">object</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">value_before_type_cast</span>(<span class="ruby-identifier">object</span>, <span class="ruby-ivar">@method_name</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

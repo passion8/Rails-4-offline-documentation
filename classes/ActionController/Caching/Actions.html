@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::Caching::Actions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActionController::Caching::Actions 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_controller/caching/actions_rb.html">actionpack/lib/action_controller/caching/actions.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Action caching is similar to page caching by the fact that the entire
+output of the response is cached, but unlike page caching, every request
+still goes through Action Pack. The key benefit of this is that filters run
+before the cache is served, which allows for authentication and other
+restrictions on whether someone is allowed to execute such action. Example:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">ListsController</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ApplicationController</span>
+  <span class="ruby-identifier">before_filter</span> :<span class="ruby-identifier">authenticate</span>, :<span class="ruby-identifier">except</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">public</span>
+
+  <span class="ruby-identifier">caches_page</span>   :<span class="ruby-identifier">public</span>
+  <span class="ruby-identifier">caches_action</span> :<span class="ruby-identifier">index</span>, :<span class="ruby-identifier">show</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>In this example, the <code>public</code> action doesn’t require
+authentication so it’s possible to use the faster page caching. On the
+other hand <code>index</code> and <code>show</code> require authentication.
+They can still be cached, but we need action caching for them.</p>
+
+<p>Action caching uses fragment caching internally and an around filter to do
+the job. The fragment cache is named according to the host and path of the
+request. A page that is accessed at
+<code>http://david.example.com/lists/show/1</code> will result in a
+fragment named <code>david.example.com/lists/show/1</code>. This allows the
+cacher to differentiate between <code>david.example.com/lists/</code> and
+<code>jamis.example.com/lists/</code> – which is a helpful way of assisting
+the subdomain-as-account-key pattern.</p>
+
+<p>Different representations of the same resource, e.g.
+<code>http://david.example.com/lists</code> and
+<code>http://david.example.com/lists.xml</code> are treated like separate
+requests and so are cached separately. Keep in mind when expiring an action
+cache that <code>:action =&gt; 'lists'</code> is not the same as
+<code>:action =&gt; 'list', :format =&gt; :xml</code>.</p>
+
+<p>You can modify the default action cache path by passing a
+<code>:cache_path</code> option. This will be passed directly to
+<code>ActionCachePath.path_for</code>. This is handy for actions with
+multiple possible routes that should be cached differently. If a block is
+given, it is called with the current controller instance.</p>
+
+<p>And you can also use <code>:if</code> (or <code>:unless</code>) to pass a
+proc that specifies when the action should be cached.</p>
+
+<p>Finally, if you are using memcached, you can also pass
+<code>:expires_in</code>.</p>
+
+<p>The following example depicts some of the points made above:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">ListsController</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ApplicationController</span>
+  <span class="ruby-identifier">before_filter</span> :<span class="ruby-identifier">authenticate</span>, :<span class="ruby-identifier">except</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">public</span>
+
+  <span class="ruby-identifier">caches_page</span> :<span class="ruby-identifier">public</span>
+
+  <span class="ruby-identifier">caches_action</span> :<span class="ruby-identifier">index</span>, :<span class="ruby-keyword">if</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">proc</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-operator">!</span><span class="ruby-identifier">request</span>.<span class="ruby-identifier">format</span>.<span class="ruby-identifier">json?</span>  <span class="ruby-comment"># cache if is not a JSON request</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">caches_action</span> :<span class="ruby-identifier">show</span>, :<span class="ruby-identifier">cache_path</span> =<span class="ruby-operator">&gt;</span> { :<span class="ruby-identifier">project</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span> },
+    :<span class="ruby-identifier">expires_in</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">hour</span>
+
+  <span class="ruby-identifier">caches_action</span> :<span class="ruby-identifier">feed</span>, :<span class="ruby-identifier">cache_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">proc</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[:<span class="ruby-identifier">user_id</span>]
+      <span class="ruby-identifier">user_list_url</span>(<span class="ruby-identifier">params</span>[:<span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">params</span>[:<span class="ruby-identifier">id</span>])
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">list_url</span>(<span class="ruby-identifier">params</span>[:<span class="ruby-identifier">id</span>])
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>If you pass <code>:layout =&gt; false</code>, it will only cache your
+action content. That’s useful when your layout has dynamic information.</p>
+
+<p>Warning: If the format of the request is determined by the Accept HTTP
+header the Content-Type of the cached response could be wrong because no
+information about the MIME type is stored in the cache key. So, if you
+first ask for MIME type M in the Accept header, a cache entry is created,
+and then perform a second request to the same resource asking for a
+different MIME type, you’d get the content cached for M.</p>
+
+<p>The <code>:format</code> parameter is taken into account though. The safest
+way to cache by MIME type is to pass the format in the route.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="Actions/ClassMethods.html">ActionController::Caching::Actions::ClassMethods</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="Actions/ActionCachePath.html">ActionController::Caching::Actions::ActionCachePath</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>#</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-_save_fragment">_save_fragment</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-expire_action">expire_action</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-_save_fragment">
+            
+              <b>_save_fragment</b>(name, options)
+            
+            <a href="../../../classes/ActionController/Caching/Actions.html#method-i-_save_fragment" name="method-i-_save_fragment" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-_save_fragment_source')" id="l_method-i-_save_fragment_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/7c79996c6754f6d7dd67f43d279a63121ee71a9b/actionpack/lib/action_controller/caching/actions.rb#L104" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-_save_fragment_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/caching/actions.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">_save_fragment</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">content</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">response_body</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">parts</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">content</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">parts</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">caching_allowed?</span>
+    <span class="ruby-identifier">write_fragment</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">content</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">content</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-expire_action">
+            
+              <b>expire_action</b>(options = {})
+            
+            <a href="../../../classes/ActionController/Caching/Actions.html#method-i-expire_action" name="method-i-expire_action" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-expire_action_source')" id="l_method-i-expire_action_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/7c79996c6754f6d7dd67f43d279a63121ee71a9b/actionpack/lib/action_controller/caching/actions.rb#L118" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-expire_action_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/caching/actions.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">expire_action</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">cache_configured?</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:action</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:action</span>].<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">action</span><span class="ruby-operator">|</span> <span class="ruby-identifier">expire_action</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">action</span>)) }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">expire_fragment</span>(<span class="ruby-constant">ActionCachePath</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">options</span>, <span class="ruby-keyword">false</span>).<span class="ruby-identifier">path</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

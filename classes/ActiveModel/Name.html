@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::Name</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveModel::Name 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../String.html">String</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activemodel/lib/active_model/naming_rb.html">activemodel/lib/active_model/naming.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-human">human</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>cache_key</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>collection</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>element</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>i18n_key</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>param_key</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>partial_path</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>plural</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>route_key</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>singular</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>singular_route_key</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(klass, namespace = nil, name = nil)
+            
+            <a href="../../classes/ActiveModel/Name.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/75d58fef26bcd52cf5c814466836c4b527a6547c/activemodel/lib/active_model/naming.rb#L15" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/naming.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">namespace</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">name</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">name</span>
+
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;Class name cannot be blank. You need to supply a name argument when anonymous class given&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">blank?</span>
+
+  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">name</span>)
+
+  <span class="ruby-ivar">@unnamespaced</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-node">/^#{namespace.name}::/</span>, <span class="ruby-string">''</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">namespace</span>
+  <span class="ruby-ivar">@klass</span>        = <span class="ruby-identifier">klass</span>
+  <span class="ruby-ivar">@singular</span>     = <span class="ruby-identifier">_singularize</span>(<span class="ruby-keyword">self</span>).<span class="ruby-identifier">freeze</span>
+  <span class="ruby-ivar">@plural</span>       = <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflector</span>.<span class="ruby-identifier">pluralize</span>(<span class="ruby-ivar">@singular</span>).<span class="ruby-identifier">freeze</span>
+  <span class="ruby-ivar">@element</span>      = <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflector</span>.<span class="ruby-identifier">underscore</span>(<span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflector</span>.<span class="ruby-identifier">demodulize</span>(<span class="ruby-keyword">self</span>)).<span class="ruby-identifier">freeze</span>
+  <span class="ruby-ivar">@human</span>        = <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflector</span>.<span class="ruby-identifier">humanize</span>(<span class="ruby-ivar">@element</span>).<span class="ruby-identifier">freeze</span>
+  <span class="ruby-ivar">@collection</span>   = <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflector</span>.<span class="ruby-identifier">tableize</span>(<span class="ruby-keyword">self</span>).<span class="ruby-identifier">freeze</span>
+  <span class="ruby-ivar">@partial_path</span> = <span class="ruby-node">&quot;#{@collection}/#{@element}&quot;</span>.<span class="ruby-identifier">freeze</span>
+  <span class="ruby-ivar">@param_key</span>    = (<span class="ruby-identifier">namespace</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">_singularize</span>(<span class="ruby-ivar">@unnamespaced</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@singular</span>).<span class="ruby-identifier">freeze</span>
+  <span class="ruby-ivar">@i18n_key</span>     = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">underscore</span>.<span class="ruby-identifier">to_sym</span>
+
+  <span class="ruby-ivar">@route_key</span>          = (<span class="ruby-identifier">namespace</span> <span class="ruby-operator">?</span> <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflector</span>.<span class="ruby-identifier">pluralize</span>(<span class="ruby-ivar">@param_key</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@plural</span>.<span class="ruby-identifier">dup</span>)
+  <span class="ruby-ivar">@singular_route_key</span> = <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflector</span>.<span class="ruby-identifier">singularize</span>(<span class="ruby-ivar">@route_key</span>).<span class="ruby-identifier">freeze</span>
+  <span class="ruby-ivar">@route_key</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;_index&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@plural</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@singular</span>
+  <span class="ruby-ivar">@route_key</span>.<span class="ruby-identifier">freeze</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-human">
+            
+              <b>human</b>(options={})
+            
+            <a href="../../classes/ActiveModel/Name.html#method-i-human" name="method-i-human" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Transform the model name into a more humane format, using <a
+href="../I18n.html">I18n</a>. By default, it will underscore then humanize
+the class name</p>
+
+<pre class="ruby"><span class="ruby-constant">BlogPost</span>.<span class="ruby-identifier">model_name</span>.<span class="ruby-identifier">human</span> <span class="ruby-comment"># =&gt; &quot;Blog post&quot;</span>
+</pre>
+
+<p>Specify <code>options</code> with additional translating options.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-human_source')" id="l_method-i-human_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/75d58fef26bcd52cf5c814466836c4b527a6547c/activemodel/lib/active_model/naming.rb#L45" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-human_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/naming.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">human</span>(<span class="ruby-identifier">options</span>={})
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@human</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@klass</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:lookup_ancestors</span>) <span class="ruby-operator">&amp;&amp;</span>
+                       <span class="ruby-ivar">@klass</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:i18n_scope</span>)
+
+  <span class="ruby-identifier">defaults</span> = <span class="ruby-ivar">@klass</span>.<span class="ruby-identifier">lookup_ancestors</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">klass</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">model_name</span>.<span class="ruby-identifier">i18n_key</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">defaults</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:default</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:default</span>]
+  <span class="ruby-identifier">defaults</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@human</span>
+
+  <span class="ruby-identifier">options</span> = {<span class="ruby-value">:scope</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-ivar">@klass</span>.<span class="ruby-identifier">i18n_scope</span>, <span class="ruby-value">:models</span>], <span class="ruby-value">:count</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">1</span>, <span class="ruby-value">:default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">defaults</span>}.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">except</span>(<span class="ruby-value">:default</span>))
+  <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">translate</span>(<span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">shift</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

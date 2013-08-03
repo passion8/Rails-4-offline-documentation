@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::MassAssignmentSecurity::PermissionSet</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveModel::MassAssignmentSecurity::PermissionSet 
+            
+                <span class="parent">&lt; 
+                    
+                    Set
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activemodel/lib/active_model/mass_assignment_security/permission_set_rb.html">activemodel/lib/active_model/mass_assignment_security/permission_set.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>#</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-2B">+</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-deny-3F">deny?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-include-3F">include?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-remove_multiparameter_id">remove_multiparameter_id</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-2B">
+            
+              <b>+</b>(values)
+            
+            <a href="../../../classes/ActiveModel/MassAssignmentSecurity/PermissionSet.html#method-i-2B" name="method-i-2B" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-2B_source')" id="l_method-i-2B_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/060bb7250b963609a0d8a5d0559e36b99d2402c6/activemodel/lib/active_model/mass_assignment_security/permission_set.rb#L7" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-2B_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security/permission_set.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">+</span>(<span class="ruby-keyword ruby-title">values</span>)
+  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_s</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-deny-3F">
+            
+              <b>deny?</b>(key)
+            
+            <a href="../../../classes/ActiveModel/MassAssignmentSecurity/PermissionSet.html#method-i-deny-3F" name="method-i-deny-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-deny-3F_source')" id="l_method-i-deny-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/060bb7250b963609a0d8a5d0559e36b99d2402c6/activemodel/lib/active_model/mass_assignment_security/permission_set.rb#L15" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-deny-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security/permission_set.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">deny?</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-node">&quot;#deny?(key) suppose to be overwritten&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-include-3F">
+            
+              <b>include?</b>(key)
+            
+            <a href="../../../classes/ActiveModel/MassAssignmentSecurity/PermissionSet.html#method-i-include-3F" name="method-i-include-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-include-3F_source')" id="l_method-i-include-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/060bb7250b963609a0d8a5d0559e36b99d2402c6/activemodel/lib/active_model/mass_assignment_security/permission_set.rb#L11" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-include-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security/permission_set.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">include?</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">remove_multiparameter_id</span>(<span class="ruby-identifier">key</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-remove_multiparameter_id">
+            
+              <b>remove_multiparameter_id</b>(key)
+            
+            <a href="../../../classes/ActiveModel/MassAssignmentSecurity/PermissionSet.html#method-i-remove_multiparameter_id" name="method-i-remove_multiparameter_id" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-remove_multiparameter_id_source')" id="l_method-i-remove_multiparameter_id_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/060bb7250b963609a0d8a5d0559e36b99d2402c6/activemodel/lib/active_model/mass_assignment_security/permission_set.rb#L21" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-remove_multiparameter_id_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security/permission_set.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">remove_multiparameter_id</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\(.+/</span>, <span class="ruby-string">''</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

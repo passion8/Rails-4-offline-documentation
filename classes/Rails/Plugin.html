@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Rails::Plugin</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            Rails::Plugin 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="Engine.html">Rails::Engine</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/railties/lib/rails/plugin_rb.html">railties/lib/rails/plugin.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><a href="Plugin.html">Rails::Plugin</a> is nothing more than a <a
+href="Engine.html">Rails::Engine</a>, but since it's loaded too late in the
+boot process, it does not have the same configuration powers as a bare <a
+href="Engine.html">Rails::Engine</a>.</p>
+
+<p>Opposite to <a href="Railtie.html">Rails::Railtie</a> and <a
+href="Engine.html">Rails::Engine</a>, you are not supposed to inherit from
+<a href="Plugin.html">Rails::Plugin</a>. <a
+href="Plugin.html">Rails::Plugin</a> is automatically configured to be an
+engine by simply placing inside vendor/plugins. Since this is done
+automatically, you actually cannot declare a <a
+href="Engine.html">Rails::Engine</a> inside your <a
+href="Plugin.html">Plugin</a>, otherwise it would cause the same files to
+be loaded twice. This means that if you want to ship an <a
+href="Engine.html">Engine</a> as gem it cannot be used as plugin and
+vice-versa.</p>
+
+<p>Besides this conceptual difference, the only difference between <a
+href="Engine.html">Rails::Engine</a> and <a
+href="Plugin.html">Rails::Plugin</a> is that plugins automatically load the
+file “init.rb” at the plugin root during the boot process.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-all">all</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-config">config</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>G</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-global_plugins">global_plugins</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-inherited">inherited</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-railtie_name">railtie_name</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>name</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>path</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-all">
+            
+              <b>all</b>(list, paths)
+            
+            <a href="../../classes/Rails/Plugin.html#method-c-all" name="method-c-all" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-all_source')" id="l_method-c-all_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/1d753ab6c8bb8d4fb25ddb48d3859fd371bedae6/railties/lib/rails/plugin.rb#L29" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-all_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/plugin.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">all</span>(<span class="ruby-identifier">list</span>, <span class="ruby-identifier">paths</span>)
+  <span class="ruby-identifier">plugins</span> = []
+  <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">Dir</span>[<span class="ruby-node">&quot;#{path}/*&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plugin_path</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">plugin</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">plugin_path</span>)
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">plugin</span>.<span class="ruby-identifier">name</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">:all</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">global_plugins</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">plugin</span>.<span class="ruby-identifier">name</span>)
+        <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;WARNING: plugin #{plugin.name} from #{path} was not loaded. Plugin with the same name has been already loaded.&quot;</span>
+        <span class="ruby-keyword">next</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">global_plugins</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">plugin</span>.<span class="ruby-identifier">name</span>
+      <span class="ruby-identifier">plugins</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">plugin</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">plugins</span>.<span class="ruby-identifier">sort_by</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+    [<span class="ruby-identifier">list</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">p</span>.<span class="ruby-identifier">name</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">index</span>(<span class="ruby-value">:all</span>), <span class="ruby-identifier">p</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-global_plugins">
+            
+              <b>global_plugins</b>()
+            
+            <a href="../../classes/Rails/Plugin.html#method-c-global_plugins" name="method-c-global_plugins" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-global_plugins_source')" id="l_method-c-global_plugins_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/1d753ab6c8bb8d4fb25ddb48d3859fd371bedae6/railties/lib/rails/plugin.rb#L21" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-global_plugins_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/plugin.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">global_plugins</span>
+  <span class="ruby-ivar">@global_plugins</span> <span class="ruby-operator">||=</span> []
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-inherited">
+            
+              <b>inherited</b>(base)
+            
+            <a href="../../classes/Rails/Plugin.html#method-c-inherited" name="method-c-inherited" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-inherited_source')" id="l_method-c-inherited_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/1d753ab6c8bb8d4fb25ddb48d3859fd371bedae6/railties/lib/rails/plugin.rb#L25" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-inherited_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/plugin.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">inherited</span>(<span class="ruby-identifier">base</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;You cannot inherit from Rails::Plugin&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(root)
+            
+            <a href="../../classes/Rails/Plugin.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/1d753ab6c8bb8d4fb25ddb48d3859fd371bedae6/railties/lib/rails/plugin.rb#L55" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/plugin.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">root</span>)
+  <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;You have Rails 2.3-style plugins in vendor/plugins! Support for these plugins will be removed in Rails 4.0. Move them out and bundle them in your Gemfile, or fold them in to your app as lib/myplugin/* and config/initializers/myplugin.rb. See the release notes for more on this: http://weblog.rubyonrails.org/2012/1/4/rails-3-2-0-rc2-has-been-released&quot;</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">root</span>).<span class="ruby-identifier">to_sym</span>
+  <span class="ruby-identifier">config</span>.<span class="ruby-identifier">root</span> = <span class="ruby-identifier">root</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-config">
+            
+              <b>config</b>()
+            
+            <a href="../../classes/Rails/Plugin.html#method-i-config" name="method-i-config" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-config_source')" id="l_method-i-config_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/1d753ab6c8bb8d4fb25ddb48d3859fd371bedae6/railties/lib/rails/plugin.rb#L61" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-config_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/plugin.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">config</span>
+  <span class="ruby-ivar">@config</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Engine</span><span class="ruby-operator">::</span><span class="ruby-constant">Configuration</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-railtie_name">
+            
+              <b>railtie_name</b>()
+            
+            <a href="../../classes/Rails/Plugin.html#method-i-railtie_name" name="method-i-railtie_name" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-railtie_name_source')" id="l_method-i-railtie_name_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/1d753ab6c8bb8d4fb25ddb48d3859fd371bedae6/railties/lib/rails/plugin.rb#L51" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-railtie_name_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/plugin.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">railtie_name</span>
+  <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Testing::SetupAndTeardown::ForClassicTestUnit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveSupport::Testing::SetupAndTeardown::ForClassicTestUnit 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/activesupport/lib/active_support/testing/setup_and_teardown_rb.html">activesupport/lib/active_support/testing/setup_and_teardown.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-run">run</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">PASSTHROUGH_EXCEPTIONS</td>
+            <td>=</td>
+            <td class="attr-value">Test::Unit::TestCase::PASSTHROUGH_EXCEPTIONS rescue [NoMemoryError, SignalException, Interrupt, SystemExit]</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>For compatibility with Ruby &lt; 1.8.6</p></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-run">
+            
+              <b>run</b>(result)
+            
+            <a href="../../../../classes/ActiveSupport/Testing/SetupAndTeardown/ForClassicTestUnit.html#method-i-run" name="method-i-run" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>This redefinition is unfortunate but test/unit shows us no alternative.
+Doubly unfortunate: hax to support Mocha’s hax.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-run_source')" id="l_method-i-run_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/17ccefc4360caea1a80eada324513dc6cb809c75/activesupport/lib/active_support/testing/setup_and_teardown.rb#L61" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-run_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/testing/setup_and_teardown.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>(<span class="ruby-identifier">result</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@method_name</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;default_test&quot;</span>
+
+  <span class="ruby-identifier">mocha_counter</span> = <span class="ruby-identifier">retrieve_mocha_counter</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">result</span>)
+  <span class="ruby-keyword">yield</span>(<span class="ruby-constant">Test</span><span class="ruby-operator">::</span><span class="ruby-constant">Unit</span><span class="ruby-operator">::</span><span class="ruby-constant">TestCase</span><span class="ruby-operator">::</span><span class="ruby-constant">STARTED</span>, <span class="ruby-identifier">name</span>)
+  <span class="ruby-ivar">@_result</span> = <span class="ruby-identifier">result</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">run_callbacks</span> <span class="ruby-value">:setup</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">setup</span>
+        <span class="ruby-identifier">__send__</span>(<span class="ruby-ivar">@method_name</span>)
+        <span class="ruby-identifier">mocha_verify</span>(<span class="ruby-identifier">mocha_counter</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">mocha_counter</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Mocha</span><span class="ruby-operator">::</span><span class="ruby-constant">ExpectationError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-identifier">add_failure</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Test</span><span class="ruby-operator">::</span><span class="ruby-constant">Unit</span><span class="ruby-operator">::</span><span class="ruby-constant">AssertionFailedError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-identifier">add_failure</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">PASSTHROUGH_EXCEPTIONS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">class</span>)
+      <span class="ruby-identifier">add_error</span>(<span class="ruby-identifier">e</span>)
+    <span class="ruby-keyword">ensure</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">teardown</span>
+        <span class="ruby-identifier">run_callbacks</span> <span class="ruby-value">:teardown</span>
+      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Mocha</span><span class="ruby-operator">::</span><span class="ruby-constant">ExpectationError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">add_failure</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>)
+      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Test</span><span class="ruby-operator">::</span><span class="ruby-constant">Unit</span><span class="ruby-operator">::</span><span class="ruby-constant">AssertionFailedError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">add_failure</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>)
+      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">PASSTHROUGH_EXCEPTIONS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">class</span>)
+        <span class="ruby-identifier">add_error</span>(<span class="ruby-identifier">e</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-identifier">mocha_teardown</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">mocha_counter</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">result</span>.<span class="ruby-identifier">add_run</span>
+  <span class="ruby-keyword">yield</span>(<span class="ruby-constant">Test</span><span class="ruby-operator">::</span><span class="ruby-constant">Unit</span><span class="ruby-operator">::</span><span class="ruby-constant">TestCase</span><span class="ruby-operator">::</span><span class="ruby-constant">FINISHED</span>, <span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::IdentityMap</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveRecord::IdentityMap 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activerecord/lib/active_record/identity_map_rb.html">activerecord/lib/active_record/identity_map.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h1 id="label-Active+Record+Identity+Map">Active Record Identity Map</h1>
+
+<p>Ensures that each object gets loaded only once by keeping every loaded
+object in a map. Looks up objects using the map when referring to them.</p>
+
+<p>More information on Identity Map pattern:</p>
+
+<pre>http://www.martinfowler.com/eaaCatalog/identityMap.html</pre>
+
+<h2 id="label-Configuration">Configuration</h2>
+
+<p>In order to enable <a href="IdentityMap.html">IdentityMap</a>, set
+<code>config.active_record.identity_map = true</code> in your
+<code>config/application.rb</code> file.</p>
+
+<p><a href="IdentityMap.html">IdentityMap</a> is disabled by default and still
+in development (i.e. use it with care).</p>
+
+<h2 id="label-Associations"><a href="Associations.html">Associations</a></h2>
+
+<p>Active Record Identity Map does not track associations yet. For example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">comment</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">first</span>
+<span class="ruby-identifier">comment</span>.<span class="ruby-identifier">post</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-ivar">@post</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">comment</span>) <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p>Ideally, the example above would return false, removing the comment object
+from the post association when the association is nullified. This may cause
+side effects, as in the situation below, if Identity Map is enabled:</p>
+
+<pre class="ruby"><span class="ruby-constant">Post</span>.<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">comments</span>, :<span class="ruby-identifier">dependent</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">destroy</span>
+
+<span class="ruby-identifier">comment</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">first</span>
+<span class="ruby-identifier">comment</span>.<span class="ruby-identifier">post</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-identifier">comment</span>.<span class="ruby-identifier">save</span>
+<span class="ruby-constant">Post</span>.<span class="ruby-identifier">destroy</span>(<span class="ruby-ivar">@post</span>.<span class="ruby-identifier">id</span>)
+</pre>
+
+<p>Without using Identity Map, the code above will destroy the @post object
+leaving the comment object intact. However, once we enable Identity Map,
+the post loaded by Post.destroy is exactly the same object as the object
+@post. As the object @post still has the comment object in @post.comments,
+once Identity Map is enabled, the comment object will be accidently
+removed.</p>
+
+<p>This inconsistency is meant to be fixed in future <a
+href="../Rails.html">Rails</a> releases.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="IdentityMap/Middleware.html">ActiveRecord::IdentityMap::Middleware</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-add">add</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-clear">clear</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-enabled">enabled</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-enabled-3D">enabled=</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-enabled-3F">enabled?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>G</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-get">get</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-reinit_with">reinit_with</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-remove">remove</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-remove_by_id">remove_by_id</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-repository">repository</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-use">use</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>W</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-without">without</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-add">
+            
+              <b>add</b>(record)
+            
+            <a href="../../classes/ActiveRecord/IdentityMap.html#method-c-add" name="method-c-add" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-add_source')" id="l_method-c-add_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6896cd451545679a6413939fc4eae68f3cc3ba8b/activerecord/lib/active_record/identity_map.rb#L92" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-add_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/identity_map.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">add</span>(<span class="ruby-identifier">record</span>)
+  <span class="ruby-identifier">repository</span>[<span class="ruby-identifier">record</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">symbolized_sti_name</span>][<span class="ruby-identifier">record</span>.<span class="ruby-identifier">id</span>] = <span class="ruby-identifier">record</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">contain_all_columns?</span>(<span class="ruby-identifier">record</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-clear">
+            
+              <b>clear</b>()
+            
+            <a href="../../classes/ActiveRecord/IdentityMap.html#method-c-clear" name="method-c-clear" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-clear_source')" id="l_method-c-clear_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6896cd451545679a6413939fc4eae68f3cc3ba8b/activerecord/lib/active_record/identity_map.rb#L104" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-clear_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/identity_map.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">clear</span>
+  <span class="ruby-identifier">repository</span>.<span class="ruby-identifier">clear</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-enabled">
+            
+              <b>enabled</b>()
+            
+            <a href="../../classes/ActiveRecord/IdentityMap.html#method-c-enabled" name="method-c-enabled" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+            <div class="aka">
+              Also aliased as: <a href="IdentityMap.html#method-c-enabled-3F">enabled?</a>
+            </div>
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-enabled_source')" id="l_method-c-enabled_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6896cd451545679a6413939fc4eae68f3cc3ba8b/activerecord/lib/active_record/identity_map.rb#L51" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-enabled_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/identity_map.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">enabled</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:identity_map_enabled</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-enabled-3D">
+            
+              <b>enabled=</b>(flag)
+            
+            <a href="../../classes/ActiveRecord/IdentityMap.html#method-c-enabled-3D" name="method-c-enabled-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-enabled-3D_source')" id="l_method-c-enabled-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6896cd451545679a6413939fc4eae68f3cc3ba8b/activerecord/lib/active_record/identity_map.rb#L47" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-enabled-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/identity_map.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">enabled=</span>(<span class="ruby-identifier">flag</span>)
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:identity_map_enabled</span>] = <span class="ruby-identifier">flag</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-enabled-3F">
+            
+              <b>enabled?</b>()
+            
+            <a href="../../classes/ActiveRecord/IdentityMap.html#method-c-enabled-3F" name="method-c-enabled-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-get">
+            
+              <b>get</b>(klass, primary_key)
+            
+            <a href="../../classes/ActiveRecord/IdentityMap.html#method-c-get" name="method-c-get" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-get_source')" id="l_method-c-get_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6896cd451545679a6413939fc4eae68f3cc3ba8b/activerecord/lib/active_record/identity_map.rb#L77" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-get_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/identity_map.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">primary_key</span>)
+  <span class="ruby-identifier">record</span> = <span class="ruby-identifier">repository</span>[<span class="ruby-identifier">klass</span>.<span class="ruby-identifier">symbolized_sti_name</span>][<span class="ruby-identifier">primary_key</span>]
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-identifier">klass</span>)
+    <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Notifications</span>.<span class="ruby-identifier">instrument</span>(<span class="ruby-string">&quot;identity.active_record&quot;</span>,
+      <span class="ruby-value">:line</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;From Identity Map (id: #{primary_key})&quot;</span>,
+      <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{klass} Loaded&quot;</span>,
+      <span class="ruby-value">:connection_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">object_id</span>)
+
+    <span class="ruby-identifier">record</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-remove">
+            
+              <b>remove</b>(record)
+            
+            <a href="../../classes/ActiveRecord/IdentityMap.html#method-c-remove" name="method-c-remove" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-remove_source')" id="l_method-c-remove_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6896cd451545679a6413939fc4eae68f3cc3ba8b/activerecord/lib/active_record/identity_map.rb#L96" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-remove_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/identity_map.rb, line 96</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">remove</span>(<span class="ruby-identifier">record</span>)
+  <span class="ruby-identifier">repository</span>[<span class="ruby-identifier">record</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">symbolized_sti_name</span>].<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-remove_by_id">
+            
+              <b>remove_by_id</b>(symbolized_sti_name, id)
+            
+            <a href="../../classes/ActiveRecord/IdentityMap.html#method-c-remove_by_id" name="method-c-remove_by_id" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-remove_by_id_source')" id="l_method-c-remove_by_id_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6896cd451545679a6413939fc4eae68f3cc3ba8b/activerecord/lib/active_record/identity_map.rb#L100" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-remove_by_id_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/identity_map.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">remove_by_id</span>(<span class="ruby-identifier">symbolized_sti_name</span>, <span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">repository</span>[<span class="ruby-identifier">symbolized_sti_name</span>].<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-repository">
+            
+              <b>repository</b>()
+            
+            <a href="../../classes/ActiveRecord/IdentityMap.html#method-c-repository" name="method-c-repository" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-repository_source')" id="l_method-c-repository_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6896cd451545679a6413939fc4eae68f3cc3ba8b/activerecord/lib/active_record/identity_map.rb#L56" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-repository_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/identity_map.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">repository</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:identity_map</span>] <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = {} }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-use">
+            
+              <b>use</b>()
+            
+            <a href="../../classes/ActiveRecord/IdentityMap.html#method-c-use" name="method-c-use" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-use_source')" id="l_method-c-use_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6896cd451545679a6413939fc4eae68f3cc3ba8b/activerecord/lib/active_record/identity_map.rb#L60" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-use_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/identity_map.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">use</span>
+  <span class="ruby-identifier">old</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enabled</span> = <span class="ruby-identifier">enabled</span>, <span class="ruby-keyword">true</span>
+
+  <span class="ruby-keyword">yield</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enabled</span> = <span class="ruby-identifier">old</span>
+  <span class="ruby-identifier">clear</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-without">
+            
+              <b>without</b>()
+            
+            <a href="../../classes/ActiveRecord/IdentityMap.html#method-c-without" name="method-c-without" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-without_source')" id="l_method-c-without_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6896cd451545679a6413939fc4eae68f3cc3ba8b/activerecord/lib/active_record/identity_map.rb#L69" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-without_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/identity_map.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">without</span>
+  <span class="ruby-identifier">old</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enabled</span> = <span class="ruby-identifier">enabled</span>, <span class="ruby-keyword">false</span>
+
+  <span class="ruby-keyword">yield</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enabled</span> = <span class="ruby-identifier">old</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-reinit_with">
+            
+              <b>reinit_with</b>(coder)
+            
+            <a href="../../classes/ActiveRecord/IdentityMap.html#method-i-reinit_with" name="method-i-reinit_with" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Reinitialize an Identity Map model object from <code>coder</code>.
+<code>coder</code> must contain the attributes necessary for initializing
+an empty model object.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-reinit_with_source')" id="l_method-i-reinit_with_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6896cd451545679a6413939fc4eae68f3cc3ba8b/activerecord/lib/active_record/identity_map.rb#L118" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-reinit_with_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/identity_map.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">reinit_with</span>(<span class="ruby-identifier">coder</span>)
+  <span class="ruby-ivar">@attributes_cache</span> = {}
+  <span class="ruby-identifier">dirty</span>      = <span class="ruby-ivar">@changed_attributes</span>.<span class="ruby-identifier">keys</span>
+  <span class="ruby-identifier">attributes</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">initialize_attributes</span>(<span class="ruby-identifier">coder</span>[<span class="ruby-string">'attributes'</span>].<span class="ruby-identifier">except</span>(*<span class="ruby-identifier">dirty</span>))
+  <span class="ruby-ivar">@attributes</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">attributes</span>)
+  <span class="ruby-ivar">@changed_attributes</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">coder</span>[<span class="ruby-string">'attributes'</span>].<span class="ruby-identifier">slice</span>(*<span class="ruby-identifier">dirty</span>))
+  <span class="ruby-ivar">@changed_attributes</span>.<span class="ruby-identifier">delete_if</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-ivar">@attributes</span>[<span class="ruby-identifier">k</span>]}
+
+  <span class="ruby-identifier">run_callbacks</span> <span class="ruby-value">:find</span>
+
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

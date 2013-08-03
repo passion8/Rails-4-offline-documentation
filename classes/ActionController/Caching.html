@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::Caching</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActionController::Caching 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionpack/lib/action_controller/caching_rb.html">actionpack/lib/action_controller/caching.rb</a></li>
+            
+            <li><a href="../../files/actionpack/lib/action_controller/caching/actions_rb.html">actionpack/lib/action_controller/caching/actions.rb</a></li>
+            
+            <li><a href="../../files/actionpack/lib/action_controller/caching/fragments_rb.html">actionpack/lib/action_controller/caching/fragments.rb</a></li>
+            
+            <li><a href="../../files/actionpack/lib/action_controller/caching/pages_rb.html">actionpack/lib/action_controller/caching/pages.rb</a></li>
+            
+            <li><a href="../../files/actionpack/lib/action_controller/caching/sweeping_rb.html">actionpack/lib/action_controller/caching/sweeping.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Caching is a cheap way of speeding up slow applications by keeping the
+result of calculations, renderings, and database calls around for
+subsequent requests. Action Controller affords you three approaches in
+varying levels of granularity: Page, Action, Fragment.</p>
+
+<p>You can read more about each approach and the sweeping assistance by
+clicking the modules below.</p>
+
+<p>Note: To turn off all caching and sweeping, set</p>
+
+<pre>config.action_controller.perform_caching = false.</pre>
+
+<h2 id="label-Caching+stores">Caching stores</h2>
+
+<p>All the caching stores from <a
+href="../ActiveSupport/Cache.html">ActiveSupport::Cache</a> are available
+to be used as backends for Action Controller caching. This setting only
+affects action and fragment caching as page caching is always written to
+disk.</p>
+
+<p>Configuration examples (MemoryStore is the default):</p>
+
+<pre>config.action_controller.cache_store = :memory_store
+config.action_controller.cache_store = :file_store, &quot;/path/to/cache/directory&quot;
+config.action_controller.cache_store = :mem_cache_store, &quot;localhost&quot;
+config.action_controller.cache_store = :mem_cache_store, Memcached::Rails.new(&quot;localhost:11211&quot;)
+config.action_controller.cache_store = MyOwnStore.new(&quot;parameter&quot;)</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="Caching/Actions.html">ActionController::Caching::Actions</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="Caching/ConfigMethods.html">ActionController::Caching::ConfigMethods</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="Caching/Fragments.html">ActionController::Caching::Fragments</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="Caching/Pages.html">ActionController::Caching::Pages</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="Caching/Sweeping.html">ActionController::Caching::Sweeping</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-cache">cache</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-caching_allowed-3F">caching_allowed?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+    <!-- Includes -->
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+      
+        <li>
+          
+            <a href="RackDelegation.html">
+              ActionController::RackDelegation
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="../AbstractController/Callbacks.html">
+              AbstractController::Callbacks
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="Caching/ConfigMethods.html">
+              ActionController::Caching::ConfigMethods
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="Caching/Pages.html">
+              ActionController::Caching::Pages
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="Caching/Actions.html">
+              ActionController::Caching::Actions
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="Caching/Fragments.html">
+              ActionController::Caching::Fragments
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="Caching/Sweeping.html">
+              ActionController::Caching::Sweeping
+            </a>
+          
+        </li>
+      
+    </ul>
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-caching_allowed-3F">
+            
+              <b>caching_allowed?</b>()
+            
+            <a href="../../classes/ActionController/Caching.html#method-i-caching_allowed-3F" name="method-i-caching_allowed-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-caching_allowed-3F_source')" id="l_method-i-caching_allowed-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/7f937914576c65a01f3a9528d1728720c6c400c5/actionpack/lib/action_controller/caching.rb#L72" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-caching_allowed-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/caching.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">caching_allowed?</span>
+  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">get?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-number">200</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-cache">
+            
+              <b>cache</b>(key, options = {}, &amp;block)
+            
+            <a href="../../classes/ActionController/Caching.html#method-i-cache" name="method-i-cache" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Convenience accessor</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-cache_source')" id="l_method-i-cache_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/7f937914576c65a01f3a9528d1728720c6c400c5/actionpack/lib/action_controller/caching.rb#L78" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-cache_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/caching.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cache</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">options</span> = {}, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">cache_configured?</span>
+    <span class="ruby-identifier">cache_store</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Cache</span>.<span class="ruby-identifier">expand_cache_key</span>(<span class="ruby-identifier">key</span>, <span class="ruby-value">:controller</span>), <span class="ruby-identifier">options</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">yield</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

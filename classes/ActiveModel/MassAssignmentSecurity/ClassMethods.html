@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::MassAssignmentSecurity::ClassMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveModel::MassAssignmentSecurity::ClassMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activemodel/lib/active_model/mass_assignment_security_rb.html">activemodel/lib/active_model/mass_assignment_security.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Mass assignment security provides an interface for protecting attributes
+from end-user assignment. For more complex permissions, mass assignment
+security may be handled outside the model by extending a non-<a
+href="../../ActiveRecord.html">ActiveRecord</a> class, such as a
+controller, with this behavior.</p>
+
+<p>For example, a logged in user may need to assign additional attributes
+depending on their role:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">AccountsController</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ApplicationController</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">ActiveModel</span><span class="ruby-operator">::</span><span class="ruby-constant">MassAssignmentSecurity</span>
+
+  <span class="ruby-identifier">attr_accessible</span> :<span class="ruby-identifier">first_name</span>, :<span class="ruby-identifier">last_name</span>
+  <span class="ruby-identifier">attr_accessible</span> :<span class="ruby-identifier">first_name</span>, :<span class="ruby-identifier">last_name</span>, :<span class="ruby-identifier">plan_id</span>, :<span class="ruby-identifier">as</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">admin</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+    <span class="ruby-operator">...</span>
+    <span class="ruby-ivar">@account</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">account_params</span>)
+    <span class="ruby-operator">...</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">protected</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">account_params</span>
+    <span class="ruby-identifier">role</span> = <span class="ruby-identifier">admin</span> <span class="ruby-operator">?</span> :<span class="ruby-identifier">admin</span> <span class="ruby-operator">:</span> :<span class="ruby-identifier">default</span>
+    <span class="ruby-identifier">sanitize_for_mass_assignment</span>(<span class="ruby-identifier">params</span>[:<span class="ruby-identifier">account</span>], <span class="ruby-identifier">role</span>)
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h1 id="label-Configuration+options">Configuration options</h1>
+<ul><li>
+<p><code>mass_assignment_sanitizer</code> - Defines sanitize method. Possible
+values are:</p>
+<ul><li>
+<p><code>:logger</code> (default) - writes filtered attributes to logger</p>
+</li><li>
+<p><code>:strict</code> - raise
+<code>ActiveModel::MassAssignmentSecurity::Error</code> on any protected
+attribute update</p>
+</li></ul>
+</li></ul>
+
+<p>You can specify your own sanitizer object eg. MySanitizer.new. See
+<code>ActiveModel::MassAssignmentSecurity::LoggerSanitizer</code> for
+example implementation.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-accessible_attributes">accessible_attributes</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-active_authorizer">active_authorizer</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-active_authorizers">active_authorizers</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-attr_accessible">attr_accessible</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-attr_protected">attr_protected</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-attributes_protected_by_default">attributes_protected_by_default</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-mass_assignment_sanitizer-3D">mass_assignment_sanitizer=</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-protected_attributes">protected_attributes</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-accessible_attributes">
+            
+              <b>accessible_attributes</b>(role = :default)
+            
+            <a href="../../../classes/ActiveModel/MassAssignmentSecurity/ClassMethods.html#method-i-accessible_attributes" name="method-i-accessible_attributes" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-accessible_attributes_source')" id="l_method-i-accessible_attributes_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/e63f04cc0c7d517010f1d6840680b46e69dc75a9/activemodel/lib/active_model/mass_assignment_security.rb#L191" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-accessible_attributes_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">accessible_attributes</span>(<span class="ruby-identifier">role</span> = <span class="ruby-value">:default</span>)
+  <span class="ruby-identifier">accessible_attributes_configs</span>[<span class="ruby-identifier">role</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-active_authorizer">
+            
+              <b>active_authorizer</b>()
+            
+            <a href="../../../classes/ActiveModel/MassAssignmentSecurity/ClassMethods.html#method-i-active_authorizer" name="method-i-active_authorizer" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-active_authorizers">
+            
+              <b>active_authorizers</b>()
+            
+            <a href="../../../classes/ActiveModel/MassAssignmentSecurity/ClassMethods.html#method-i-active_authorizers" name="method-i-active_authorizers" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+            <div class="aka">
+              Also aliased as: <a href="ClassMethods.html#method-i-active_authorizer">active_authorizer</a>
+            </div>
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-active_authorizers_source')" id="l_method-i-active_authorizers_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/e63f04cc0c7d517010f1d6840680b46e69dc75a9/activemodel/lib/active_model/mass_assignment_security.rb#L195" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-active_authorizers_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security.rb, line 195</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">active_authorizers</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">_active_authorizer</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">protected_attributes_configs</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-attr_accessible">
+            
+              <b>attr_accessible</b>(*args)
+            
+            <a href="../../../classes/ActiveModel/MassAssignmentSecurity/ClassMethods.html#method-i-attr_accessible" name="method-i-attr_accessible" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Specifies a white list of model attributes that can be set via
+mass-assignment.</p>
+
+<p>Like <code>attr_protected</code>, a role for the attributes is optional, if
+no role is provided then :default is used. A role can be defined by using
+the :as option.</p>
+
+<p>This is the opposite of the <code>attr_protected</code> macro:
+Mass-assignment will only set attributes in this list, to assign to the
+rest of attributes you can use direct writer methods. This is meant to
+protect sensitive attributes from being overwritten by malicious users
+tampering with URLs or forms. If you’d rather start from an all-open
+default and restrict attributes as needed, have a look at
+<code>attr_protected</code>.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Customer</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">ActiveModel</span><span class="ruby-operator">::</span><span class="ruby-constant">MassAssignmentSecurity</span>
+
+  <span class="ruby-identifier">attr_accessor</span> :<span class="ruby-identifier">name</span>, :<span class="ruby-identifier">credit_rating</span>
+
+  <span class="ruby-identifier">attr_accessible</span> :<span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">attr_accessible</span> :<span class="ruby-identifier">name</span>, :<span class="ruby-identifier">credit_rating</span>, :<span class="ruby-identifier">as</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">admin</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">assign_attributes</span>(<span class="ruby-identifier">values</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">sanitize_for_mass_assignment</span>(<span class="ruby-identifier">values</span>, <span class="ruby-identifier">options</span>[:<span class="ruby-identifier">as</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{k}=&quot;</span>, <span class="ruby-identifier">v</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>When using the :default role:</p>
+
+<pre class="ruby"><span class="ruby-identifier">customer</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">assign_attributes</span>({ <span class="ruby-string">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;David&quot;</span>, <span class="ruby-string">&quot;credit_rating&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Excellent&quot;</span>, :<span class="ruby-identifier">last_login</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">day</span>.<span class="ruby-identifier">ago</span> }, :<span class="ruby-identifier">as</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">default</span>)
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">name</span>          <span class="ruby-comment"># =&gt; &quot;David&quot;</span>
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">credit_rating</span> <span class="ruby-comment"># =&gt; nil</span>
+
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">credit_rating</span> = <span class="ruby-string">&quot;Average&quot;</span>
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">credit_rating</span> <span class="ruby-comment"># =&gt; &quot;Average&quot;</span>
+</pre>
+
+<p>And using the :admin role:</p>
+
+<pre class="ruby"><span class="ruby-identifier">customer</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">assign_attributes</span>({ <span class="ruby-string">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;David&quot;</span>, <span class="ruby-string">&quot;credit_rating&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Excellent&quot;</span>, :<span class="ruby-identifier">last_login</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">day</span>.<span class="ruby-identifier">ago</span> }, :<span class="ruby-identifier">as</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">admin</span>)
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">name</span>          <span class="ruby-comment"># =&gt; &quot;David&quot;</span>
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">credit_rating</span> <span class="ruby-comment"># =&gt; &quot;Excellent&quot;</span>
+</pre>
+
+<p>Note that using <code>Hash#except</code> or <code>Hash#slice</code> in
+place of <code>attr_accessible</code> to sanitize attributes provides
+basically the same functionality, but it makes a bit tricky to deal with
+nested attributes.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-attr_accessible_source')" id="l_method-i-attr_accessible_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/e63f04cc0c7d517010f1d6840680b46e69dc75a9/activemodel/lib/active_model/mass_assignment_security.rb#L174" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-attr_accessible_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security.rb, line 174</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">attr_accessible</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">extract_options!</span>
+  <span class="ruby-identifier">role</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:as</span>] <span class="ruby-operator">||</span> <span class="ruby-value">:default</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">_accessible_attributes</span> = <span class="ruby-identifier">accessible_attributes_configs</span>.<span class="ruby-identifier">dup</span>
+
+  <span class="ruby-constant">Array</span>.<span class="ruby-identifier">wrap</span>(<span class="ruby-identifier">role</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">_accessible_attributes</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">accessible_attributes</span>(<span class="ruby-identifier">name</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">_active_authorizer</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">_accessible_attributes</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-attr_protected">
+            
+              <b>attr_protected</b>(*args)
+            
+            <a href="../../../classes/ActiveModel/MassAssignmentSecurity/ClassMethods.html#method-i-attr_protected" name="method-i-attr_protected" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Attributes named in this macro are protected from mass-assignment whenever
+attributes are sanitized before assignment. A role for the attributes is
+optional, if no role is provided then :default is used. A role can be
+defined by using the :as option.</p>
+
+<p>Mass-assignment to these attributes will simply be ignored, to assign to
+them you can use direct writer methods. This is meant to protect sensitive
+attributes from being overwritten by malicious users tampering with URLs or
+forms. Example:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Customer</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">ActiveModel</span><span class="ruby-operator">::</span><span class="ruby-constant">MassAssignmentSecurity</span>
+
+  <span class="ruby-identifier">attr_accessor</span> :<span class="ruby-identifier">name</span>, :<span class="ruby-identifier">credit_rating</span>
+
+  <span class="ruby-identifier">attr_protected</span> :<span class="ruby-identifier">credit_rating</span>, :<span class="ruby-identifier">last_login</span>
+  <span class="ruby-identifier">attr_protected</span> :<span class="ruby-identifier">last_login</span>, :<span class="ruby-identifier">as</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">admin</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">assign_attributes</span>(<span class="ruby-identifier">values</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">sanitize_for_mass_assignment</span>(<span class="ruby-identifier">values</span>, <span class="ruby-identifier">options</span>[:<span class="ruby-identifier">as</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{k}=&quot;</span>, <span class="ruby-identifier">v</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>When using the :default role:</p>
+
+<pre class="ruby"><span class="ruby-identifier">customer</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">assign_attributes</span>({ <span class="ruby-string">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;David&quot;</span>, <span class="ruby-string">&quot;credit_rating&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Excellent&quot;</span>, :<span class="ruby-identifier">last_login</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">day</span>.<span class="ruby-identifier">ago</span> }, :<span class="ruby-identifier">as</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">default</span>)
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">name</span>          <span class="ruby-comment"># =&gt; &quot;David&quot;</span>
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">credit_rating</span> <span class="ruby-comment"># =&gt; nil</span>
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">last_login</span>    <span class="ruby-comment"># =&gt; nil</span>
+
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">credit_rating</span> = <span class="ruby-string">&quot;Average&quot;</span>
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">credit_rating</span> <span class="ruby-comment"># =&gt; &quot;Average&quot;</span>
+</pre>
+
+<p>And using the :admin role:</p>
+
+<pre class="ruby"><span class="ruby-identifier">customer</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">assign_attributes</span>({ <span class="ruby-string">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;David&quot;</span>, <span class="ruby-string">&quot;credit_rating&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Excellent&quot;</span>, :<span class="ruby-identifier">last_login</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">day</span>.<span class="ruby-identifier">ago</span> }, :<span class="ruby-identifier">as</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">admin</span>)
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">name</span>          <span class="ruby-comment"># =&gt; &quot;David&quot;</span>
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">credit_rating</span> <span class="ruby-comment"># =&gt; &quot;Excellent&quot;</span>
+<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">last_login</span>    <span class="ruby-comment"># =&gt; nil</span>
+</pre>
+
+<p>To start from an all-closed default and enable attributes as needed, have a
+look at <code>attr_accessible</code>.</p>
+
+<p>Note that using <code>Hash#except</code> or <code>Hash#slice</code> in
+place of <code>attr_protected</code> to sanitize attributes provides
+basically the same functionality, but it makes a bit tricky to deal with
+nested attributes.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-attr_protected_source')" id="l_method-i-attr_protected_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/e63f04cc0c7d517010f1d6840680b46e69dc75a9/activemodel/lib/active_model/mass_assignment_security.rb#L111" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-attr_protected_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security.rb, line 111</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">attr_protected</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">extract_options!</span>
+  <span class="ruby-identifier">role</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:as</span>] <span class="ruby-operator">||</span> <span class="ruby-value">:default</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">_protected_attributes</span> = <span class="ruby-identifier">protected_attributes_configs</span>.<span class="ruby-identifier">dup</span>
+
+  <span class="ruby-constant">Array</span>.<span class="ruby-identifier">wrap</span>(<span class="ruby-identifier">role</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">_protected_attributes</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">protected_attributes</span>(<span class="ruby-identifier">name</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">_active_authorizer</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">_protected_attributes</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-attributes_protected_by_default">
+            
+              <b>attributes_protected_by_default</b>()
+            
+            <a href="../../../classes/ActiveModel/MassAssignmentSecurity/ClassMethods.html#method-i-attributes_protected_by_default" name="method-i-attributes_protected_by_default" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-attributes_protected_by_default_source')" id="l_method-i-attributes_protected_by_default_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/e63f04cc0c7d517010f1d6840680b46e69dc75a9/activemodel/lib/active_model/mass_assignment_security.rb#L200" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-attributes_protected_by_default_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security.rb, line 200</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">attributes_protected_by_default</span>
+  []
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-mass_assignment_sanitizer-3D">
+            
+              <b>mass_assignment_sanitizer=</b>(value)
+            
+            <a href="../../../classes/ActiveModel/MassAssignmentSecurity/ClassMethods.html#method-i-mass_assignment_sanitizer-3D" name="method-i-mass_assignment_sanitizer-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-mass_assignment_sanitizer-3D_source')" id="l_method-i-mass_assignment_sanitizer-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/e63f04cc0c7d517010f1d6840680b46e69dc75a9/activemodel/lib/active_model/mass_assignment_security.rb#L204" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-mass_assignment_sanitizer-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security.rb, line 204</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mass_assignment_sanitizer=</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">_mass_assignment_sanitizer</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>)
+    <span class="ruby-identifier">const_get</span>(<span class="ruby-value">:&quot;#{value.to_s.camelize}Sanitizer&quot;</span>).<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-protected_attributes">
+            
+              <b>protected_attributes</b>(role = :default)
+            
+            <a href="../../../classes/ActiveModel/MassAssignmentSecurity/ClassMethods.html#method-i-protected_attributes" name="method-i-protected_attributes" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-protected_attributes_source')" id="l_method-i-protected_attributes_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/e63f04cc0c7d517010f1d6840680b46e69dc75a9/activemodel/lib/active_model/mass_assignment_security.rb#L187" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-protected_attributes_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security.rb, line 187</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">protected_attributes</span>(<span class="ruby-identifier">role</span> = <span class="ruby-value">:default</span>)
+  <span class="ruby-identifier">protected_attributes_configs</span>[<span class="ruby-identifier">role</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionView::Helpers::FormBuilder</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActionView::Helpers::FormBuilder 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_view/helpers/date_helper_rb.html">actionpack/lib/action_view/helpers/date_helper.rb</a></li>
+            
+            <li><a href="../../../files/actionpack/lib/action_view/helpers/form_helper_rb.html">actionpack/lib/action_view/helpers/form_helper.rb</a></li>
+            
+            <li><a href="../../../files/actionpack/lib/action_view/helpers/form_options_helper_rb.html">actionpack/lib/action_view/helpers/form_options_helper.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>#</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-_to_partial_path">_to_partial_path</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>B</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-button">button</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-check_box">check_box</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-collection_select">collection_select</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-date_select">date_select</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-datetime_select">datetime_select</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-emitted_hidden_id-3F">emitted_hidden_id?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-fields_for">fields_for</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-file_field">file_field</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>G</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-grouped_collection_select">grouped_collection_select</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-hidden_field">hidden_field</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>L</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-label">label</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-multipart-3D">multipart=</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-radio_button">radio_button</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-select">select</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-submit">submit</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-time_select">time_select</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-time_zone_select">time_zone_select</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-to_model">to_model</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-to_partial_path">to_partial_path</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>multipart</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>multipart?</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>object</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>object_name</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>options</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>parent_builder</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-_to_partial_path">
+            
+              <b>_to_partial_path</b>()
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-c-_to_partial_path" name="method-c-_to_partial_path" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-_to_partial_path_source')" id="l_method-c-_to_partial_path_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1254" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-_to_partial_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1254</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">_to_partial_path</span>
+  <span class="ruby-ivar">@_to_partial_path</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">demodulize</span>.<span class="ruby-identifier">underscore</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/_builder$/</span>, <span class="ruby-string">''</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(object_name, object, template, options, proc)
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1266" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1266</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">object_name</span>, <span class="ruby-identifier">object</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">proc</span>)
+  <span class="ruby-ivar">@nested_child_index</span> = {}
+  <span class="ruby-ivar">@object_name</span>, <span class="ruby-ivar">@object</span>, <span class="ruby-ivar">@template</span>, <span class="ruby-ivar">@options</span>, <span class="ruby-ivar">@proc</span> = <span class="ruby-identifier">object_name</span>, <span class="ruby-identifier">object</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">proc</span>
+  <span class="ruby-ivar">@parent_builder</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:parent_builder</span>]
+  <span class="ruby-ivar">@default_options</span> = <span class="ruby-ivar">@options</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">:index</span>, <span class="ruby-value">:namespace</span>) <span class="ruby-operator">:</span> {}
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@object_name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/\[\]$/</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-node">&quot;@#{Regexp.last_match.pre_match}&quot;</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:to_param</span>)
+      <span class="ruby-ivar">@auto_index</span> = <span class="ruby-identifier">object</span>.<span class="ruby-identifier">to_param</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;object[] naming but object param and @object var don't exist or don't respond to to_param: #{object.inspect}&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@multipart</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-button">
+            
+              <b>button</b>(value=nil, options={})
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-button" name="method-i-button" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Add the submit button for the given form. When no value is given, it checks
+if the object is a new resource or not to create the proper label:</p>
+
+<pre>&lt;%= form_for @post do |f| %&gt;
+  &lt;%= f.button %&gt;
+&lt;% end %&gt;</pre>
+
+<p>In the example above, if @post is a new record, it will use “Create Post”
+as submit button label, otherwise, it uses “Update Post”.</p>
+
+<p>Those labels can be customized using <a href="../../I18n.html">I18n</a>,
+under the helpers.submit key and accept the %{model} as translation
+interpolation:</p>
+
+<pre>en:
+  helpers:
+    button:
+      create: &quot;Create a %{model}&quot;
+      update: &quot;Confirm changes to %{model}&quot;</pre>
+
+<p>It also searches for a key specific for the given object:</p>
+
+<pre>en:
+  helpers:
+    button:
+      post:
+        create: &quot;Add %{model}&quot;</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-button_source')" id="l_method-i-button_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1402" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-button_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1402</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">button</span>(<span class="ruby-identifier">value</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+  <span class="ruby-identifier">value</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">submit_default_value</span>
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">button_tag</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-check_box">
+            
+              <b>check_box</b>(method, options = {}, checked_value = &quot;1&quot;, unchecked_value = &quot;0&quot;)
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-check_box" name="method-i-check_box" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-check_box_source')" id="l_method-i-check_box_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1324" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-check_box_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1324</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">check_box</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">checked_value</span> = <span class="ruby-string">&quot;1&quot;</span>, <span class="ruby-identifier">unchecked_value</span> = <span class="ruby-string">&quot;0&quot;</span>)
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">check_box</span>(<span class="ruby-ivar">@object_name</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">objectify_options</span>(<span class="ruby-identifier">options</span>), <span class="ruby-identifier">checked_value</span>, <span class="ruby-identifier">unchecked_value</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-collection_select">
+            
+              <b>collection_select</b>(method, collection, value_method, text_method, options = {}, html_options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-collection_select" name="method-i-collection_select" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-collection_select_source')" id="l_method-i-collection_select_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fdcd7c0f2ee264219c322e5cb8f880ca48e14d5f/actionpack/lib/action_view/helpers/form_options_helper.rb#L645" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-collection_select_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_options_helper.rb, line 645</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">collection_select</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">value_method</span>, <span class="ruby-identifier">text_method</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">html_options</span> = {})
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">collection_select</span>(<span class="ruby-ivar">@object_name</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">value_method</span>, <span class="ruby-identifier">text_method</span>, <span class="ruby-identifier">objectify_options</span>(<span class="ruby-identifier">options</span>), <span class="ruby-ivar">@default_options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">html_options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-date_select">
+            
+              <b>date_select</b>(method, options = {}, html_options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-date_select" name="method-i-date_select" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-date_select_source')" id="l_method-i-date_select_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fbf23ed9338f935736dd840ea973fd6372b6ab7d/actionpack/lib/action_view/helpers/date_helper.rb#L1049" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-date_select_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/date_helper.rb, line 1049</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">date_select</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">html_options</span> = {})
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">date_select</span>(<span class="ruby-ivar">@object_name</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">objectify_options</span>(<span class="ruby-identifier">options</span>), <span class="ruby-identifier">html_options</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-datetime_select">
+            
+              <b>datetime_select</b>(method, options = {}, html_options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-datetime_select" name="method-i-datetime_select" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-datetime_select_source')" id="l_method-i-datetime_select_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fbf23ed9338f935736dd840ea973fd6372b6ab7d/actionpack/lib/action_view/helpers/date_helper.rb#L1057" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-datetime_select_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/date_helper.rb, line 1057</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">datetime_select</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">html_options</span> = {})
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">datetime_select</span>(<span class="ruby-ivar">@object_name</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">objectify_options</span>(<span class="ruby-identifier">options</span>), <span class="ruby-identifier">html_options</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-emitted_hidden_id-3F">
+            
+              <b>emitted_hidden_id?</b>()
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-emitted_hidden_id-3F" name="method-i-emitted_hidden_id-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-emitted_hidden_id-3F_source')" id="l_method-i-emitted_hidden_id-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1408" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-emitted_hidden_id-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1408</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">emitted_hidden_id?</span>
+  <span class="ruby-ivar">@emitted_hidden_id</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-fields_for">
+            
+              <b>fields_for</b>(record_name, record_object = nil, fields_options = {}, &amp;block)
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-fields_for" name="method-i-fields_for" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-fields_for_source')" id="l_method-i-fields_for_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1293" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-fields_for_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1293</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">fields_for</span>(<span class="ruby-identifier">record_name</span>, <span class="ruby-identifier">record_object</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">fields_options</span> = {}, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">fields_options</span>, <span class="ruby-identifier">record_object</span> = <span class="ruby-identifier">record_object</span>, <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">record_object</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">record_object</span>.<span class="ruby-identifier">extractable_options?</span>
+  <span class="ruby-identifier">fields_options</span>[<span class="ruby-value">:builder</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:builder</span>]
+  <span class="ruby-identifier">fields_options</span>[<span class="ruby-value">:parent_builder</span>] = <span class="ruby-keyword">self</span>
+  <span class="ruby-identifier">fields_options</span>[<span class="ruby-value">:namespace</span>] = <span class="ruby-identifier">fields_options</span>[<span class="ruby-value">:parent_builder</span>].<span class="ruby-identifier">options</span>[<span class="ruby-value">:namespace</span>]
+
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">record_name</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>, <span class="ruby-constant">Symbol</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">nested_attributes_association?</span>(<span class="ruby-identifier">record_name</span>)
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">fields_for_with_nested_attributes</span>(<span class="ruby-identifier">record_name</span>, <span class="ruby-identifier">record_object</span>, <span class="ruby-identifier">fields_options</span>, <span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">record_object</span> = <span class="ruby-identifier">record_name</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">record_name</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">record_name</span>
+    <span class="ruby-identifier">record_name</span>   = <span class="ruby-constant">ActiveModel</span><span class="ruby-operator">::</span><span class="ruby-constant">Naming</span>.<span class="ruby-identifier">param_key</span>(<span class="ruby-identifier">record_object</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">index</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:index</span>)
+    <span class="ruby-node">&quot;[#{options[:index]}]&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-ivar">@auto_index</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">object_name</span> = <span class="ruby-ivar">@object_name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/\[\]$/</span>,<span class="ruby-string">&quot;&quot;</span>)
+    <span class="ruby-node">&quot;[#{@auto_index}]&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">record_name</span> = <span class="ruby-node">&quot;#{object_name}#{index}[#{record_name}]&quot;</span>
+
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">fields_for</span>(<span class="ruby-identifier">record_name</span>, <span class="ruby-identifier">record_object</span>, <span class="ruby-identifier">fields_options</span>, &amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-file_field">
+            
+              <b>file_field</b>(method, options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-file_field" name="method-i-file_field" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-file_field_source')" id="l_method-i-file_field_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1337" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-file_field_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1337</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">file_field</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">multipart</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">file_field</span>(<span class="ruby-ivar">@object_name</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">objectify_options</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-grouped_collection_select">
+            
+              <b>grouped_collection_select</b>(method, collection, group_method, group_label_method, option_key_method, option_value_method, options = {}, html_options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-grouped_collection_select" name="method-i-grouped_collection_select" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-grouped_collection_select_source')" id="l_method-i-grouped_collection_select_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fdcd7c0f2ee264219c322e5cb8f880ca48e14d5f/actionpack/lib/action_view/helpers/form_options_helper.rb#L649" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-grouped_collection_select_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_options_helper.rb, line 649</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">grouped_collection_select</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">group_method</span>, <span class="ruby-identifier">group_label_method</span>, <span class="ruby-identifier">option_key_method</span>, <span class="ruby-identifier">option_value_method</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">html_options</span> = {})
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">grouped_collection_select</span>(<span class="ruby-ivar">@object_name</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">group_method</span>, <span class="ruby-identifier">group_label_method</span>, <span class="ruby-identifier">option_key_method</span>, <span class="ruby-identifier">option_value_method</span>, <span class="ruby-identifier">objectify_options</span>(<span class="ruby-identifier">options</span>), <span class="ruby-ivar">@default_options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">html_options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-hidden_field">
+            
+              <b>hidden_field</b>(method, options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-hidden_field" name="method-i-hidden_field" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-hidden_field_source')" id="l_method-i-hidden_field_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1332" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-hidden_field_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1332</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">hidden_field</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-ivar">@emitted_hidden_id</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">method</span> <span class="ruby-operator">==</span> <span class="ruby-value">:id</span>
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">hidden_field</span>(<span class="ruby-ivar">@object_name</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">objectify_options</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-label">
+            
+              <b>label</b>(method, text = nil, options = {}, &amp;block)
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-label" name="method-i-label" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-label_source')" id="l_method-i-label_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1320" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-label_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1320</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">label</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">text</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {}, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">label</span>(<span class="ruby-ivar">@object_name</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">text</span>, <span class="ruby-identifier">objectify_options</span>(<span class="ruby-identifier">options</span>), &amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-multipart-3D">
+            
+              <b>multipart=</b>(multipart)
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-multipart-3D" name="method-i-multipart-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-multipart-3D_source')" id="l_method-i-multipart-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1249" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-multipart-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1249</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">multipart=</span>(<span class="ruby-identifier">multipart</span>)
+  <span class="ruby-ivar">@multipart</span> = <span class="ruby-identifier">multipart</span>
+  <span class="ruby-identifier">parent_builder</span>.<span class="ruby-identifier">multipart</span> = <span class="ruby-identifier">multipart</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">parent_builder</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-radio_button">
+            
+              <b>radio_button</b>(method, tag_value, options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-radio_button" name="method-i-radio_button" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-radio_button_source')" id="l_method-i-radio_button_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1328" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-radio_button_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1328</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">radio_button</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">tag_value</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">radio_button</span>(<span class="ruby-ivar">@object_name</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">tag_value</span>, <span class="ruby-identifier">objectify_options</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-select">
+            
+              <b>select</b>(method, choices, options = {}, html_options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-select" name="method-i-select" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-select_source')" id="l_method-i-select_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fdcd7c0f2ee264219c322e5cb8f880ca48e14d5f/actionpack/lib/action_view/helpers/form_options_helper.rb#L641" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-select_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_options_helper.rb, line 641</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">select</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">choices</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">html_options</span> = {})
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">select</span>(<span class="ruby-ivar">@object_name</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">choices</span>, <span class="ruby-identifier">objectify_options</span>(<span class="ruby-identifier">options</span>), <span class="ruby-ivar">@default_options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">html_options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-submit">
+            
+              <b>submit</b>(value=nil, options={})
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-submit" name="method-i-submit" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Add the submit button for the given form. When no value is given, it checks
+if the object is a new resource or not to create the proper label:</p>
+
+<pre>&lt;%= form_for @post do |f| %&gt;
+  &lt;%= f.submit %&gt;
+&lt;% end %&gt;</pre>
+
+<p>In the example above, if @post is a new record, it will use “Create Post”
+as submit button label, otherwise, it uses “Update Post”.</p>
+
+<p>Those labels can be customized using <a href="../../I18n.html">I18n</a>,
+under the helpers.submit key and accept the %{model} as translation
+interpolation:</p>
+
+<pre>en:
+  helpers:
+    submit:
+      create: &quot;Create a %{model}&quot;
+      update: &quot;Confirm changes to %{model}&quot;</pre>
+
+<p>It also searches for a key specific for the given object:</p>
+
+<pre>en:
+  helpers:
+    submit:
+      post:
+        create: &quot;Add %{model}&quot;</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-submit_source')" id="l_method-i-submit_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1369" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-submit_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1369</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">submit</span>(<span class="ruby-identifier">value</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+  <span class="ruby-identifier">value</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">submit_default_value</span>
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">submit_tag</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-time_select">
+            
+              <b>time_select</b>(method, options = {}, html_options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-time_select" name="method-i-time_select" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-time_select_source')" id="l_method-i-time_select_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fbf23ed9338f935736dd840ea973fd6372b6ab7d/actionpack/lib/action_view/helpers/date_helper.rb#L1053" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-time_select_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/date_helper.rb, line 1053</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">time_select</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">html_options</span> = {})
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">time_select</span>(<span class="ruby-ivar">@object_name</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">objectify_options</span>(<span class="ruby-identifier">options</span>), <span class="ruby-identifier">html_options</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-time_zone_select">
+            
+              <b>time_zone_select</b>(method, priority_zones = nil, options = {}, html_options = {})
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-time_zone_select" name="method-i-time_zone_select" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-time_zone_select_source')" id="l_method-i-time_zone_select_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fdcd7c0f2ee264219c322e5cb8f880ca48e14d5f/actionpack/lib/action_view/helpers/form_options_helper.rb#L653" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-time_zone_select_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_options_helper.rb, line 653</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">time_zone_select</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">priority_zones</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">html_options</span> = {})
+  <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">time_zone_select</span>(<span class="ruby-ivar">@object_name</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">priority_zones</span>, <span class="ruby-identifier">objectify_options</span>(<span class="ruby-identifier">options</span>), <span class="ruby-ivar">@default_options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">html_options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_model">
+            
+              <b>to_model</b>()
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-to_model" name="method-i-to_model" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-to_model_source')" id="l_method-i-to_model_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1262" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-to_model_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1262</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_model</span>
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_partial_path">
+            
+              <b>to_partial_path</b>()
+            
+            <a href="../../../classes/ActionView/Helpers/FormBuilder.html#method-i-to_partial_path" name="method-i-to_partial_path" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-to_partial_path_source')" id="l_method-i-to_partial_path_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/488699166c3558963fa82d4689a35f8c3fd93f47/actionpack/lib/action_view/helpers/form_helper.rb#L1258" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-to_partial_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/form_helper.rb, line 1258</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_partial_path</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">_to_partial_path</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

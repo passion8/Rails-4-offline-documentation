@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Testing::Performance::Profiler</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveSupport::Testing::Performance::Profiler 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="Performer.html">ActiveSupport::Testing::Performance::Performer</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/activesupport/lib/active_support/testing/performance_rb.html">activesupport/lib/active_support/testing/performance.rb</a></li>
+            
+            <li><a href="../../../../files/activesupport/lib/active_support/testing/performance/jruby_rb.html">activesupport/lib/active_support/testing/performance/jruby.rb</a></li>
+            
+            <li><a href="../../../../files/activesupport/lib/active_support/testing/performance/rubinius_rb.html">activesupport/lib/active_support/testing/performance/rubinius.rb</a></li>
+            
+            <li><a href="../../../../files/activesupport/lib/active_support/testing/performance/ruby_rb.html">activesupport/lib/active_support/testing/performance/ruby.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>overridden by each implementation</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-create_path_and_open_file">create_path_and_open_file</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-output_filename">output_filename</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-record">record</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-run">run</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-time_with_block">time_with_block</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(*args)
+            
+            <a href="../../../../classes/ActiveSupport/Testing/Performance/Profiler.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c2c8ef57d6f00d1c22743dc43746f95704d67a95/activesupport/lib/active_support/testing/performance/jruby.rb#L22" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/testing/performance/jruby.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">super</span>
+  <span class="ruby-ivar">@supported</span> = <span class="ruby-ivar">@metric</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Metrics</span><span class="ruby-operator">::</span><span class="ruby-constant">WallTime</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-record">
+            
+              <b>record</b>()
+            
+            <a href="../../../../classes/ActiveSupport/Testing/Performance/Profiler.html#method-i-record" name="method-i-record" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-record_source')" id="l_method-i-record_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c2c8ef57d6f00d1c22743dc43746f95704d67a95/activesupport/lib/active_support/testing/performance.rb#L176" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-record_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/testing/performance.rb, line 176</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">record</span>; <span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-run">
+            
+              <b>run</b>()
+            
+            <a href="../../../../classes/ActiveSupport/Testing/Performance/Profiler.html#method-i-run" name="method-i-run" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-run_source')" id="l_method-i-run_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c2c8ef57d6f00d1c22743dc43746f95704d67a95/activesupport/lib/active_support/testing/performance.rb#L175" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-run_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/testing/performance.rb, line 175</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>;    <span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-time_with_block">
+            
+              <b>time_with_block</b>()
+            
+            <a href="../../../../classes/ActiveSupport/Testing/Performance/Profiler.html#method-i-time_with_block" name="method-i-time_with_block" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-time_with_block_source')" id="l_method-i-time_with_block_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c2c8ef57d6f00d1c22743dc43746f95704d67a95/activesupport/lib/active_support/testing/performance.rb#L169" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-time_with_block_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/testing/performance.rb, line 169</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">time_with_block</span>
+  <span class="ruby-identifier">before</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+  <span class="ruby-keyword">yield</span>
+  <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">before</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-create_path_and_open_file">
+            
+              <b>create_path_and_open_file</b>(printer_name)
+            
+            <a href="../../../../classes/ActiveSupport/Testing/Performance/Profiler.html#method-i-create_path_and_open_file" name="method-i-create_path_and_open_file" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_path_and_open_file_source')" id="l_method-i-create_path_and_open_file_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c2c8ef57d6f00d1c22743dc43746f95704d67a95/activesupport/lib/active_support/testing/performance/rubinius.rb#L56" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_path_and_open_file_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/testing/performance/rubinius.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_path_and_open_file</span>(<span class="ruby-identifier">printer_name</span>)
+  <span class="ruby-identifier">fname</span> = <span class="ruby-node">&quot;#{output_filename}_#{printer_name}.txt&quot;</span>
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">fname</span>))
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">fname</span>, <span class="ruby-string">'wb'</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">file</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-output_filename">
+            
+              <b>output_filename</b>(printer_class)
+            
+            <a href="../../../../classes/ActiveSupport/Testing/Performance/Profiler.html#method-i-output_filename" name="method-i-output_filename" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-output_filename_source')" id="l_method-i-output_filename_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c2c8ef57d6f00d1c22743dc43746f95704d67a95/activesupport/lib/active_support/testing/performance/jruby.rb#L52" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-output_filename_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/testing/performance/jruby.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_filename</span>(<span class="ruby-identifier">printer_class</span>)
+  <span class="ruby-identifier">suffix</span> =
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">printer_class</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">demodulize</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">'FlatProfilePrinter'</span>;  <span class="ruby-string">'flat.txt'</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">'GraphProfilePrinter'</span>; <span class="ruby-string">'graph.txt'</span>
+      <span class="ruby-keyword">else</span> <span class="ruby-identifier">printer_class</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/ProfilePrinter$/</span>, <span class="ruby-string">''</span>).<span class="ruby-identifier">underscore</span>
+    <span class="ruby-keyword">end</span>
+
+  <span class="ruby-node">&quot;#{super()}_#{suffix}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

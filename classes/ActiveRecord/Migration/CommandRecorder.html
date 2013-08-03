@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::Migration::CommandRecorder</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveRecord::Migration::CommandRecorder 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/migration/command_recorder_rb.html">activerecord/lib/active_record/migration/command_recorder.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><code>ActiveRecord::Migration::CommandRecorder</code> records commands done
+during a migration and knows how to reverse those commands. The <a
+href="CommandRecorder.html">CommandRecorder</a> knows how to invert the
+following commands:</p>
+<ul><li>
+<p>add_column</p>
+</li><li>
+<p>add_index</p>
+</li><li>
+<p>add_timestamps</p>
+</li><li>
+<p>create_table</p>
+</li><li>
+<p>remove_timestamps</p>
+</li><li>
+<p>rename_column</p>
+</li><li>
+<p>rename_index</p>
+</li><li>
+<p>rename_table</p>
+</li></ul>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-inverse">inverse</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-record">record</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>commands</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>delegate</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(delegate = nil)
+            
+            <a href="../../../classes/ActiveRecord/Migration/CommandRecorder.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6012970fea9d3385cd0a515aa353b47d0837d55a/activerecord/lib/active_record/migration/command_recorder.rb#L18" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/migration/command_recorder.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">delegate</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@commands</span> = []
+  <span class="ruby-ivar">@delegate</span> = <span class="ruby-identifier">delegate</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-inverse">
+            
+              <b>inverse</b>()
+            
+            <a href="../../../classes/ActiveRecord/Migration/CommandRecorder.html#method-i-inverse" name="method-i-inverse" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns a list that represents commands that are the inverse of the
+commands stored in <code>commands</code>. For example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">recorder</span>.<span class="ruby-identifier">record</span>(:<span class="ruby-identifier">rename_table</span>, [:<span class="ruby-identifier">old</span>, :<span class="ruby-identifier">new</span>])
+<span class="ruby-identifier">recorder</span>.<span class="ruby-identifier">inverse</span> <span class="ruby-comment"># =&gt; [:rename_table, [:new, :old]]</span>
+</pre>
+
+<p>This method will raise an <code>IrreversibleMigration</code> exception if
+it cannot invert the <code>commands</code>.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-inverse_source')" id="l_method-i-inverse_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6012970fea9d3385cd0a515aa353b47d0837d55a/activerecord/lib/active_record/migration/command_recorder.rb#L39" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-inverse_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/migration/command_recorder.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">inverse</span>
+  <span class="ruby-ivar">@commands</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">method</span> = <span class="ruby-value">:&quot;invert_#{name}&quot;</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IrreversibleMigration</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">method</span>, <span class="ruby-keyword">true</span>)
+    <span class="ruby-identifier">send</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">args</span>)
+  }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-record">
+            
+              <b>record</b>(*command)
+            
+            <a href="../../../classes/ActiveRecord/Migration/CommandRecorder.html#method-i-record" name="method-i-record" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>record <code>command</code>. <code>command</code> should be a method name
+and arguments. For example:</p>
+
+<pre>recorder.record(:method_name, [:arg1, :arg2])</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-record_source')" id="l_method-i-record_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6012970fea9d3385cd0a515aa353b47d0837d55a/activerecord/lib/active_record/migration/command_recorder.rb#L27" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-record_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/migration/command_recorder.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">record</span>(*<span class="ruby-identifier">command</span>)
+  <span class="ruby-ivar">@commands</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">command</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

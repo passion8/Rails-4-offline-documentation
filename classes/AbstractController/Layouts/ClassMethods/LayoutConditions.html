@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>AbstractController::Layouts::ClassMethods::LayoutConditions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            AbstractController::Layouts::ClassMethods::LayoutConditions 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/actionpack/lib/abstract_controller/layouts_rb.html">actionpack/lib/abstract_controller/layouts.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>This module is mixed in if layout conditions are provided. This means that
+if no layout conditions are used, this method is not used</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-conditional_layout-3F">conditional_layout?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-conditional_layout-3F">
+            
+              <b>conditional_layout?</b>()
+            
+            <a href="../../../../classes/AbstractController/Layouts/ClassMethods/LayoutConditions.html#method-i-conditional_layout-3F" name="method-i-conditional_layout-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Determines whether the current action has a layout by checking the action
+name against the :only and :except conditions set on the layout.</p>
+
+<h4 id="method-i-conditional_layout-3F-label-Returns">Returns</h4>
+<ul><li>
+<p><code> Boolean</code> - True if the action has a layout, false otherwise.</p>
+</li></ul>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-conditional_layout-3F_source')" id="l_method-i-conditional_layout-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c203557421b45e4c78de9d551e96e042b1553833/actionpack/lib/abstract_controller/layouts.rb#L221" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-conditional_layout-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/abstract_controller/layouts.rb, line 221</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">conditional_layout?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">super</span>
+
+  <span class="ruby-identifier">conditions</span> = <span class="ruby-identifier">_layout_conditions</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">only</span> = <span class="ruby-identifier">conditions</span>[<span class="ruby-value">:only</span>]
+    <span class="ruby-identifier">only</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">action_name</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">except</span> = <span class="ruby-identifier">conditions</span>[<span class="ruby-value">:except</span>]
+    <span class="ruby-operator">!</span><span class="ruby-identifier">except</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">action_name</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

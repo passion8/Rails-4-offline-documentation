@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionView::Helpers::AssetTagHelper::JavascriptTagHelpers</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActionView::Helpers::AssetTagHelper::JavascriptTagHelpers 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/actionpack/lib/action_view/helpers/asset_tag_helpers/javascript_tag_helpers_rb.html">actionpack/lib/action_view/helpers/asset_tag_helpers/javascript_tag_helpers.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="JavascriptTagHelpers/ClassMethods.html">ActionView::Helpers::AssetTagHelper::JavascriptTagHelpers::ClassMethods</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>J</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-javascript_include_tag">javascript_include_tag</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-javascript_path">javascript_path</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-path_to_javascript">path_to_javascript</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-javascript_include_tag">
+            
+              <b>javascript_include_tag</b>(*sources)
+            
+            <a href="../../../../classes/ActionView/Helpers/AssetTagHelper/JavascriptTagHelpers.html#method-i-javascript_include_tag" name="method-i-javascript_include_tag" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns an <a href="../../../HTML.html">HTML</a> script tag for each of the
+<code>sources</code> provided.</p>
+
+<p>Sources may be paths to JavaScript files. Relative paths are assumed to be
+relative to <code>public/javascripts</code>, full paths are assumed to be
+relative to the document root. Relative paths are idiomatic, use absolute
+paths only when needed.</p>
+
+<p>When passing paths, the “.js” extension is optional.</p>
+
+<p>If the application is not using the asset pipeline, to include the default
+JavaScript expansion pass <code>:defaults</code> as source. By default,
+<code>:defaults</code> loads jQuery, and that can be overridden in
+<code>config/application.rb</code>:</p>
+
+<pre>config.action_view.javascript_expansions[:defaults] = %w(foo.js bar.js)</pre>
+
+<p>When using <code>:defaults</code> or <code>:all</code>, if an
+<code>application.js</code> file exists in <code>public/javascripts</code>
+it will be included as well at the end.</p>
+
+<p>You can modify the <a href="../../../HTML.html">HTML</a> attributes of the
+script tag by passing a hash as the last argument.</p>
+
+<h4 id="method-i-javascript_include_tag-label-Examples">Examples</h4>
+
+<pre class="ruby"><span class="ruby-identifier">javascript_include_tag</span> <span class="ruby-string">&quot;xmlhr&quot;</span>
+<span class="ruby-comment"># =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/xmlhr.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+
+<span class="ruby-identifier">javascript_include_tag</span> <span class="ruby-string">&quot;xmlhr.js&quot;</span>
+<span class="ruby-comment"># =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/xmlhr.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+
+<span class="ruby-identifier">javascript_include_tag</span> <span class="ruby-string">&quot;common.javascript&quot;</span>, <span class="ruby-string">&quot;/elsewhere/cools&quot;</span>
+<span class="ruby-comment"># =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/common.javascript?1284139606&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/elsewhere/cools.js?1423139606&quot;&gt;&lt;/script&gt;</span>
+
+<span class="ruby-identifier">javascript_include_tag</span> <span class="ruby-string">&quot;http://www.example.com/xmlhr&quot;</span>
+<span class="ruby-comment"># =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;http://www.example.com/xmlhr&quot;&gt;&lt;/script&gt;</span>
+
+<span class="ruby-identifier">javascript_include_tag</span> <span class="ruby-string">&quot;http://www.example.com/xmlhr.js&quot;</span>
+<span class="ruby-comment"># =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;http://www.example.com/xmlhr.js&quot;&gt;&lt;/script&gt;</span>
+
+<span class="ruby-identifier">javascript_include_tag</span> :<span class="ruby-identifier">defaults</span>
+<span class="ruby-comment"># =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/jquery.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/rails.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/application.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+</pre>
+
+<p>Note: The application.js file is only referenced if it exists</p>
+
+<p>You can also include all JavaScripts in the <code>javascripts</code>
+directory using <code>:all</code> as the source:</p>
+
+<pre class="ruby"><span class="ruby-identifier">javascript_include_tag</span> :<span class="ruby-identifier">all</span>
+<span class="ruby-comment"># =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/jquery.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/rails.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/shop.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/checkout.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/application.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+</pre>
+
+<p>Note that your defaults of choice will be included first, so they will be
+available to all subsequently included files.</p>
+
+<p>If you want <a href="../../../Rails.html">Rails</a> to search in all the
+subdirectories under <code>public/javascripts</code>, you should explicitly
+set <code>:recursive</code>:</p>
+
+<pre class="ruby"><span class="ruby-identifier">javascript_include_tag</span> :<span class="ruby-identifier">all</span>, :<span class="ruby-identifier">recursive</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+</pre>
+
+<h2 id="method-i-javascript_include_tag-label-Caching+multiple+JavaScripts+into+one">Caching multiple JavaScripts into one</h2>
+
+<p>You can also cache multiple JavaScripts into one file, which requires less
+HTTP connections to download and can better be compressed by gzip (leading
+to faster transfers). Caching will only happen if
+<code>config.perform_caching</code> is set to true (which is the case by
+default for the <a href="../../../Rails.html">Rails</a> production
+environment, but not for the development environment).</p>
+
+<h4 id="method-i-javascript_include_tag-label-Examples">Examples</h4>
+
+<pre class="ruby"><span class="ruby-comment"># assuming config.perform_caching is false</span>
+<span class="ruby-identifier">javascript_include_tag</span> :<span class="ruby-identifier">all</span>, :<span class="ruby-identifier">cache</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+<span class="ruby-comment"># =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/jquery.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/rails.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/shop.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/checkout.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/application.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+
+<span class="ruby-comment"># assuming config.perform_caching is true</span>
+<span class="ruby-identifier">javascript_include_tag</span> :<span class="ruby-identifier">all</span>, :<span class="ruby-identifier">cache</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+<span class="ruby-comment"># =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/all.js?1344139789&quot;&gt;&lt;/script&gt;</span>
+
+<span class="ruby-comment"># assuming config.perform_caching is false</span>
+<span class="ruby-identifier">javascript_include_tag</span> <span class="ruby-string">&quot;jquery&quot;</span>, <span class="ruby-string">&quot;cart&quot;</span>, <span class="ruby-string">&quot;checkout&quot;</span>, :<span class="ruby-identifier">cache</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;shop&quot;</span>
+<span class="ruby-comment"># =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/jquery.js?1284139606&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/cart.js?1289139157&quot;&gt;&lt;/script&gt;</span>
+<span class="ruby-comment">#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/checkout.js?1299139816&quot;&gt;&lt;/script&gt;</span>
+
+<span class="ruby-comment"># assuming config.perform_caching is true</span>
+<span class="ruby-identifier">javascript_include_tag</span> <span class="ruby-string">&quot;jquery&quot;</span>, <span class="ruby-string">&quot;cart&quot;</span>, <span class="ruby-string">&quot;checkout&quot;</span>, :<span class="ruby-identifier">cache</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;shop&quot;</span>
+<span class="ruby-comment"># =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/shop.js?1299139816&quot;&gt;&lt;/script&gt;</span>
+</pre>
+
+<p>The <code>:recursive</code> option is also available for caching:</p>
+
+<pre class="ruby"><span class="ruby-identifier">javascript_include_tag</span> :<span class="ruby-identifier">all</span>, :<span class="ruby-identifier">cache</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, :<span class="ruby-identifier">recursive</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-javascript_include_tag_source')" id="l_method-i-javascript_include_tag_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6c4673030e74a8518273e0c9de5d37d63fd81453/actionpack/lib/action_view/helpers/asset_tag_helpers/javascript_tag_helpers.rb#L186" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-javascript_include_tag_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/asset_tag_helpers/javascript_tag_helpers.rb, line 186</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">javascript_include_tag</span>(*<span class="ruby-identifier">sources</span>)
+  <span class="ruby-ivar">@javascript_include</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">JavascriptIncludeTag</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">config</span>, <span class="ruby-identifier">asset_paths</span>)
+  <span class="ruby-ivar">@javascript_include</span>.<span class="ruby-identifier">include_tag</span>(*<span class="ruby-identifier">sources</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-javascript_path">
+            
+              <b>javascript_path</b>(source)
+            
+            <a href="../../../../classes/ActionView/Helpers/AssetTagHelper/JavascriptTagHelpers.html#method-i-javascript_path" name="method-i-javascript_path" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Computes the path to a javascript asset in the public javascripts
+directory. If the <code>source</code> filename has no extension, .js will
+be appended (except for explicit URIs) Full paths from the document root
+will be passed through. Used internally by <a
+href="JavascriptTagHelpers.html#method-i-javascript_include_tag">#javascript_include_tag</a>
+to build the script path.</p>
+
+<h4 id="method-i-javascript_path-label-Examples">Examples</h4>
+
+<pre class="ruby"><span class="ruby-identifier">javascript_path</span> <span class="ruby-string">&quot;xmlhr&quot;</span>                              <span class="ruby-comment"># =&gt; /javascripts/xmlhr.js</span>
+<span class="ruby-identifier">javascript_path</span> <span class="ruby-string">&quot;dir/xmlhr.js&quot;</span>                       <span class="ruby-comment"># =&gt; /javascripts/dir/xmlhr.js</span>
+<span class="ruby-identifier">javascript_path</span> <span class="ruby-string">&quot;/dir/xmlhr&quot;</span>                         <span class="ruby-comment"># =&gt; /dir/xmlhr.js</span>
+<span class="ruby-identifier">javascript_path</span> <span class="ruby-string">&quot;http://www.example.com/js/xmlhr&quot;</span>    <span class="ruby-comment"># =&gt; http://www.example.com/js/xmlhr</span>
+<span class="ruby-identifier">javascript_path</span> <span class="ruby-string">&quot;http://www.example.com/js/xmlhr.js&quot;</span> <span class="ruby-comment"># =&gt; http://www.example.com/js/xmlhr.js</span>
+</pre>
+            </div>
+          
+          
+          
+            <div class="aka">
+              Also aliased as: <a href="JavascriptTagHelpers.html#method-i-path_to_javascript">path_to_javascript</a>
+            </div>
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-javascript_path_source')" id="l_method-i-javascript_path_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/6c4673030e74a8518273e0c9de5d37d63fd81453/actionpack/lib/action_view/helpers/asset_tag_helpers/javascript_tag_helpers.rb#L86" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-javascript_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/asset_tag_helpers/javascript_tag_helpers.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">javascript_path</span>(<span class="ruby-identifier">source</span>)
+  <span class="ruby-identifier">asset_paths</span>.<span class="ruby-identifier">compute_public_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-string">'javascripts'</span>, <span class="ruby-value">:ext</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'js'</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-path_to_javascript">
+            
+              <b>path_to_javascript</b>(source)
+            
+            <a href="../../../../classes/ActionView/Helpers/AssetTagHelper/JavascriptTagHelpers.html#method-i-path_to_javascript" name="method-i-path_to_javascript" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

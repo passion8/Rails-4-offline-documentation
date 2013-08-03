@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Memoizable::InstanceMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveSupport::Memoizable::InstanceMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/memoizable_rb.html">activesupport/lib/active_support/memoizable.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-flush_cache">flush_cache</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-freeze_with_memoizable">freeze_with_memoizable</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-included">included</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-memoize_all">memoize_all</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-prime_cache">prime_cache</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-unmemoize_all">unmemoize_all</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-included">
+            
+              <b>included</b>(base)
+            
+            <a href="../../../classes/ActiveSupport/Memoizable/InstanceMethods.html#method-c-included" name="method-c-included" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-included_source')" id="l_method-c-included_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/8775ffa37231d381cba34f0ecacb8a7bbcf0573f/activesupport/lib/active_support/memoizable.rb#L18" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-included_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/memoizable.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)
+  <span class="ruby-identifier">base</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">method_defined?</span>(<span class="ruby-value">:freeze_without_memoizable</span>)
+      <span class="ruby-identifier">alias_method_chain</span> <span class="ruby-value">:freeze</span>, <span class="ruby-value">:memoizable</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-flush_cache">
+            
+              <b>flush_cache</b>(*syms)
+            
+            <a href="../../../classes/ActiveSupport/Memoizable/InstanceMethods.html#method-i-flush_cache" name="method-i-flush_cache" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-flush_cache_source')" id="l_method-i-flush_cache_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/8775ffa37231d381cba34f0ecacb8a7bbcf0573f/activesupport/lib/active_support/memoizable.rb#L54" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-flush_cache_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/memoizable.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">flush_cache</span>(*<span class="ruby-identifier">syms</span>)
+  <span class="ruby-identifier">syms</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sym</span><span class="ruby-operator">|</span>
+    (<span class="ruby-identifier">methods</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">private_methods</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">protected_methods</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^_unmemoized_(#{sym.to_s.gsub(/\?\Z/, '\?')})/</span>
+        <span class="ruby-identifier">ivar</span> = <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Memoizable</span>.<span class="ruby-identifier">memoized_ivar_for</span>(<span class="ruby-node">$1</span>)
+        <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">ivar</span>).<span class="ruby-identifier">clear</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">instance_variable_defined?</span>(<span class="ruby-identifier">ivar</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-freeze_with_memoizable">
+            
+              <b>freeze_with_memoizable</b>()
+            
+            <a href="../../../classes/ActiveSupport/Memoizable/InstanceMethods.html#method-i-freeze_with_memoizable" name="method-i-freeze_with_memoizable" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-freeze_with_memoizable_source')" id="l_method-i-freeze_with_memoizable_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/8775ffa37231d381cba34f0ecacb8a7bbcf0573f/activesupport/lib/active_support/memoizable.rb#L26" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-freeze_with_memoizable_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/memoizable.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">freeze_with_memoizable</span>
+  <span class="ruby-identifier">memoize_all</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">frozen?</span>
+  <span class="ruby-identifier">freeze_without_memoizable</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-memoize_all">
+            
+              <b>memoize_all</b>()
+            
+            <a href="../../../classes/ActiveSupport/Memoizable/InstanceMethods.html#method-i-memoize_all" name="method-i-memoize_all" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-memoize_all_source')" id="l_method-i-memoize_all_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/8775ffa37231d381cba34f0ecacb8a7bbcf0573f/activesupport/lib/active_support/memoizable.rb#L31" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-memoize_all_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/memoizable.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">memoize_all</span>
+  <span class="ruby-identifier">prime_cache</span> <span class="ruby-string">&quot;.*&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-prime_cache">
+            
+              <b>prime_cache</b>(*syms)
+            
+            <a href="../../../classes/ActiveSupport/Memoizable/InstanceMethods.html#method-i-prime_cache" name="method-i-prime_cache" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-prime_cache_source')" id="l_method-i-prime_cache_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/8775ffa37231d381cba34f0ecacb8a7bbcf0573f/activesupport/lib/active_support/memoizable.rb#L39" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-prime_cache_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/memoizable.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prime_cache</span>(*<span class="ruby-identifier">syms</span>)
+  <span class="ruby-identifier">syms</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sym</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">methods</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^_unmemoized_(#{sym})/</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">method</span>(<span class="ruby-identifier">m</span>).<span class="ruby-identifier">arity</span> <span class="ruby-operator">==</span> <span class="ruby-number">0</span>
+          <span class="ruby-identifier">__send__</span>(<span class="ruby-node">$1</span>)
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">ivar</span> = <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Memoizable</span>.<span class="ruby-identifier">memoized_ivar_for</span>(<span class="ruby-node">$1</span>)
+          <span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">ivar</span>, {})
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-unmemoize_all">
+            
+              <b>unmemoize_all</b>()
+            
+            <a href="../../../classes/ActiveSupport/Memoizable/InstanceMethods.html#method-i-unmemoize_all" name="method-i-unmemoize_all" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-unmemoize_all_source')" id="l_method-i-unmemoize_all_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/8775ffa37231d381cba34f0ecacb8a7bbcf0573f/activesupport/lib/active_support/memoizable.rb#L35" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-unmemoize_all_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/memoizable.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">unmemoize_all</span>
+  <span class="ruby-identifier">flush_cache</span> <span class="ruby-string">&quot;.*&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

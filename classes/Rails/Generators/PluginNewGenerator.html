@@ -1,0 +1,1393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Rails::Generators::PluginNewGenerator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            Rails::Generators::PluginNewGenerator 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="AppBase.html">Rails::Generators::AppBase</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator_rb.html">railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-app_templates_dir">app_templates_dir</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-application_definition">application_definition</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>B</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-banner">banner</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-camelized">camelized</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create_app_files">create_app_files</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create_config_files">create_config_files</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create_dummy_app">create_dummy_app</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create_images_directory">create_images_directory</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create_javascript_files">create_javascript_files</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create_lib_files">create_lib_files</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create_public_stylesheets_files">create_public_stylesheets_files</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create_root_files">create_root_files</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create_script_files">create_script_files</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create_test_dummy_files">create_test_dummy_files</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create_test_files">create_test_files</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-dummy_path">dummy_path</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-finish_template">finish_template</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-full-3F">full?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>G</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-get_builder_class">get_builder_class</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-mountable-3F">mountable?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-mute">mute</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-name">name</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-original_name">original_name</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-rakefile_test_tasks">rakefile_test_tasks</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-store_application_definition-21">store_application_definition!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-valid_const-3F">valid_const?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>W</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-with_dummy_app-3F">with_dummy_app?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(*args)
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L156" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 156</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-string">&quot;Options should be given after the plugin name. For details run: rails plugin --help&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-number">0</span>].<span class="ruby-identifier">blank?</span>
+
+  <span class="ruby-ivar">@dummy_path</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Class Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-banner">
+            
+              <b>banner</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-c-banner" name="method-c-banner" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-banner_source')" id="l_method-c-banner_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L261" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-banner_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 261</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">banner</span>
+  <span class="ruby-node">&quot;rails plugin new #{self.arguments.map(&amp;:usage).join(' ')} [options]&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-create_app_files">
+            
+              <b>create_app_files</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-create_app_files" name="method-i-create_app_files" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_app_files_source')" id="l_method-i-create_app_files_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L174" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_app_files_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 174</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_app_files</span>
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:app</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create_config_files">
+            
+              <b>create_config_files</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-create_config_files" name="method-i-create_config_files" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_config_files_source')" id="l_method-i-create_config_files_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L178" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_config_files_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 178</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_config_files</span>
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:config</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create_images_directory">
+            
+              <b>create_images_directory</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-create_images_directory" name="method-i-create_images_directory" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_images_directory_source')" id="l_method-i-create_images_directory_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L194" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_images_directory_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 194</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_images_directory</span>
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:images</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create_javascript_files">
+            
+              <b>create_javascript_files</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-create_javascript_files" name="method-i-create_javascript_files" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_javascript_files_source')" id="l_method-i-create_javascript_files_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L190" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_javascript_files_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 190</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_javascript_files</span>
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:javascripts</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create_lib_files">
+            
+              <b>create_lib_files</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-create_lib_files" name="method-i-create_lib_files" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_lib_files_source')" id="l_method-i-create_lib_files_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L182" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_lib_files_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 182</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_lib_files</span>
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:lib</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create_public_stylesheets_files">
+            
+              <b>create_public_stylesheets_files</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-create_public_stylesheets_files" name="method-i-create_public_stylesheets_files" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_public_stylesheets_files_source')" id="l_method-i-create_public_stylesheets_files_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L186" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_public_stylesheets_files_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 186</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_public_stylesheets_files</span>
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:stylesheets</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create_root_files">
+            
+              <b>create_root_files</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-create_root_files" name="method-i-create_root_files" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_root_files_source')" id="l_method-i-create_root_files_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L165" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_root_files_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 165</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_root_files</span>
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:readme</span>)
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:rakefile</span>)
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:gemspec</span>)   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:skip_gemspec</span>]
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:license</span>)
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:gitignore</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:skip_git</span>]
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:gemfile</span>)   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:skip_gemfile</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create_script_files">
+            
+              <b>create_script_files</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-create_script_files" name="method-i-create_script_files" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_script_files_source')" id="l_method-i-create_script_files_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L198" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_script_files_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 198</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_script_files</span>
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:script</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create_test_dummy_files">
+            
+              <b>create_test_dummy_files</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-create_test_dummy_files" name="method-i-create_test_dummy_files" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_test_dummy_files_source')" id="l_method-i-create_test_dummy_files_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L206" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_test_dummy_files_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 206</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_test_dummy_files</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">with_dummy_app?</span>
+  <span class="ruby-identifier">create_dummy_app</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create_test_files">
+            
+              <b>create_test_files</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-create_test_files" name="method-i-create_test_files" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_test_files_source')" id="l_method-i-create_test_files_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L202" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_test_files_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 202</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_test_files</span>
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:test</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:skip_test_unit</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-finish_template">
+            
+              <b>finish_template</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-finish_template" name="method-i-finish_template" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-finish_template_source')" id="l_method-i-finish_template_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L211" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-finish_template_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 211</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">finish_template</span>
+  <span class="ruby-identifier">build</span>(<span class="ruby-value">:leftovers</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-name">
+            
+              <b>name</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-name" name="method-i-name" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-name_source')" id="l_method-i-name_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L217" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-name_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 217</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">name</span>
+  <span class="ruby-ivar">@name</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">begin</span>
+    <span class="ruby-comment"># same as ActiveSupport::Inflector#underscore except not replacing '-'</span>
+    <span class="ruby-identifier">underscored</span> = <span class="ruby-identifier">original_name</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-identifier">underscored</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/([A-Z]+)([A-Z][a-z])/</span>,<span class="ruby-string">'\1_\2'</span>)
+    <span class="ruby-identifier">underscored</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/([a-z\d])([A-Z])/</span>,<span class="ruby-string">'\1_\2'</span>)
+    <span class="ruby-identifier">underscored</span>.<span class="ruby-identifier">downcase!</span>
+
+    <span class="ruby-identifier">underscored</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-app_templates_dir">
+            
+              <b>app_templates_dir</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-app_templates_dir" name="method-i-app_templates_dir" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-app_templates_dir_source')" id="l_method-i-app_templates_dir_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L231" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-app_templates_dir_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 231</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">app_templates_dir</span>
+  <span class="ruby-string">&quot;../../app/templates&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-application_definition">
+            
+              <b>application_definition</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-application_definition" name="method-i-application_definition" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+            <div class="aka">
+              Also aliased as: <a href="PluginNewGenerator.html#method-i-store_application_definition-21">store_application_definition!</a>
+            </div>
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-application_definition_source')" id="l_method-i-application_definition_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L283" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-application_definition_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 283</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">application_definition</span>
+  <span class="ruby-ivar">@application_definition</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">begin</span>
+
+    <span class="ruby-identifier">dummy_application_path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-node">&quot;#{dummy_path}/config/application.rb&quot;</span>, <span class="ruby-identifier">destination_root</span>)
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pretend</span>] <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">dummy_application_path</span>)
+      <span class="ruby-identifier">contents</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">dummy_application_path</span>)
+      <span class="ruby-identifier">contents</span>[(<span class="ruby-identifier">contents</span>.<span class="ruby-identifier">index</span>(<span class="ruby-regexp">/module ([\w]+)\n(.*)class Application/</span>))<span class="ruby-operator">..</span><span class="ruby-number">-1</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-camelized">
+            
+              <b>camelized</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-camelized" name="method-i-camelized" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-camelized_source')" id="l_method-i-camelized_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L269" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-camelized_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 269</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">camelized</span>
+  <span class="ruby-ivar">@camelized</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\W/</span>, <span class="ruby-string">'_'</span>).<span class="ruby-identifier">squeeze</span>(<span class="ruby-string">'_'</span>).<span class="ruby-identifier">camelize</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create_dummy_app">
+            
+              <b>create_dummy_app</b>(path = nil)
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-create_dummy_app" name="method-i-create_dummy_app" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_dummy_app_source')" id="l_method-i-create_dummy_app_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L235" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_dummy_app_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 235</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_dummy_app</span>(<span class="ruby-identifier">path</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">dummy_path</span>(<span class="ruby-identifier">path</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>
+
+  <span class="ruby-identifier">say_status</span> <span class="ruby-value">:vendor_app</span>, <span class="ruby-identifier">dummy_path</span>
+  <span class="ruby-identifier">mute</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">build</span>(<span class="ruby-value">:generate_test_dummy</span>)
+    <span class="ruby-identifier">store_application_definition!</span>
+    <span class="ruby-identifier">build</span>(<span class="ruby-value">:test_dummy_config</span>)
+    <span class="ruby-identifier">build</span>(<span class="ruby-value">:test_dummy_clean</span>)
+    <span class="ruby-comment"># ensure that script/rails has proper dummy_path</span>
+    <span class="ruby-identifier">build</span>(<span class="ruby-value">:script</span>, <span class="ruby-keyword">true</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-dummy_path">
+            
+              <b>dummy_path</b>(path = nil)
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-dummy_path" name="method-i-dummy_path" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-dummy_path_source')" id="l_method-i-dummy_path_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L312" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-dummy_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 312</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">dummy_path</span>(<span class="ruby-identifier">path</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@dummy_path</span> = <span class="ruby-identifier">path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>
+  <span class="ruby-ivar">@dummy_path</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:dummy_path</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-full-3F">
+            
+              <b>full?</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-full-3F" name="method-i-full-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-full-3F_source')" id="l_method-i-full-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L249" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-full-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 249</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">full?</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:full</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:mountable</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-get_builder_class">
+            
+              <b>get_builder_class</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-get_builder_class" name="method-i-get_builder_class" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-get_builder_class_source')" id="l_method-i-get_builder_class_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L295" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-get_builder_class_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 295</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_builder_class</span>
+  <span class="ruby-keyword">defined?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">PluginBuilder</span>) <span class="ruby-operator">?</span> <span class="ruby-operator">::</span><span class="ruby-constant">PluginBuilder</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">PluginBuilder</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-mountable-3F">
+            
+              <b>mountable?</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-mountable-3F" name="method-i-mountable-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-mountable-3F_source')" id="l_method-i-mountable-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L253" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-mountable-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 253</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mountable?</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:mountable</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-mute">
+            
+              <b>mute</b>(&amp;block)
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-mute" name="method-i-mute" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-mute_source')" id="l_method-i-mute_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L317" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-mute_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 317</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mute</span>(&amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">mute</span>(&amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-original_name">
+            
+              <b>original_name</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-original_name" name="method-i-original_name" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-original_name_source')" id="l_method-i-original_name_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L265" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-original_name_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 265</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">original_name</span>
+  <span class="ruby-ivar">@original_name</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">destination_root</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-rakefile_test_tasks">
+            
+              <b>rakefile_test_tasks</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-rakefile_test_tasks" name="method-i-rakefile_test_tasks" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-rakefile_test_tasks_source')" id="l_method-i-rakefile_test_tasks_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L299" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-rakefile_test_tasks_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 299</span>
+      <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">rakefile_test_tasks</span>
+        <span class="ruby-value">&lt;&lt;-RUBY
+require 'rake/testtask'
+
+Rake::TestTask.new(:test) do |t|
+  t.libs &lt;&lt; 'lib'
+  t.libs &lt;&lt; 'test'
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = false
+end
+        RUBY</span>
+      <span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-store_application_definition-21">
+            
+              <b>store_application_definition!</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-store_application_definition-21" name="method-i-store_application_definition-21" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-valid_const-3F">
+            
+              <b>valid_const?</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-valid_const-3F" name="method-i-valid_const-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-valid_const-3F_source')" id="l_method-i-valid_const-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L273" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-valid_const-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 273</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">valid_const?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">camelized</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^\d/</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-node">&quot;Invalid plugin name #{original_name}. Please give a name which does not start with numbers.&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-constant">RESERVED_NAMES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-node">&quot;Invalid plugin name #{original_name}. Please give a name which does not match one of the reserved rails words.&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_defined?</span>(<span class="ruby-identifier">camelized</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-node">&quot;Invalid plugin name #{original_name}, constant #{camelized} is already in use. Please choose another plugin name.&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-with_dummy_app-3F">
+            
+              <b>with_dummy_app?</b>()
+            
+            <a href="../../../classes/Rails/Generators/PluginNewGenerator.html#method-i-with_dummy_app-3F" name="method-i-with_dummy_app-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-with_dummy_app-3F_source')" id="l_method-i-with_dummy_app-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/9a0cdc68b5b0fc08e60069cb5512bf2ad6b2a76b/railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb#L257" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-with_dummy_app-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/plugin_new/plugin_new_generator.rb, line 257</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">with_dummy_app?</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:skip_test_unit</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:dummy_path</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">'test/dummy'</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::Validations::InclusionValidator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveModel::Validations::InclusionValidator 
+            
+                <span class="parent">&lt; 
+                    
+                    EachValidator
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/inclusion_rb.html">activemodel/lib/active_model/validations/inclusion.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-check_validity-21">check_validity!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-validate_each">validate_each</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">ERROR_MESSAGE</td>
+            <td>=</td>
+            <td class="attr-value">&quot;An object with the method #include? or a proc or lambda is required, &quot; &lt;&lt;
+&quot;and must be supplied as the :in (or :within) option of the configuration hash&quot;</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-check_validity-21">
+            
+              <b>check_validity!</b>()
+            
+            <a href="../../../classes/ActiveModel/Validations/InclusionValidator.html#method-i-check_validity-21" name="method-i-check_validity-21" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-check_validity-21_source')" id="l_method-i-check_validity-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/089371ac23f35550676e6c5ac99e789a97101475/activemodel/lib/active_model/validations/inclusion.rb#L10" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-check_validity-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/validations/inclusion.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">check_validity!</span>
+  <span class="ruby-keyword">unless</span> [<span class="ruby-value">:include?</span>, <span class="ruby-value">:call</span>].<span class="ruby-identifier">any?</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span> <span class="ruby-identifier">delimiter</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">method</span>) }
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-constant">ERROR_MESSAGE</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-validate_each">
+            
+              <b>validate_each</b>(record, attribute, value)
+            
+            <a href="../../../classes/ActiveModel/Validations/InclusionValidator.html#method-i-validate_each" name="method-i-validate_each" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-validate_each_source')" id="l_method-i-validate_each_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/089371ac23f35550676e6c5ac99e789a97101475/activemodel/lib/active_model/validations/inclusion.rb#L16" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-validate_each_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/validations/inclusion.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">exclusions</span> = <span class="ruby-identifier">delimiter</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:call</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">delimiter</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">record</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">delimiter</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">exclusions</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">inclusion_method</span>(<span class="ruby-identifier">exclusions</span>), <span class="ruby-identifier">value</span>)
+    <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-value">:inclusion</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">except</span>(<span class="ruby-value">:in</span>, <span class="ruby-value">:within</span>).<span class="ruby-identifier">merge!</span>(<span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span>))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

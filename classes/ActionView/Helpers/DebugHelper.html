@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionView::Helpers::DebugHelper</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActionView::Helpers::DebugHelper 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_view/helpers/debug_helper_rb.html">actionpack/lib/action_view/helpers/debug_helper.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-debug">debug</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-debug">
+            
+              <b>debug</b>(object)
+            
+            <a href="../../../classes/ActionView/Helpers/DebugHelper.html#method-i-debug" name="method-i-debug" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns a YAML representation of <code>object</code> wrapped with
+&lt;pre&gt; and &lt;/pre&gt;. If the object cannot be converted to YAML
+using <code>to_yaml</code>, <code>inspect</code> will be called instead.
+Useful for inspecting an object at the time of rendering.</p>
+
+<h4 id="method-i-debug-label-Example">Example</h4>
+
+<pre>@user = User.new({ :username =&gt; 'testing', :password =&gt; 'xyz', :age =&gt; 42}) %&gt;
+debug(@user)
+# =&gt;
+&lt;pre class='debug_dump'&gt;--- !ruby/object:User
+attributes:
+&amp;nbsp; updated_at:
+&amp;nbsp; username: testing
+
+&amp;nbsp; age: 42
+&amp;nbsp; password: xyz
+&amp;nbsp; created_at:
+attributes_cache: {}
+
+new_record: true
+&lt;/pre&gt;</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-debug_source')" id="l_method-i-debug_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/1d3618a9b47d3160af00992756a4487906e39bcb/actionpack/lib/action_view/helpers/debug_helper.rb#L29" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-debug_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_view/helpers/debug_helper.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">debug</span>(<span class="ruby-identifier">object</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-constant">Marshal</span><span class="ruby-operator">::</span><span class="ruby-identifier">dump</span>(<span class="ruby-identifier">object</span>)
+    <span class="ruby-node">&quot;&lt;pre class='debug_dump'&gt;#{h(object.to_yaml).gsub(&quot;  &quot;, &quot;&amp;nbsp; &quot;)}&lt;/pre&gt;&quot;</span>.<span class="ruby-identifier">html_safe</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span>  <span class="ruby-comment"># errors from Marshal or YAML</span>
+    <span class="ruby-comment"># Object couldn't be dumped, perhaps because of singleton methods -- this is the fallback</span>
+    <span class="ruby-node">&quot;&lt;code class='debug_dump'&gt;#{h(object.inspect)}&lt;/code&gt;&quot;</span>.<span class="ruby-identifier">html_safe</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

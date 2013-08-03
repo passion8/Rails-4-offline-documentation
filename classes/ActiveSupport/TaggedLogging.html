@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::TaggedLogging</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveSupport::TaggedLogging 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activesupport/lib/active_support/tagged_logging_rb.html">activesupport/lib/active_support/tagged_logging.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Wraps any standard <a href="../Logger.html">Logger</a> class to provide
+tagging capabilities. Examples:</p>
+
+<pre>Logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+Logger.tagged(&quot;BCX&quot;) { Logger.info &quot;Stuff&quot; }                            # Logs &quot;[BCX] Stuff&quot;
+Logger.tagged(&quot;BCX&quot;, &quot;Jason&quot;) { Logger.info &quot;Stuff&quot; }                   # Logs &quot;[BCX] [Jason] Stuff&quot;
+Logger.tagged(&quot;BCX&quot;) { Logger.tagged(&quot;Jason&quot;) { Logger.info &quot;Stuff&quot; } } # Logs &quot;[BCX] [Jason] Stuff&quot;</pre>
+
+<p>This is used by the default <a
+href="../Rails.html#method-c-logger">Rails.logger</a> as configured by
+Railties to make it easy to stamp log lines with subdomains, request ids,
+and anything else to aid debugging of multi-user production applications.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-add">add</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-clear_tags-21">clear_tags!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-flush">flush</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-method_missing">method_missing</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-pop_tags">pop_tags</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-push_tags">push_tags</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-silence">silence</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-tagged">tagged</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(logger)
+            
+            <a href="../../classes/ActiveSupport/TaggedLogging.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/ddba97fa4f10319154e77d8f5e2c3e803f08e852/activesupport/lib/active_support/tagged_logging.rb#L16" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/tagged_logging.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">logger</span>)
+  <span class="ruby-ivar">@logger</span> = <span class="ruby-identifier">logger</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-add">
+            
+              <b>add</b>(severity, message = nil, progname = nil, &amp;block)
+            
+            <a href="../../classes/ActiveSupport/TaggedLogging.html#method-i-add" name="method-i-add" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-add_source')" id="l_method-i-add_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/ddba97fa4f10319154e77d8f5e2c3e803f08e852/activesupport/lib/active_support/tagged_logging.rb#L46" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-add_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/tagged_logging.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">add</span>(<span class="ruby-identifier">severity</span>, <span class="ruby-identifier">message</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">progname</span> = <span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">message</span> = (<span class="ruby-identifier">block_given?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">progname</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">message</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">severity</span>, <span class="ruby-node">&quot;#{tags_text}#{message}&quot;</span>, <span class="ruby-identifier">progname</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-clear_tags-21">
+            
+              <b>clear_tags!</b>()
+            
+            <a href="../../classes/ActiveSupport/TaggedLogging.html#method-i-clear_tags-21" name="method-i-clear_tags-21" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-clear_tags-21_source')" id="l_method-i-clear_tags-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/ddba97fa4f10319154e77d8f5e2c3e803f08e852/activesupport/lib/active_support/tagged_logging.rb#L37" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-clear_tags-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/tagged_logging.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">clear_tags!</span>
+  <span class="ruby-identifier">current_tags</span>.<span class="ruby-identifier">clear</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-flush">
+            
+              <b>flush</b>()
+            
+            <a href="../../classes/ActiveSupport/TaggedLogging.html#method-i-flush" name="method-i-flush" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-flush_source')" id="l_method-i-flush_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/ddba97fa4f10319154e77d8f5e2c3e803f08e852/activesupport/lib/active_support/tagged_logging.rb#L59" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-flush_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/tagged_logging.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">flush</span>
+  <span class="ruby-identifier">clear_tags!</span>
+  <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">flush</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:flush</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-method_missing">
+            
+              <b>method_missing</b>(method, *args)
+            
+            <a href="../../classes/ActiveSupport/TaggedLogging.html#method-i-method_missing" name="method-i-method_missing" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-method_missing_source')" id="l_method-i-method_missing_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/ddba97fa4f10319154e77d8f5e2c3e803f08e852/activesupport/lib/active_support/tagged_logging.rb#L64" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-method_missing_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/tagged_logging.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">method_missing</span>(<span class="ruby-identifier">method</span>, *<span class="ruby-identifier">args</span>)
+  <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">method</span>, *<span class="ruby-identifier">args</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-pop_tags">
+            
+              <b>pop_tags</b>(size = 1)
+            
+            <a href="../../classes/ActiveSupport/TaggedLogging.html#method-i-pop_tags" name="method-i-pop_tags" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-pop_tags_source')" id="l_method-i-pop_tags_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/ddba97fa4f10319154e77d8f5e2c3e803f08e852/activesupport/lib/active_support/tagged_logging.rb#L33" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-pop_tags_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/tagged_logging.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">pop_tags</span>(<span class="ruby-identifier">size</span> = <span class="ruby-number">1</span>)
+  <span class="ruby-identifier">current_tags</span>.<span class="ruby-identifier">pop</span> <span class="ruby-identifier">size</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-push_tags">
+            
+              <b>push_tags</b>(*tags)
+            
+            <a href="../../classes/ActiveSupport/TaggedLogging.html#method-i-push_tags" name="method-i-push_tags" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-push_tags_source')" id="l_method-i-push_tags_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/ddba97fa4f10319154e77d8f5e2c3e803f08e852/activesupport/lib/active_support/tagged_logging.rb#L27" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-push_tags_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/tagged_logging.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">push_tags</span>(*<span class="ruby-identifier">tags</span>)
+  <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">reject</span>(&amp;<span class="ruby-value">:blank?</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">new_tags</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">current_tags</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">new_tags</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-silence">
+            
+              <b>silence</b>(temporary_level = Logger::ERROR, &amp;block)
+            
+            <a href="../../classes/ActiveSupport/TaggedLogging.html#method-i-silence" name="method-i-silence" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-silence_source')" id="l_method-i-silence_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/ddba97fa4f10319154e77d8f5e2c3e803f08e852/activesupport/lib/active_support/tagged_logging.rb#L41" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-silence_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/tagged_logging.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">silence</span>(<span class="ruby-identifier">temporary_level</span> = <span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">ERROR</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">silence</span>(<span class="ruby-identifier">temporary_level</span>, &amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-tagged">
+            
+              <b>tagged</b>(*tags)
+            
+            <a href="../../classes/ActiveSupport/TaggedLogging.html#method-i-tagged" name="method-i-tagged" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-tagged_source')" id="l_method-i-tagged_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/ddba97fa4f10319154e77d8f5e2c3e803f08e852/activesupport/lib/active_support/tagged_logging.rb#L20" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-tagged_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/tagged_logging.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">tagged</span>(*<span class="ruby-identifier">tags</span>)
+  <span class="ruby-identifier">new_tags</span> = <span class="ruby-identifier">push_tags</span>(*<span class="ruby-identifier">tags</span>)
+  <span class="ruby-keyword">yield</span> <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-identifier">pop_tags</span>(<span class="ruby-identifier">new_tags</span>.<span class="ruby-identifier">size</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

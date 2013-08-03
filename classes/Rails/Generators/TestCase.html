@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Rails::Generators::TestCase</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            Rails::Generators::TestCase 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../ActiveSupport/TestCase.html">ActiveSupport::TestCase</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/railties/lib/rails/generators/test_case_rb.html">railties/lib/rails/generators/test_case.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>This class provides a <a href="TestCase.html">TestCase</a> for testing
+generators. To setup, you need just to configure the destination and set
+which generator is being tested:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">AppGeneratorTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Generators</span><span class="ruby-operator">::</span><span class="ruby-constant">TestCase</span>
+  <span class="ruby-identifier">tests</span> <span class="ruby-constant">AppGenerator</span>
+  <span class="ruby-identifier">destination</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;../tmp&quot;</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>))
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>If you want to ensure your destination root is clean before running each
+test, you can set a setup callback:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">AppGeneratorTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Generators</span><span class="ruby-operator">::</span><span class="ruby-constant">TestCase</span>
+  <span class="ruby-identifier">tests</span> <span class="ruby-constant">AppGenerator</span>
+  <span class="ruby-identifier">destination</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;../tmp&quot;</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>))
+  <span class="ruby-identifier">setup</span> :<span class="ruby-identifier">prepare_destination</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-arguments">arguments</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assert_class_method">assert_class_method</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assert_directory">assert_directory</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assert_field_default_value">assert_field_default_value</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assert_field_type">assert_field_type</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assert_file">assert_file</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assert_instance_method">assert_instance_method</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assert_method">assert_method</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assert_migration">assert_migration</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assert_no_directory">assert_no_directory</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assert_no_file">assert_no_file</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assert_no_migration">assert_no_migration</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-create_generated_attribute">create_generated_attribute</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-destination">destination</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>G</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-generator">generator</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-prepare_destination">prepare_destination</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-run_generator">run_generator</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-tests">tests</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+    <!-- Includes -->
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+      
+        <li>
+          
+            FileUtils
+          
+        </li>
+      
+    </ul>
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-arguments">
+            
+              <b>arguments</b>(array)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-c-arguments" name="method-c-arguments" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Sets default arguments on generator invocation. This can be overwritten
+when invoking it.</p>
+
+<pre>arguments %w(app_name --skip-active-record)</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-arguments_source')" id="l_method-c-arguments_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L57" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-arguments_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">arguments</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_arguments</span> = <span class="ruby-identifier">array</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-destination">
+            
+              <b>destination</b>(path)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-c-destination" name="method-c-destination" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Sets the destination of generator files:</p>
+
+<pre>destination File.expand_path(&quot;../tmp&quot;, File.dirname(__FILE__))</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-destination_source')" id="l_method-c-destination_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L65" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-destination_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">destination</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">destination_root</span> = <span class="ruby-identifier">path</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-tests">
+            
+              <b>tests</b>(klass)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-c-tests" name="method-c-tests" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Sets which generator should be tested:</p>
+
+<pre>tests AppGenerator</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-tests_source')" id="l_method-c-tests_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L48" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-tests_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">tests</span>(<span class="ruby-identifier">klass</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generator_class</span> = <span class="ruby-identifier">klass</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-assert_class_method">
+            
+              <b>assert_class_method</b>(method, content, &amp;block)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-assert_class_method" name="method-i-assert_class_method" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Asserts the given class method exists in the given content. This method
+does not detect class methods inside (class &lt;&lt; self), only class
+methods which starts with “self.”. When a block is given, it yields the
+content of the method.</p>
+
+<pre class="ruby"><span class="ruby-identifier">assert_migration</span> <span class="ruby-string">&quot;db/migrate/create_products.rb&quot;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">migration</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">assert_class_method</span> :<span class="ruby-identifier">up</span>, <span class="ruby-identifier">migration</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">up</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">assert_match</span>(<span class="ruby-regexp">/create_table/</span>, <span class="ruby-identifier">up</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-assert_class_method_source')" id="l_method-i-assert_class_method_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L155" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-assert_class_method_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 155</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assert_class_method</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">content</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">assert_instance_method</span> <span class="ruby-node">&quot;self.#{method}&quot;</span>, <span class="ruby-identifier">content</span>, &amp;<span class="ruby-identifier">block</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-assert_directory">
+            
+              <b>assert_directory</b>(relative, *contents)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-assert_directory" name="method-i-assert_directory" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-assert_field_default_value">
+            
+              <b>assert_field_default_value</b>(attribute_type, value)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-assert_field_default_value" name="method-i-assert_field_default_value" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Asserts the given attribute type gets a proper default value:</p>
+
+<pre>assert_field_default_value :string, &quot;MyString&quot;</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-assert_field_default_value_source')" id="l_method-i-assert_field_default_value_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L187" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-assert_field_default_value_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 187</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assert_field_default_value</span>(<span class="ruby-identifier">attribute_type</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">create_generated_attribute</span>(<span class="ruby-identifier">attribute_type</span>).<span class="ruby-identifier">default</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-assert_field_type">
+            
+              <b>assert_field_type</b>(attribute_type, field_type)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-assert_field_type" name="method-i-assert_field_type" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Asserts the given attribute type gets translated to a field type properly:</p>
+
+<pre>assert_field_type :date, :date_select</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-assert_field_type_source')" id="l_method-i-assert_field_type_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L179" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-assert_field_type_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 179</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assert_field_type</span>(<span class="ruby-identifier">attribute_type</span>, <span class="ruby-identifier">field_type</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">field_type</span>, <span class="ruby-identifier">create_generated_attribute</span>(<span class="ruby-identifier">attribute_type</span>).<span class="ruby-identifier">field_type</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-assert_file">
+            
+              <b>assert_file</b>(relative, *contents)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-assert_file" name="method-i-assert_file" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Asserts a given file exists. You need to supply an absolute path or a path
+relative to the configured destination:</p>
+
+<pre>assert_file &quot;config/environment.rb&quot;</pre>
+
+<p>You can also give extra arguments. If the argument is a regexp, it will
+check if the regular expression matches the given file content. If it’s a
+string, it compares the file with the given string:</p>
+
+<pre>assert_file &quot;config/environment.rb&quot;, /initialize/</pre>
+
+<p>Finally, when a block is given, it yields the file content:</p>
+
+<pre class="ruby"><span class="ruby-identifier">assert_file</span> <span class="ruby-string">&quot;app/controller/products_controller.rb&quot;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">controller</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">assert_instance_method</span> :<span class="ruby-identifier">index</span>, <span class="ruby-identifier">content</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">assert_match</span>(<span class="ruby-regexp">/Product\.all/</span>, <span class="ruby-identifier">index</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+            </div>
+          
+          
+          
+            <div class="aka">
+              Also aliased as: <a href="TestCase.html#method-i-assert_directory">assert_directory</a>
+            </div>
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-assert_file_source')" id="l_method-i-assert_file_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L88" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-assert_file_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assert_file</span>(<span class="ruby-identifier">relative</span>, *<span class="ruby-identifier">contents</span>)
+  <span class="ruby-identifier">absolute</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">relative</span>, <span class="ruby-identifier">destination_root</span>)
+  <span class="ruby-identifier">assert</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">absolute</span>), <span class="ruby-node">&quot;Expected file #{relative.inspect} to exist, but does not&quot;</span>
+
+  <span class="ruby-identifier">read</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">absolute</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">contents</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-keyword">yield</span> <span class="ruby-identifier">read</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-identifier">contents</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">content</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">content</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>
+        <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">content</span>, <span class="ruby-identifier">read</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">Regexp</span>
+        <span class="ruby-identifier">assert_match</span> <span class="ruby-identifier">content</span>, <span class="ruby-identifier">read</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-assert_instance_method">
+            
+              <b>assert_instance_method</b>(method, content)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-assert_instance_method" name="method-i-assert_instance_method" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Asserts the given method exists in the given content. When a block is
+given, it yields the content of the method.</p>
+
+<pre class="ruby"><span class="ruby-identifier">assert_file</span> <span class="ruby-string">&quot;app/controller/products_controller.rb&quot;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">controller</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">assert_instance_method</span> :<span class="ruby-identifier">index</span>, <span class="ruby-identifier">content</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">assert_match</span>(<span class="ruby-regexp">/Product\.all/</span>, <span class="ruby-identifier">index</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+            </div>
+          
+          
+          
+            <div class="aka">
+              Also aliased as: <a href="TestCase.html#method-i-assert_method">assert_method</a>
+            </div>
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-assert_instance_method_source')" id="l_method-i-assert_instance_method_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L168" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-assert_instance_method_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 168</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assert_instance_method</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">content</span>)
+  <span class="ruby-identifier">assert</span> <span class="ruby-identifier">content</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/def #{method}(\(.+\))?(.*?)\n  end/</span>, <span class="ruby-node">&quot;Expected to have method #{method}&quot;</span>
+  <span class="ruby-keyword">yield</span> <span class="ruby-node">$2</span>.<span class="ruby-identifier">strip</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-assert_method">
+            
+              <b>assert_method</b>(method, content)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-assert_method" name="method-i-assert_method" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-assert_migration">
+            
+              <b>assert_migration</b>(relative, *contents, &amp;block)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-assert_migration" name="method-i-assert_migration" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Asserts a given migration exists. You need to supply an absolute path or a
+path relative to the configured destination:</p>
+
+<pre>assert_migration &quot;db/migrate/create_products.rb&quot;</pre>
+
+<p>This method manipulates the given path and tries to find any migration
+which matches the migration name. For example, the call above is converted
+to:</p>
+
+<pre>assert_file &quot;db/migrate/003_create_products.rb&quot;</pre>
+
+<p>Consequently, <a
+href="TestCase.html#method-i-assert_migration">#assert_migration</a>
+accepts the same arguments has assert_file.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-assert_migration_source')" id="l_method-i-assert_migration_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L129" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-assert_migration_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assert_migration</span>(<span class="ruby-identifier">relative</span>, *<span class="ruby-identifier">contents</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">file_name</span> = <span class="ruby-identifier">migration_file_name</span>(<span class="ruby-identifier">relative</span>)
+  <span class="ruby-identifier">assert</span> <span class="ruby-identifier">file_name</span>, <span class="ruby-node">&quot;Expected migration #{relative} to exist, but was not found&quot;</span>
+  <span class="ruby-identifier">assert_file</span> <span class="ruby-identifier">file_name</span>, *<span class="ruby-identifier">contents</span>, &amp;<span class="ruby-identifier">block</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-assert_no_directory">
+            
+              <b>assert_no_directory</b>(relative)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-assert_no_directory" name="method-i-assert_no_directory" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-assert_no_file">
+            
+              <b>assert_no_file</b>(relative)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-assert_no_file" name="method-i-assert_no_file" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Asserts a given file does not exist. You need to supply an absolute path or
+a path relative to the configured destination:</p>
+
+<pre>assert_no_file &quot;config/random.rb&quot;</pre>
+            </div>
+          
+          
+          
+            <div class="aka">
+              Also aliased as: <a href="TestCase.html#method-i-assert_no_directory">assert_no_directory</a>
+            </div>
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-assert_no_file_source')" id="l_method-i-assert_no_file_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L111" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-assert_no_file_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 111</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assert_no_file</span>(<span class="ruby-identifier">relative</span>)
+  <span class="ruby-identifier">absolute</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">relative</span>, <span class="ruby-identifier">destination_root</span>)
+  <span class="ruby-identifier">assert</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">absolute</span>), <span class="ruby-node">&quot;Expected file #{relative.inspect} to not exist, but does&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-assert_no_migration">
+            
+              <b>assert_no_migration</b>(relative)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-assert_no_migration" name="method-i-assert_no_migration" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Asserts a given migration does not exist. You need to supply an absolute
+path or a path relative to the configured destination:</p>
+
+<pre>assert_no_migration &quot;db/migrate/create_products.rb&quot;</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-assert_no_migration_source')" id="l_method-i-assert_no_migration_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L140" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-assert_no_migration_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assert_no_migration</span>(<span class="ruby-identifier">relative</span>)
+  <span class="ruby-identifier">file_name</span> = <span class="ruby-identifier">migration_file_name</span>(<span class="ruby-identifier">relative</span>)
+  <span class="ruby-identifier">assert_nil</span> <span class="ruby-identifier">file_name</span>, <span class="ruby-node">&quot;Expected migration #{relative} to not exist, but found #{file_name}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create_generated_attribute">
+            
+              <b>create_generated_attribute</b>(attribute_type, name = 'test', index = nil)
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-create_generated_attribute" name="method-i-create_generated_attribute" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Create a <a
+href="GeneratedAttribute.html">Rails::Generators::GeneratedAttribute</a> by
+supplying the attribute type and, optionally, the attribute name:</p>
+
+<pre>create_generated_attribute(:string, 'name')</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_generated_attribute_source')" id="l_method-i-create_generated_attribute_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L221" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-create_generated_attribute_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 221</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_generated_attribute</span>(<span class="ruby-identifier">attribute_type</span>, <span class="ruby-identifier">name</span> = <span class="ruby-string">'test'</span>, <span class="ruby-identifier">index</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Generators</span><span class="ruby-operator">::</span><span class="ruby-constant">GeneratedAttribute</span>.<span class="ruby-identifier">parse</span>([<span class="ruby-identifier">name</span>, <span class="ruby-identifier">attribute_type</span>, <span class="ruby-identifier">index</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">':'</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-generator">
+            
+              <b>generator</b>(args=self.default_arguments, options={}, config={})
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-generator" name="method-i-generator" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Instantiate the generator.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-generator_source')" id="l_method-i-generator_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L212" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-generator_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 212</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">generator</span>(<span class="ruby-identifier">args</span>=<span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_arguments</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-identifier">config</span>={})
+  <span class="ruby-ivar">@generator</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generator_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">args</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">config</span>.<span class="ruby-identifier">reverse_merge</span>(<span class="ruby-value">:destination_root</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">destination_root</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-run_generator">
+            
+              <b>run_generator</b>(args=self.default_arguments, config={})
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-run_generator" name="method-i-run_generator" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Runs the generator configured for this class. The first argument is an
+array like command line arguments:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">AppGeneratorTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Generators</span><span class="ruby-operator">::</span><span class="ruby-constant">TestCase</span>
+  <span class="ruby-identifier">tests</span> <span class="ruby-constant">AppGenerator</span>
+  <span class="ruby-identifier">destination</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;../tmp&quot;</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>))
+  <span class="ruby-identifier">teardown</span> :<span class="ruby-identifier">cleanup_destination_root</span>
+
+  <span class="ruby-identifier">test</span> <span class="ruby-string">&quot;database.yml is not created when skipping Active Record&quot;</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">run_generator</span> <span class="ruby-node">%w(myapp --skip-active-record)</span>
+    <span class="ruby-identifier">assert_no_file</span> <span class="ruby-string">&quot;config/database.yml&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>You can provide a configuration hash as second argument. This method
+returns the output printed by the generator.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-run_generator_source')" id="l_method-i-run_generator_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L207" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-run_generator_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 207</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run_generator</span>(<span class="ruby-identifier">args</span>=<span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_arguments</span>, <span class="ruby-identifier">config</span>={})
+  <span class="ruby-identifier">capture</span>(<span class="ruby-value">:stdout</span>) { <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generator_class</span>.<span class="ruby-identifier">start</span>(<span class="ruby-identifier">args</span>, <span class="ruby-identifier">config</span>.<span class="ruby-identifier">reverse_merge</span>(<span class="ruby-value">:destination_root</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">destination_root</span>)) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-prepare_destination">
+            
+              <b>prepare_destination</b>()
+            
+            <a href="../../../classes/Rails/Generators/TestCase.html#method-i-prepare_destination" name="method-i-prepare_destination" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-prepare_destination_source')" id="l_method-i-prepare_destination_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c0e6a85a569fa5e0724adc734be1cbd5c5545b55/railties/lib/rails/generators/test_case.rb#L235" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-prepare_destination_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/test_case.rb, line 235</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prepare_destination</span>
+  <span class="ruby-identifier">rm_rf</span>(<span class="ruby-identifier">destination_root</span>)
+  <span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">destination_root</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

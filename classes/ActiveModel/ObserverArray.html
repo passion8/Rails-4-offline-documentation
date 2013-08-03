@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::ObserverArray</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveModel::ObserverArray 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Array.html">Array</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activemodel/lib/active_model/observer_array_rb.html">activemodel/lib/active_model/observer_array.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Stores the enabled/disabled state of individual observers for a particular
+model class.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-disable">disable</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-disabled_for-3F">disabled_for?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-disabled_observer_stack">disabled_observer_stack</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-disabled_observers">disabled_observers</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-each_subclass_array">each_subclass_array</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-enable">enable</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-end_transaction">end_transaction</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-observer_class_for">observer_class_for</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-set_enablement">set_enablement</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-start_transaction">start_transaction</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-transaction">transaction</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>model_class</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(model_class, *args)
+            
+            <a href="../../classes/ActiveModel/ObserverArray.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a4b780ab1b97b939524f3240b6886c2b77979d2/activemodel/lib/active_model/observer_array.rb#L8" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observer_array.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">model_class</span>, *<span class="ruby-identifier">args</span>)
+  <span class="ruby-ivar">@model_class</span> = <span class="ruby-identifier">model_class</span>
+  <span class="ruby-keyword">super</span>(*<span class="ruby-identifier">args</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-disable">
+            
+              <b>disable</b>(*observers, &amp;block)
+            
+            <a href="../../classes/ActiveModel/ObserverArray.html#method-i-disable" name="method-i-disable" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Disables one or more observers. This supports multiple forms:</p>
+
+<pre class="ruby"><span class="ruby-constant">ORM</span>.<span class="ruby-identifier">observers</span>.<span class="ruby-identifier">disable</span> :<span class="ruby-identifier">user_observer</span>
+  <span class="ruby-comment"># =&gt; disables the UserObserver</span>
+
+<span class="ruby-constant">User</span>.<span class="ruby-identifier">observers</span>.<span class="ruby-identifier">disable</span> <span class="ruby-constant">AuditTrail</span>
+  <span class="ruby-comment"># =&gt; disables the AuditTrail observer for User notifications.</span>
+  <span class="ruby-comment">#    Other models will still notify the AuditTrail observer.</span>
+
+<span class="ruby-constant">ORM</span>.<span class="ruby-identifier">observers</span>.<span class="ruby-identifier">disable</span> :<span class="ruby-identifier">observer_1</span>, :<span class="ruby-identifier">observer_2</span>
+  <span class="ruby-comment"># =&gt; disables Observer1 and Observer2 for all models.</span>
+
+<span class="ruby-constant">ORM</span>.<span class="ruby-identifier">observers</span>.<span class="ruby-identifier">disable</span> :<span class="ruby-identifier">all</span>
+  <span class="ruby-comment"># =&gt; disables all observers for all models.</span>
+
+<span class="ruby-constant">User</span>.<span class="ruby-identifier">observers</span>.<span class="ruby-identifier">disable</span> :<span class="ruby-identifier">all</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-comment"># all user observers are disabled for</span>
+  <span class="ruby-comment"># just the duration of the block</span>
+<span class="ruby-keyword">end</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-disable_source')" id="l_method-i-disable_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a4b780ab1b97b939524f3240b6886c2b77979d2/activemodel/lib/active_model/observer_array.rb#L37" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-disable_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observer_array.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">disable</span>(*<span class="ruby-identifier">observers</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">set_enablement</span>(<span class="ruby-keyword">false</span>, <span class="ruby-identifier">observers</span>, &amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-disabled_for-3F">
+            
+              <b>disabled_for?</b>(observer)
+            
+            <a href="../../classes/ActiveModel/ObserverArray.html#method-i-disabled_for-3F" name="method-i-disabled_for-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns true if the given observer is disabled for the model class.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-disabled_for-3F_source')" id="l_method-i-disabled_for-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a4b780ab1b97b939524f3240b6886c2b77979d2/activemodel/lib/active_model/observer_array.rb#L14" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-disabled_for-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observer_array.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">disabled_for?</span>(<span class="ruby-identifier">observer</span>)
+  <span class="ruby-identifier">disabled_observers</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">observer</span>.<span class="ruby-identifier">class</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-enable">
+            
+              <b>enable</b>(*observers, &amp;block)
+            
+            <a href="../../classes/ActiveModel/ObserverArray.html#method-i-enable" name="method-i-enable" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Enables one or more observers. This supports multiple forms:</p>
+
+<pre class="ruby"><span class="ruby-constant">ORM</span>.<span class="ruby-identifier">observers</span>.<span class="ruby-identifier">enable</span> :<span class="ruby-identifier">user_observer</span>
+  <span class="ruby-comment"># =&gt; enables the UserObserver</span>
+
+<span class="ruby-constant">User</span>.<span class="ruby-identifier">observers</span>.<span class="ruby-identifier">enable</span> <span class="ruby-constant">AuditTrail</span>
+  <span class="ruby-comment"># =&gt; enables the AuditTrail observer for User notifications.</span>
+  <span class="ruby-comment">#    Other models will not be affected (i.e. they will not</span>
+  <span class="ruby-comment">#    trigger notifications to AuditTrail if previously disabled)</span>
+
+<span class="ruby-constant">ORM</span>.<span class="ruby-identifier">observers</span>.<span class="ruby-identifier">enable</span> :<span class="ruby-identifier">observer_1</span>, :<span class="ruby-identifier">observer_2</span>
+  <span class="ruby-comment"># =&gt; enables Observer1 and Observer2 for all models.</span>
+
+<span class="ruby-constant">ORM</span>.<span class="ruby-identifier">observers</span>.<span class="ruby-identifier">enable</span> :<span class="ruby-identifier">all</span>
+  <span class="ruby-comment"># =&gt; enables all observers for all models.</span>
+
+<span class="ruby-constant">User</span>.<span class="ruby-identifier">observers</span>.<span class="ruby-identifier">enable</span> :<span class="ruby-identifier">all</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-comment"># all user observers are enabled for</span>
+  <span class="ruby-comment"># just the duration of the block</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Note: all observers are enabled by default. This method is only useful when
+you have previously disabled one or more observers.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-enable_source')" id="l_method-i-enable_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a4b780ab1b97b939524f3240b6886c2b77979d2/activemodel/lib/active_model/observer_array.rb#L64" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-enable_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observer_array.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">enable</span>(*<span class="ruby-identifier">observers</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">set_enablement</span>(<span class="ruby-keyword">true</span>, <span class="ruby-identifier">observers</span>, &amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-disabled_observer_stack">
+            
+              <b>disabled_observer_stack</b>()
+            
+            <a href="../../classes/ActiveModel/ObserverArray.html#method-i-disabled_observer_stack" name="method-i-disabled_observer_stack" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-disabled_observer_stack_source')" id="l_method-i-disabled_observer_stack_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a4b780ab1b97b939524f3240b6886c2b77979d2/activemodel/lib/active_model/observer_array.rb#L92" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-disabled_observer_stack_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observer_array.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">disabled_observer_stack</span>
+  <span class="ruby-ivar">@disabled_observer_stack</span> <span class="ruby-operator">||=</span> []
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-disabled_observers">
+            
+              <b>disabled_observers</b>()
+            
+            <a href="../../classes/ActiveModel/ObserverArray.html#method-i-disabled_observers" name="method-i-disabled_observers" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-disabled_observers_source')" id="l_method-i-disabled_observers_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a4b780ab1b97b939524f3240b6886c2b77979d2/activemodel/lib/active_model/observer_array.rb#L70" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-disabled_observers_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observer_array.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">disabled_observers</span>
+  <span class="ruby-ivar">@disabled_observers</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Set</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-each_subclass_array">
+            
+              <b>each_subclass_array</b>()
+            
+            <a href="../../classes/ActiveModel/ObserverArray.html#method-i-each_subclass_array" name="method-i-each_subclass_array" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-each_subclass_array_source')" id="l_method-i-each_subclass_array_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a4b780ab1b97b939524f3240b6886c2b77979d2/activemodel/lib/active_model/observer_array.rb#L113" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-each_subclass_array_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observer_array.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">each_subclass_array</span>
+  <span class="ruby-identifier">model_class</span>.<span class="ruby-identifier">descendants</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">subclass</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-identifier">subclass</span>.<span class="ruby-identifier">observers</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-end_transaction">
+            
+              <b>end_transaction</b>()
+            
+            <a href="../../classes/ActiveModel/ObserverArray.html#method-i-end_transaction" name="method-i-end_transaction" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-end_transaction_source')" id="l_method-i-end_transaction_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a4b780ab1b97b939524f3240b6886c2b77979d2/activemodel/lib/active_model/observer_array.rb#L96" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-end_transaction_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observer_array.rb, line 96</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">end_transaction</span>
+  <span class="ruby-ivar">@disabled_observers</span> = <span class="ruby-identifier">disabled_observer_stack</span>.<span class="ruby-identifier">pop</span>
+  <span class="ruby-identifier">each_subclass_array</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">array</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">array</span>.<span class="ruby-identifier">end_transaction</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-observer_class_for">
+            
+              <b>observer_class_for</b>(observer)
+            
+            <a href="../../classes/ActiveModel/ObserverArray.html#method-i-observer_class_for" name="method-i-observer_class_for" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-observer_class_for_source')" id="l_method-i-observer_class_for_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a4b780ab1b97b939524f3240b6886c2b77979d2/activemodel/lib/active_model/observer_array.rb#L74" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-observer_class_for_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observer_array.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">observer_class_for</span>(<span class="ruby-identifier">observer</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">observer</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">observer</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Class</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">observer</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:to_sym</span>) <span class="ruby-comment"># string/symbol</span>
+    <span class="ruby-identifier">observer</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>.<span class="ruby-identifier">constantize</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;#{observer} was not a class or a &quot;</span> <span class="ruby-operator">+</span>
+      <span class="ruby-string">&quot;lowercase, underscored class name as expected.&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-set_enablement">
+            
+              <b>set_enablement</b>(enabled, observers)
+            
+            <a href="../../classes/ActiveModel/ObserverArray.html#method-i-set_enablement" name="method-i-set_enablement" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-set_enablement_source')" id="l_method-i-set_enablement_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a4b780ab1b97b939524f3240b6886c2b77979d2/activemodel/lib/active_model/observer_array.rb#L119" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-set_enablement_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observer_array.rb, line 119</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">set_enablement</span>(<span class="ruby-identifier">enabled</span>, <span class="ruby-identifier">observers</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-identifier">transaction</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">set_enablement</span>(<span class="ruby-identifier">enabled</span>, <span class="ruby-identifier">observers</span>)
+      <span class="ruby-keyword">yield</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">observers</span> = <span class="ruby-constant">ActiveModel</span><span class="ruby-operator">::</span><span class="ruby-constant">Observer</span>.<span class="ruby-identifier">descendants</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">observers</span> <span class="ruby-operator">==</span> [<span class="ruby-value">:all</span>]
+    <span class="ruby-identifier">observers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">obs</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">observer_class_for</span>(<span class="ruby-identifier">obs</span>)
+
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">klass</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveModel</span><span class="ruby-operator">::</span><span class="ruby-constant">Observer</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{obs} does not refer to a valid observer&quot;</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">enabled</span>
+        <span class="ruby-identifier">disabled_observers</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">klass</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">disabled_observers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">klass</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">each_subclass_array</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">array</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">array</span>.<span class="ruby-identifier">set_enablement</span>(<span class="ruby-identifier">enabled</span>, <span class="ruby-identifier">observers</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-start_transaction">
+            
+              <b>start_transaction</b>()
+            
+            <a href="../../classes/ActiveModel/ObserverArray.html#method-i-start_transaction" name="method-i-start_transaction" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-start_transaction_source')" id="l_method-i-start_transaction_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a4b780ab1b97b939524f3240b6886c2b77979d2/activemodel/lib/active_model/observer_array.rb#L85" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-start_transaction_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observer_array.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">start_transaction</span>
+  <span class="ruby-identifier">disabled_observer_stack</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">disabled_observers</span>.<span class="ruby-identifier">dup</span>)
+  <span class="ruby-identifier">each_subclass_array</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">array</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">array</span>.<span class="ruby-identifier">start_transaction</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-transaction">
+            
+              <b>transaction</b>()
+            
+            <a href="../../classes/ActiveModel/ObserverArray.html#method-i-transaction" name="method-i-transaction" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-transaction_source')" id="l_method-i-transaction_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2a4b780ab1b97b939524f3240b6886c2b77979d2/activemodel/lib/active_model/observer_array.rb#L103" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-transaction_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observer_array.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">transaction</span>
+  <span class="ruby-identifier">start_transaction</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">yield</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-identifier">end_transaction</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

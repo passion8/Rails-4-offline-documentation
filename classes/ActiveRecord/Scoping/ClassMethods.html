@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::Scoping::ClassMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveRecord::Scoping::ClassMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/scoping_rb.html">activerecord/lib/active_record/scoping.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>W</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-with_exclusive_scope">with_exclusive_scope</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-with_scope">with_scope</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-with_scope">
+            
+              <b>with_scope</b>(scope = {}, action = :merge, &amp;block)
+            
+            <a href="../../../classes/ActiveRecord/Scoping/ClassMethods.html#method-i-with_scope" name="method-i-with_scope" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p><a href="ClassMethods.html#method-i-with_scope">#with_scope</a> lets you
+apply options to inner block incrementally. It takes a hash and the keys
+must be <code>:find</code> or <code>:create</code>. <code>:find</code>
+parameter is <code>Relation</code> while <code>:create</code> parameters
+are an attributes hash.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Article</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create_with_scope</span>
+    <span class="ruby-identifier">with_scope</span>(:<span class="ruby-identifier">find</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">where</span>(:<span class="ruby-identifier">blog_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>), :<span class="ruby-identifier">create</span> =<span class="ruby-operator">&gt;</span> { :<span class="ruby-identifier">blog_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span> }) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">find</span>(<span class="ruby-value">1</span>) <span class="ruby-comment"># =&gt; SELECT * from articles WHERE blog_id = 1 AND id = 1</span>
+      <span class="ruby-identifier">a</span> = <span class="ruby-identifier">create</span>(<span class="ruby-value">1</span>)
+      <span class="ruby-identifier">a</span>.<span class="ruby-identifier">blog_id</span> <span class="ruby-comment"># =&gt; 1</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>In nested scopings, all previous parameters are overwritten by the
+innermost rule, with the exception of <code>where</code>,
+<code>includes</code>, and <code>joins</code> operations in
+<code>Relation</code>, which are merged.</p>
+
+<p><code>joins</code> operations are uniqued so multiple scopes can join in
+the same table without table aliasing problems. If you need to join
+multiple tables, but still want one of the tables to be uniqued, use the
+array of strings format for your joins.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Article</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_with_scope</span>
+    <span class="ruby-identifier">with_scope</span>(:<span class="ruby-identifier">find</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">where</span>(:<span class="ruby-identifier">blog_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">1</span>), :<span class="ruby-identifier">create</span> =<span class="ruby-operator">&gt;</span> { :<span class="ruby-identifier">blog_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span> }) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">with_scope</span>(:<span class="ruby-identifier">find</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">limit</span>(<span class="ruby-value">10</span>)) <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">all</span> <span class="ruby-comment"># =&gt; SELECT * from articles WHERE blog_id = 1 LIMIT 10</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">with_scope</span>(:<span class="ruby-identifier">find</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">where</span>(:<span class="ruby-identifier">author_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>)) <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">all</span> <span class="ruby-comment"># =&gt; SELECT * from articles WHERE blog_id = 1 AND author_id = 3 LIMIT 1</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>You can ignore any previous scopings by using the
+<code>with_exclusive_scope</code> method.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Article</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_with_exclusive_scope</span>
+    <span class="ruby-identifier">with_scope</span>(:<span class="ruby-identifier">find</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">where</span>(:<span class="ruby-identifier">blog_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">1</span>)) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">with_exclusive_scope</span>(:<span class="ruby-identifier">find</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">limit</span>(<span class="ruby-value">10</span>)) <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">all</span> <span class="ruby-comment"># =&gt; SELECT * from articles LIMIT 10</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p><strong>Note</strong>: the <code>:find</code> scope also has effect on
+update and deletion methods, like <code>update_all</code> and
+<code>delete_all</code>.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-with_scope_source')" id="l_method-i-with_scope_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2b22564c4efaa63d4bbc006762838c4025c1bdca/activerecord/lib/active_record/scoping.rb#L60" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-with_scope_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/scoping.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">with_scope</span>(<span class="ruby-identifier">scope</span> = {}, <span class="ruby-identifier">action</span> = <span class="ruby-value">:merge</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-comment"># If another Active Record class has been passed in, get its current scope</span>
+  <span class="ruby-identifier">scope</span> = <span class="ruby-identifier">scope</span>.<span class="ruby-identifier">current_scope</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">scope</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Relation</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">scope</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:current_scope</span>)
+
+  <span class="ruby-identifier">previous_scope</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_scope</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">scope</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+    <span class="ruby-comment"># Dup first and second level of hash (method and params).</span>
+    <span class="ruby-identifier">scope</span> = <span class="ruby-identifier">scope</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-identifier">scope</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span>, <span class="ruby-identifier">params</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">scope</span>[<span class="ruby-identifier">method</span>] = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">dup</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">scope</span>.<span class="ruby-identifier">assert_valid_keys</span>([ <span class="ruby-value">:find</span>, <span class="ruby-value">:create</span> ])
+    <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">construct_finder_arel</span>(<span class="ruby-identifier">scope</span>[<span class="ruby-value">:find</span>] <span class="ruby-operator">||</span> {})
+    <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">default_scoped</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-value">:overwrite</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">previous_scope</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">previous_scope</span>.<span class="ruby-identifier">create_with_value</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">scope</span>[<span class="ruby-value">:create</span>]
+      <span class="ruby-identifier">scope_for_create</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-value">:merge</span>
+        <span class="ruby-identifier">previous_scope</span>.<span class="ruby-identifier">create_with_value</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">scope</span>[<span class="ruby-value">:create</span>])
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">scope</span>[<span class="ruby-value">:create</span>]
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">create_with</span>(<span class="ruby-identifier">scope_for_create</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">scope_for_create</span> = <span class="ruby-identifier">scope</span>[<span class="ruby-value">:create</span>]
+      <span class="ruby-identifier">scope_for_create</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">previous_scope</span>.<span class="ruby-identifier">create_with_value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">previous_scope</span>
+      <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">create_with</span>(<span class="ruby-identifier">scope_for_create</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">scope_for_create</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">scope</span> = <span class="ruby-identifier">relation</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">scope</span> = <span class="ruby-identifier">previous_scope</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">scope</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">previous_scope</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-value">:merge</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_scope</span> = <span class="ruby-identifier">scope</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">yield</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_scope</span> = <span class="ruby-identifier">previous_scope</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-with_exclusive_scope">
+            
+              <b>with_exclusive_scope</b>(method_scoping = {}, &amp;block)
+            
+            <a href="../../../classes/ActiveRecord/Scoping/ClassMethods.html#method-i-with_exclusive_scope" name="method-i-with_exclusive_scope" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Works like <a href="ClassMethods.html#method-i-with_scope">#with_scope</a>,
+but discards any nested properties.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-with_exclusive_scope_source')" id="l_method-i-with_exclusive_scope_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/2b22564c4efaa63d4bbc006762838c4025c1bdca/activerecord/lib/active_record/scoping.rb#L107" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-with_exclusive_scope_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/scoping.rb, line 107</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">with_exclusive_scope</span>(<span class="ruby-identifier">method_scoping</span> = {}, &amp;<span class="ruby-identifier">block</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">method_scoping</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Relation</span>) }
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value">&lt;&lt;-MSG
+New finder API can not be used with_exclusive_scope. You can either call unscoped to get an anonymous scope not bound to the default_scope:
+
+User.unscoped.where(:active =&gt; true)
+
+Or call unscoped with a block:
+
+User.unscoped do
+User.where(:active =&gt; true).all
+end
+
+MSG</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">with_scope</span>(<span class="ruby-identifier">method_scoping</span>, <span class="ruby-value">:overwrite</span>, &amp;<span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

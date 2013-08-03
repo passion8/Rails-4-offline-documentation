@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Testing::Performance</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveSupport::Testing::Performance 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/testing/performance_rb.html">activesupport/lib/active_support/testing/performance.rb</a></li>
+            
+            <li><a href="../../../files/activesupport/lib/active_support/testing/performance/jruby_rb.html">activesupport/lib/active_support/testing/performance/jruby.rb</a></li>
+            
+            <li><a href="../../../files/activesupport/lib/active_support/testing/performance/rubinius_rb.html">activesupport/lib/active_support/testing/performance/rubinius.rb</a></li>
+            
+            <li><a href="../../../files/activesupport/lib/active_support/testing/performance/ruby_rb.html">activesupport/lib/active_support/testing/performance/ruby.rb</a></li>
+            
+            <li><a href="../../../files/activesupport/lib/active_support/testing/performance/ruby/mri_rb.html">activesupport/lib/active_support/testing/performance/ruby/mri.rb</a></li>
+            
+            <li><a href="../../../files/activesupport/lib/active_support/testing/performance/ruby/yarv_rb.html">activesupport/lib/active_support/testing/performance/ruby/yarv.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="Performance/ForClassicTestUnit.html">ActiveSupport::Testing::Performance::ForClassicTestUnit</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="Performance/ForMiniTest.html">ActiveSupport::Testing::Performance::ForMiniTest</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="Performance/Metrics.html">ActiveSupport::Testing::Performance::Metrics</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="Performance/Benchmarker.html">ActiveSupport::Testing::Performance::Benchmarker</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="Performance/Performer.html">ActiveSupport::Testing::Performance::Performer</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="Performance/Profiler.html">ActiveSupport::Testing::Performance::Profiler</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-full_profile_options">full_profile_options</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-full_test_name">full_test_name</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-run_gc">run_gc</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-run_profile">run_profile</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-run_warmup">run_warmup</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+    <!-- Includes -->
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+      
+        <li>
+          
+            <a href="Performance/ForMiniTest.html">
+              ActiveSupport::Testing::Performance::ForMiniTest
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="Performance/ForClassicTestUnit.html">
+              ActiveSupport::Testing::Performance::ForClassicTestUnit
+            </a>
+          
+        </li>
+      
+    </ul>
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">DEFAULTS</td>
+            <td>=</td>
+            <td class="attr-value">if ARGV.include?('--benchmark') # HAX for rake test
+{ :runs =&gt; 4,
+:output =&gt; 'tmp/performance',
+:benchmark =&gt; true }
+else
+{ :runs =&gt; 1,
+:output =&gt; 'tmp/performance',
+:benchmark =&gt; false }
+end</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>each implementation should define metrics and freeze the defaults</p></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-full_profile_options">
+            
+              <b>full_profile_options</b>()
+            
+            <a href="../../../classes/ActiveSupport/Testing/Performance.html#method-i-full_profile_options" name="method-i-full_profile_options" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-full_profile_options_source')" id="l_method-i-full_profile_options_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c2c8ef57d6f00d1c22743dc43746f95704d67a95/activesupport/lib/active_support/testing/performance.rb#L36" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-full_profile_options_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/testing/performance.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">full_profile_options</span>
+  <span class="ruby-constant">DEFAULTS</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">profile_options</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-full_test_name">
+            
+              <b>full_test_name</b>()
+            
+            <a href="../../../classes/ActiveSupport/Testing/Performance.html#method-i-full_test_name" name="method-i-full_test_name" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-full_test_name_source')" id="l_method-i-full_test_name_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c2c8ef57d6f00d1c22743dc43746f95704d67a95/activesupport/lib/active_support/testing/performance.rb#L40" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-full_test_name_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/testing/performance.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">full_test_name</span>
+  <span class="ruby-node">&quot;#{self.class.name}##{method_name}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-run_gc">
+            
+              <b>run_gc</b>()
+            
+            <a href="../../../classes/ActiveSupport/Testing/Performance.html#method-i-run_gc" name="method-i-run_gc" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>overridden by each implementation</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-run_gc_source')" id="l_method-i-run_gc_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c2c8ef57d6f00d1c22743dc43746f95704d67a95/activesupport/lib/active_support/testing/performance.rb#L124" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-run_gc_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/testing/performance.rb, line 124</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run_gc</span>; <span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-run_profile">
+            
+              <b>run_profile</b>(metric)
+            
+            <a href="../../../classes/ActiveSupport/Testing/Performance.html#method-i-run_profile" name="method-i-run_profile" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-run_profile_source')" id="l_method-i-run_profile_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c2c8ef57d6f00d1c22743dc43746f95704d67a95/activesupport/lib/active_support/testing/performance.rb#L136" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-run_profile_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/testing/performance.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run_profile</span>(<span class="ruby-identifier">metric</span>)
+  <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">full_profile_options</span>[<span class="ruby-value">:benchmark</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">Benchmarker</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Profiler</span>
+  <span class="ruby-identifier">performer</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">metric</span>)
+
+  <span class="ruby-identifier">performer</span>.<span class="ruby-identifier">run</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">performer</span>.<span class="ruby-identifier">report</span>
+  <span class="ruby-identifier">performer</span>.<span class="ruby-identifier">record</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-run_warmup">
+            
+              <b>run_warmup</b>()
+            
+            <a href="../../../classes/ActiveSupport/Testing/Performance.html#method-i-run_warmup" name="method-i-run_warmup" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-run_warmup_source')" id="l_method-i-run_warmup_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c2c8ef57d6f00d1c22743dc43746f95704d67a95/activesupport/lib/active_support/testing/performance.rb#L126" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-run_warmup_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/testing/performance.rb, line 126</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run_warmup</span>
+  <span class="ruby-identifier">run_gc</span>
+
+  <span class="ruby-identifier">time</span> = <span class="ruby-constant">Metrics</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">run_test</span>(<span class="ruby-identifier">time</span>, <span class="ruby-value">:benchmark</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;%s (%s warmup)&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">full_test_name</span>, <span class="ruby-identifier">time</span>.<span class="ruby-identifier">format</span>(<span class="ruby-identifier">time</span>.<span class="ruby-identifier">total</span>)]
+
+  <span class="ruby-identifier">run_gc</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

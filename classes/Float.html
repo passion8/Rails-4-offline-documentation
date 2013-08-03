@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Float</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            Float 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/float/rounding_rb.html">activesupport/lib/active_support/core_ext/float/rounding.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-precisionless_round">precisionless_round</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-round">round</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-precisionless_round">
+            
+              <b>precisionless_round</b>(precision = nil)
+            
+            <a href="../classes/Float.html#method-i-precisionless_round" name="method-i-precisionless_round" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-round">
+            
+              <b>round</b>(precision = nil)
+            
+            <a href="../classes/Float.html#method-i-round" name="method-i-round" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Rounds the float with the specified precision.</p>
+
+<pre class="ruby"><span class="ruby-identifier">x</span> = <span class="ruby-value">1.337</span>
+<span class="ruby-identifier">x</span>.<span class="ruby-identifier">round</span>    <span class="ruby-comment"># =&gt; 1</span>
+<span class="ruby-identifier">x</span>.<span class="ruby-identifier">round</span>(<span class="ruby-value">1</span>) <span class="ruby-comment"># =&gt; 1.3</span>
+<span class="ruby-identifier">x</span>.<span class="ruby-identifier">round</span>(<span class="ruby-value">2</span>) <span class="ruby-comment"># =&gt; 1.34</span>
+</pre>
+            </div>
+          
+          
+          
+            <div class="aka">
+              Also aliased as: <a href="Float.html#method-i-precisionless_round">precisionless_round</a>
+            </div>
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-round_source')" id="l_method-i-round_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/ebe4fa5fbe54cd0559c9e5e58d68326630cfb255/activesupport/lib/active_support/core_ext/float/rounding.rb#L11" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-round_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/core_ext/float/rounding.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">round</span>(<span class="ruby-identifier">precision</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">precision</span>
+    <span class="ruby-identifier">magnitude</span> = <span class="ruby-number">10.0</span> <span class="ruby-operator">**</span> <span class="ruby-identifier">precision</span>
+    (<span class="ruby-keyword">self</span> * <span class="ruby-identifier">magnitude</span>).<span class="ruby-identifier">round</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">magnitude</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">precisionless_round</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

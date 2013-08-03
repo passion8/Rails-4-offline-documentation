@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::AttributeMethods::Write</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveRecord::AttributeMethods::Write 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/attribute_methods/write_rb.html">activerecord/lib/active_record/attribute_methods/write.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="Write/ClassMethods.html">ActiveRecord::AttributeMethods::Write::ClassMethods</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-raw_write_attribute">raw_write_attribute</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>W</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-write_attribute">write_attribute</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-raw_write_attribute">
+            
+              <b>raw_write_attribute</b>(attr_name, value)
+            
+            <a href="../../../classes/ActiveRecord/AttributeMethods/Write.html#method-i-raw_write_attribute" name="method-i-raw_write_attribute" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-write_attribute">
+            
+              <b>write_attribute</b>(attr_name, value)
+            
+            <a href="../../../classes/ActiveRecord/AttributeMethods/Write.html#method-i-write_attribute" name="method-i-write_attribute" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Updates the attribute identified by <code>attr_name</code> with the
+specified <code>value</code>. Empty strings for fixnum and float columns
+are turned into <code>nil</code>.</p>
+            </div>
+          
+          
+          
+            <div class="aka">
+              Also aliased as: <a href="Write.html#method-i-raw_write_attribute">raw_write_attribute</a>
+            </div>
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-write_attribute_source')" id="l_method-i-write_attribute_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c75b5a88a82c79fdf95dfea4d72bf3c5a829930e/activerecord/lib/active_record/attribute_methods/write.rb#L25" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-write_attribute_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/attribute_methods/write.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">write_attribute</span>(<span class="ruby-identifier">attr_name</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">attr_name</span> = <span class="ruby-identifier">attr_name</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">attr_name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">primary_key</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">attr_name</span> <span class="ruby-operator">==</span> <span class="ruby-string">'id'</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">primary_key</span>
+  <span class="ruby-ivar">@attributes_cache</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">attr_name</span>)
+  <span class="ruby-identifier">column</span> = <span class="ruby-identifier">column_for_attribute</span>(<span class="ruby-identifier">attr_name</span>)
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">column</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@attributes</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">attr_name</span>)
+    <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span>(
+      <span class="ruby-node">&quot;You're trying to create an attribute `#{attr_name}'. Writing arbitrary &quot;</span>              <span class="ruby-string">&quot;attributes on a model is deprecated. Please just use `attr_writer` etc.&quot;</span>
+    )
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@attributes</span>[<span class="ruby-identifier">attr_name</span>] = <span class="ruby-identifier">type_cast_attribute_for_write</span>(<span class="ruby-identifier">column</span>, <span class="ruby-identifier">value</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

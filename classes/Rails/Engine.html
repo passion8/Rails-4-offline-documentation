@@ -1,0 +1,1926 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Rails::Engine</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            Rails::Engine 
+            
+                <span class="parent">&lt; 
+                    
+                    Railtie
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/railties/lib/rails/engine_rb.html">railties/lib/rails/engine.rb</a></li>
+            
+            <li><a href="../../files/railties/lib/rails/engine/configuration_rb.html">railties/lib/rails/engine/configuration.rb</a></li>
+            
+            <li><a href="../../files/railties/lib/rails/engine/railties_rb.html">railties/lib/rails/engine/railties.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><code>Rails::Engine</code> allows you to wrap a specific <a
+href="../Rails.html">Rails</a> application or subset of functionality and
+share it with other applications. Since <a href="../Rails.html">Rails</a>
+3.0, every <code>Rails::Application</code> is just an engine, which allows
+for simple feature and application sharing.</p>
+
+<p>Any <code>Rails::Engine</code> is also a <code>Rails::Railtie</code>, so
+the same methods (like <code>rake_tasks</code> and <code>generators</code>)
+and configuration options that are available in railties can also be used
+in engines.</p>
+
+<h2 id="label-Creating+an+Engine">Creating an <a href="Engine.html">Engine</a></h2>
+
+<p>In <a href="../Rails.html">Rails</a> versions prior to 3.0, your gems
+automatically behaved as engines, however, this coupled <a
+href="../Rails.html">Rails</a> to Rubygems. Since <a
+href="../Rails.html">Rails</a> 3.0, if you want a gem to automatically
+behave as an engine, you have to specify an <code>Engine</code> for it
+somewhere inside your plugin’s <code>lib</code> folder (similar to how we
+specify a <code>Railtie</code>):</p>
+
+<pre class="ruby"><span class="ruby-comment"># lib/my_engine.rb</span>
+<span class="ruby-keyword">module</span> <span class="ruby-constant">MyEngine</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-constant">Engine</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Then ensure that this file is loaded at the top of your
+<code>config/application.rb</code> (or in your <code>Gemfile</code>) and it
+will automatically load models, controllers and helpers inside
+<code>app</code>, load routes at <code>config/routes.rb</code>, load
+locales at <code>config/locales/*</code>, and load tasks at
+<code>lib/tasks/*</code>.</p>
+
+<h2 id="label-Configuration"><a href="Engine/Configuration.html">Configuration</a></h2>
+
+<p>Besides the <code>Railtie</code> configuration which is shared across the
+application, in a <code>Rails::Engine</code> you can access
+<code>autoload_paths</code>, <code>eager_load_paths</code> and
+<code>autoload_once_paths</code>, which, differently from a
+<code>Railtie</code>, are scoped to the current engine.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyEngine</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>
+  <span class="ruby-comment"># Add a load path for this specific Engine</span>
+  <span class="ruby-identifier">config</span>.<span class="ruby-identifier">autoload_paths</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;../lib/some/path&quot;</span>, <span class="ruby-keyword">__FILE__</span>)
+
+  <span class="ruby-identifier">initializer</span> <span class="ruby-string">&quot;my_engine.add_middleware&quot;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">app</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">app</span>.<span class="ruby-identifier">middleware</span>.<span class="ruby-identifier">use</span> <span class="ruby-constant">MyEngine</span><span class="ruby-operator">::</span><span class="ruby-constant">Middleware</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Generators"><a href="Generators.html">Generators</a></h2>
+
+<p>You can set up generators for engines with <code>config.generators</code>
+method:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyEngine</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>
+  <span class="ruby-identifier">config</span>.<span class="ruby-identifier">generators</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">g</span>.<span class="ruby-identifier">orm</span>             :<span class="ruby-identifier">active_record</span>
+    <span class="ruby-identifier">g</span>.<span class="ruby-identifier">template_engine</span> :<span class="ruby-identifier">erb</span>
+    <span class="ruby-identifier">g</span>.<span class="ruby-identifier">test_framework</span>  :<span class="ruby-identifier">test_unit</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>You can also set generators for an application by using
+<code>config.app_generators</code>:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyEngine</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>
+  <span class="ruby-comment"># note that you can also pass block to app_generators in the same way you</span>
+  <span class="ruby-comment"># can pass it to generators method</span>
+  <span class="ruby-identifier">config</span>.<span class="ruby-identifier">app_generators</span>.<span class="ruby-identifier">orm</span> :<span class="ruby-identifier">datamapper</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Paths"><a href="Paths.html">Paths</a></h2>
+
+<p>Since <a href="../Rails.html">Rails</a> 3.0, applications and engines have
+more flexible path configuration (as opposed to the previous hardcoded path
+configuration). This means that you are not required to place your
+controllers at <code>app/controllers</code>, but in any place which you
+find convenient.</p>
+
+<p>For example, let’s suppose you want to place your controllers in
+<code>lib/controllers</code>. You can set that as an option:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyEngine</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;app/controllers&quot;</span>] = <span class="ruby-string">&quot;lib/controllers&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>You can also have your controllers loaded from both
+<code>app/controllers</code> and <code>lib/controllers</code>:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyEngine</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;app/controllers&quot;</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;lib/controllers&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>The available paths in an engine are:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyEngine</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;app&quot;</span>]                 <span class="ruby-comment"># =&gt; [&quot;app&quot;]</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;app/controllers&quot;</span>]     <span class="ruby-comment"># =&gt; [&quot;app/controllers&quot;]</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;app/helpers&quot;</span>]         <span class="ruby-comment"># =&gt; [&quot;app/helpers&quot;]</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;app/models&quot;</span>]          <span class="ruby-comment"># =&gt; [&quot;app/models&quot;]</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;app/views&quot;</span>]           <span class="ruby-comment"># =&gt; [&quot;app/views&quot;]</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;lib&quot;</span>]                 <span class="ruby-comment"># =&gt; [&quot;lib&quot;]</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;lib/tasks&quot;</span>]           <span class="ruby-comment"># =&gt; [&quot;lib/tasks&quot;]</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;config&quot;</span>]              <span class="ruby-comment"># =&gt; [&quot;config&quot;]</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;config/initializers&quot;</span>] <span class="ruby-comment"># =&gt; [&quot;config/initializers&quot;]</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;config/locales&quot;</span>]      <span class="ruby-comment"># =&gt; [&quot;config/locales&quot;]</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;config/routes&quot;</span>]       <span class="ruby-comment"># =&gt; [&quot;config/routes.rb&quot;]</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>The <code>Application</code> class adds a couple more paths to this set.
+And as in your <code>Application</code>, all folders under <code>app</code>
+are automatically added to the load path. If you have an
+<code>app/observers</code> folder for example, it will be added by default.</p>
+
+<h2 id="label-Endpoint">Endpoint</h2>
+
+<p>An engine can be also a rack application. It can be useful if you have a
+rack application that you would like to wrap with <code>Engine</code> and
+provide some of the <code>Engine</code>‘s features.</p>
+
+<p>To do that, use the <code>endpoint</code> method:</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">MyEngine</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-constant">Engine</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>
+    <span class="ruby-identifier">endpoint</span> <span class="ruby-constant">MyRackApplication</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Now you can mount your engine in application’s routes just like that:</p>
+
+<pre class="ruby"><span class="ruby-constant">MyRailsApp</span><span class="ruby-operator">::</span><span class="ruby-constant">Application</span>.<span class="ruby-identifier">routes</span>.<span class="ruby-identifier">draw</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">mount</span> <span class="ruby-constant">MyEngine</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;/engine&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Middleware+stack">Middleware stack</h2>
+
+<p>As an engine can now be a rack endpoint, it can also have a middleware
+stack. The usage is exactly the same as in <code>Application</code>:</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">MyEngine</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-constant">Engine</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>
+    <span class="ruby-identifier">middleware</span>.<span class="ruby-identifier">use</span> <span class="ruby-constant">SomeMiddleware</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Routes">Routes</h2>
+
+<p>If you don’t specify an endpoint, routes will be used as the default
+endpoint. You can use them just like you use an application’s routes:</p>
+
+<pre class="ruby"><span class="ruby-comment"># ENGINE/config/routes.rb</span>
+<span class="ruby-constant">MyEngine</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>.<span class="ruby-identifier">routes</span>.<span class="ruby-identifier">draw</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">match</span> <span class="ruby-string">&quot;/&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;posts#index&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Mount+priority">Mount priority</h2>
+
+<p>Note that now there can be more than one router in your application, and
+it’s better to avoid passing requests through many routers. Consider this
+situation:</p>
+
+<pre class="ruby"><span class="ruby-constant">MyRailsApp</span><span class="ruby-operator">::</span><span class="ruby-constant">Application</span>.<span class="ruby-identifier">routes</span>.<span class="ruby-identifier">draw</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">mount</span> <span class="ruby-constant">MyEngine</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;/blog&quot;</span>
+  <span class="ruby-identifier">match</span> <span class="ruby-string">&quot;/blog/omg&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;main#omg&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p><code>MyEngine</code> is mounted at <code>/blog</code>, and
+<code>/blog/omg</code> points to application's controller. In such a
+situation, requests to <code>/blog/omg</code> will go through
+<code>MyEngine</code>, and if there is no such route in
+<code>Engine</code>'s routes, it will be dispatched to
+<code>main#omg</code>. It's much better to swap that:</p>
+
+<pre class="ruby"><span class="ruby-constant">MyRailsApp</span><span class="ruby-operator">::</span><span class="ruby-constant">Application</span>.<span class="ruby-identifier">routes</span>.<span class="ruby-identifier">draw</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">match</span> <span class="ruby-string">&quot;/blog/omg&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;main#omg&quot;</span>
+  <span class="ruby-identifier">mount</span> <span class="ruby-constant">MyEngine</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;/blog&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Now, <code>Engine</code> will get only requests that were not handled by
+<code>Application</code>.</p>
+
+<h2 id="label-Engine+name"><a href="Engine.html">Engine</a> name</h2>
+
+<p>There are some places where an Engine’s name is used:</p>
+<ul><li>
+<p>routes: when you mount an <a href="Engine.html">Engine</a> with
+<code>mount(MyEngine::Engine =&gt; '/my_engine')</code>, it’s used as
+default :as option</p>
+</li><li>
+<p>some of the rake tasks are based on engine name, e.g.
+<code>my_engine:install:migrations</code>,
+<code>my_engine:install:assets</code></p>
+</li></ul>
+
+<p><a href="Engine.html">Engine</a> name is set by default based on class
+name. For <code>MyEngine::Engine</code> it will be
+<code>my_engine_engine</code>. You can change it manually using the
+<code>engine_name</code> method:</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">MyEngine</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-constant">Engine</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>
+    <span class="ruby-identifier">engine_name</span> <span class="ruby-string">&quot;my_engine&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Isolated+Engine">Isolated <a href="Engine.html">Engine</a></h2>
+
+<p>Normally when you create controllers, helpers and models inside an engine,
+they are treated as if they were created inside the application itself.
+This means that all helpers and named routes from the application will be
+available to your engine’s controllers as well.</p>
+
+<p>However, sometimes you want to isolate your engine from the application,
+especially if your engine has its own router. To do that, you simply need
+to call <code>isolate_namespace</code>. This method requires you to pass a
+module where all your controllers, helpers and models should be nested to:</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">MyEngine</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-constant">Engine</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>
+    <span class="ruby-identifier">isolate_namespace</span> <span class="ruby-constant">MyEngine</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>With such an engine, everything that is inside the <code>MyEngine</code>
+module will be isolated from the application.</p>
+
+<p>Consider such controller:</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">MyEngine</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-constant">FooController</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>If an engine is marked as isolated, <code>FooController</code> has access
+only to helpers from <code>Engine</code> and <code>url_helpers</code> from
+<code>MyEngine::Engine.routes</code>.</p>
+
+<p>The next thing that changes in isolated engines is the behavior of routes.
+Normally, when you namespace your controllers, you also need to do
+namespace all your routes. With an isolated engine, the namespace is
+applied by default, so you can ignore it in routes:</p>
+
+<pre>MyEngine::Engine.routes.draw do
+  resources :articles
+end</pre>
+
+<p>The routes above will automatically point to
+<code>MyEngine::ApplicationController</code>. Furthermore, you don’t need
+to use longer url helpers like <code>my_engine_articles_path</code>.
+Instead, you should simply use <code>articles_path</code> as you would do
+with your application.</p>
+
+<p>To make that behavior consistent with other parts of the framework, an
+isolated engine also has influence on <code>ActiveModel::Naming</code>.
+When you use a namespaced model, like <code>MyEngine::Article</code>, it
+will normally use the prefix “my_engine”. In an isolated engine, the prefix
+will be omitted in url helpers and form fields for convenience.</p>
+
+<pre class="ruby"><span class="ruby-identifier">polymorphic_url</span>(<span class="ruby-constant">MyEngine</span><span class="ruby-operator">::</span><span class="ruby-constant">Article</span>.<span class="ruby-identifier">new</span>) <span class="ruby-comment"># =&gt; &quot;articles_path&quot;</span>
+
+<span class="ruby-identifier">form_for</span>(<span class="ruby-constant">MyEngine</span><span class="ruby-operator">::</span><span class="ruby-constant">Article</span>.<span class="ruby-identifier">new</span>) <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">text_field</span> :<span class="ruby-identifier">title</span> <span class="ruby-comment"># =&gt; &lt;input type=&quot;text&quot; name=&quot;article[title]&quot; id=&quot;article_title&quot; /&gt;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Additionally, an isolated engine will set its name according to namespace,
+so MyEngine::Engine.engine_name will be “my_engine”. It will also set
+MyEngine.table_name_prefix to “my_engine_”, changing the MyEngine::Article
+model to use the my_engine_articles table.</p>
+
+<h2 id="label-Using+Engine%27s+routes+outside+Engine">Using Engine’s routes outside <a href="Engine.html">Engine</a></h2>
+
+<p>Since you can now mount an engine inside application’s routes, you do not
+have direct access to <code>Engine</code>‘s <code>url_helpers</code> inside
+<code>Application</code>. When you mount an engine in an application’s
+routes, a special helper is created to allow you to do that. Consider such
+a scenario:</p>
+
+<pre class="ruby"><span class="ruby-comment"># config/routes.rb</span>
+<span class="ruby-constant">MyApplication</span><span class="ruby-operator">::</span><span class="ruby-constant">Application</span>.<span class="ruby-identifier">routes</span>.<span class="ruby-identifier">draw</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">mount</span> <span class="ruby-constant">MyEngine</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;/my_engine&quot;</span>, :<span class="ruby-identifier">as</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;my_engine&quot;</span>
+  <span class="ruby-identifier">match</span> <span class="ruby-string">&quot;/foo&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;foo#index&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Now, you can use the <code>my_engine</code> helper inside your application:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">FooController</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ApplicationController</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+    <span class="ruby-identifier">my_engine</span>.<span class="ruby-identifier">root_url</span> <span class="ruby-comment">#=&gt; /my_engine/</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>There is also a <code>main_app</code> helper that gives you access to
+application’s routes inside Engine:</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">MyEngine</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-constant">BarController</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+      <span class="ruby-identifier">main_app</span>.<span class="ruby-identifier">foo_path</span> <span class="ruby-comment">#=&gt; /foo</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Note that the <code>:as</code> option given to mount takes the
+<code>engine_name</code> as default, so most of the time you can simply
+omit it.</p>
+
+<p>Finally, if you want to generate a url to an engine’s route using
+<code>polymorphic_url</code>, you also need to pass the engine helper.
+Let’s say that you want to create a form pointing to one of the engine’s
+routes. All you need to do is pass the helper as the first element in array
+with attributes for url:</p>
+
+<pre>form_for([my_engine, @user])</pre>
+
+<p>This code will use <code>my_engine.user_path(@user)</code> to generate the
+proper route.</p>
+
+<h2 id="label-Isolated+engine%27s+helpers">Isolated engine’s helpers</h2>
+
+<p>Sometimes you may want to isolate engine, but use helpers that are defined
+for it. If you want to share just a few specific helpers you can add them
+to application’s helpers in ApplicationController:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">ApplicationController</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-identifier">helper</span> <span class="ruby-constant">MyEngine</span><span class="ruby-operator">::</span><span class="ruby-constant">SharedEngineHelper</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>If you want to include all of the engine’s helpers, you can use <a
+href="Engine.html#method-i-helpers">helpers</a> method on an engine’s
+instance:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">ApplicationController</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-identifier">helper</span> <span class="ruby-constant">MyEngine</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>.<span class="ruby-identifier">helpers</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>It will include all of the helpers from engine’s directory. Take into
+account that this does not include helpers defined in controllers with
+helper_method or other similar solutions, only helpers defined in the
+helpers directory will be included.</p>
+
+<h2 id="label-Migrations+%26+seed+data">Migrations &amp; seed data</h2>
+
+<p>Engines can have their own migrations. The default path for migrations is
+exactly the same as in application: <code>db/migrate</code></p>
+
+<p>To use engine’s migrations in application you can use rake task, which
+copies them to application’s dir:</p>
+
+<pre>rake ENGINE_NAME:install:migrations</pre>
+
+<p>Note that some of the migrations may be skipped if a migration with the
+same name already exists in application. In such a situation you must
+decide whether to leave that migration or rename the migration in the
+application and rerun copying migrations.</p>
+
+<p>If your engine has migrations, you may also want to prepare data for the
+database in the <code>seeds.rb</code> file. You can load that data using
+the <code>load_seed</code> method, e.g.</p>
+
+<pre>MyEngine::Engine.load_seed</pre>
+
+<h2 id="label-Loading+priority">Loading priority</h2>
+
+<p>In order to change engine’s priority you can use config.railties_order in
+main application. It will affect the priority of loading views, helpers,
+assets and all the other files related to engine or application.</p>
+
+<p>Example:</p>
+
+<pre># load Blog::Engine with highest priority, followed by application and other railties
+config.railties_order = [Blog::Engine, :main_app, :all]</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="Engine/Configuration.html">Rails::Engine::Configuration</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="Engine/Railties.html">Rails::Engine::Railties</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>#</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-_all_autoload_once_paths">_all_autoload_once_paths</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-_all_autoload_paths">_all_autoload_paths</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-_all_load_paths">_all_load_paths</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-app">app</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-call">call</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-config">config</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-default_middleware_stack">default_middleware_stack</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-eager_load-21">eager_load!</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-endpoint">endpoint</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-endpoint">endpoint</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-env_config">env_config</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-find">find</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-find_root_with_flag">find_root_with_flag</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-has_migrations-3F">has_migrations?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-helpers">helpers</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-helpers_paths">helpers_paths</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-inherited">inherited</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-initialize_generators">initialize_generators</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-initializers">initializers</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-isolate_namespace">isolate_namespace</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>L</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-load_console">load_console</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-load_generators">load_generators</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-load_seed">load_seed</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-load_tasks">load_tasks</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-ordered_railties">ordered_railties</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-railties">railties</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-routes">routes</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-routes-3F">routes?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-routes_url_helpers">routes_url_helpers</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>called_from</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>isolated</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>isolated?</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-endpoint">
+            
+              <b>endpoint</b>(endpoint = nil)
+            
+            <a href="../../classes/Rails/Engine.html#method-c-endpoint" name="method-c-endpoint" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-endpoint_source')" id="l_method-c-endpoint_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L373" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-endpoint_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 373</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">endpoint</span>(<span class="ruby-identifier">endpoint</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@endpoint</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@endpoint</span> = <span class="ruby-identifier">endpoint</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">endpoint</span>
+  <span class="ruby-ivar">@endpoint</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-find">
+            
+              <b>find</b>(path)
+            
+            <a href="../../classes/Rails/Engine.html#method-c-find" name="method-c-find" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Finds engine with given path</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-find_source')" id="l_method-c-find_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L411" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-find_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 411</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">find</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">expanded_path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span><span class="ruby-operator">::</span><span class="ruby-constant">Railties</span>.<span class="ruby-identifier">engines</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">engine</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">engine</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">expanded_path</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-inherited">
+            
+              <b>inherited</b>(base)
+            
+            <a href="../../classes/Rails/Engine.html#method-c-inherited" name="method-c-inherited" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-inherited_source')" id="l_method-c-inherited_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L361" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-inherited_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 361</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">inherited</span>(<span class="ruby-identifier">base</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">abstract_railtie?</span>
+    <span class="ruby-identifier">base</span>.<span class="ruby-identifier">called_from</span> = <span class="ruby-keyword">begin</span>
+      <span class="ruby-comment"># Remove the line number from backtraces making sure we don't leave anything behind</span>
+      <span class="ruby-identifier">call_stack</span> = <span class="ruby-identifier">caller</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/:\d+.*/</span>, <span class="ruby-string">''</span>) }
+      <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">call_stack</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp">%r[railties[\w.-]*/lib/rails|rack[\w.-]*/lib/rack]</span> })
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-isolate_namespace">
+            
+              <b>isolate_namespace</b>(mod)
+            
+            <a href="../../classes/Rails/Engine.html#method-c-isolate_namespace" name="method-c-isolate_namespace" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-isolate_namespace_source')" id="l_method-c-isolate_namespace_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L379" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-isolate_namespace_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 379</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">isolate_namespace</span>(<span class="ruby-identifier">mod</span>)
+  <span class="ruby-identifier">engine_name</span>(<span class="ruby-identifier">generate_railtie_name</span>(<span class="ruby-identifier">mod</span>))
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">routes</span>.<span class="ruby-identifier">default_scope</span> = { <span class="ruby-value">:module</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflector</span>.<span class="ruby-identifier">underscore</span>(<span class="ruby-identifier">mod</span>.<span class="ruby-identifier">name</span>) }
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">isolated</span> = <span class="ruby-keyword">true</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:railtie_namespace</span>)
+    <span class="ruby-identifier">name</span>, <span class="ruby-identifier">railtie</span> = <span class="ruby-identifier">engine_name</span>, <span class="ruby-keyword">self</span>
+
+    <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">singleton_class</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">define_method</span>(<span class="ruby-value">:railtie_namespace</span>) { <span class="ruby-identifier">railtie</span> }
+
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:table_name_prefix</span>)
+        <span class="ruby-identifier">define_method</span>(<span class="ruby-value">:table_name_prefix</span>) { <span class="ruby-node">&quot;#{name}_&quot;</span> }
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:use_relative_model_naming?</span>)
+        <span class="ruby-identifier">class_eval</span> <span class="ruby-string">&quot;def use_relative_model_naming?; true; end&quot;</span>, <span class="ruby-keyword">__FILE__</span>, <span class="ruby-keyword">__LINE__</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:railtie_helpers_paths</span>)
+        <span class="ruby-identifier">define_method</span>(<span class="ruby-value">:railtie_helpers_paths</span>) { <span class="ruby-identifier">railtie</span>.<span class="ruby-identifier">helpers_paths</span> }
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:railtie_routes_url_helpers</span>)
+        <span class="ruby-identifier">define_method</span>(<span class="ruby-value">:railtie_routes_url_helpers</span>) { <span class="ruby-identifier">railtie</span>.<span class="ruby-identifier">routes_url_helpers</span> }
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-app">
+            
+              <b>app</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-app" name="method-i-app" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-app_source')" id="l_method-i-app_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L467" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-app_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 467</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">app</span>
+  <span class="ruby-ivar">@app</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">config</span>.<span class="ruby-identifier">middleware</span> = <span class="ruby-identifier">config</span>.<span class="ruby-identifier">middleware</span>.<span class="ruby-identifier">merge_into</span>(<span class="ruby-identifier">default_middleware_stack</span>)
+    <span class="ruby-identifier">config</span>.<span class="ruby-identifier">middleware</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">endpoint</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-call">
+            
+              <b>call</b>(env)
+            
+            <a href="../../classes/Rails/Engine.html#method-i-call" name="method-i-call" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-call_source')" id="l_method-i-call_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L478" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-call_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 478</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">call</span>(<span class="ruby-identifier">env</span>)
+  <span class="ruby-identifier">app</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">env_config</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-config">
+            
+              <b>config</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-config" name="method-i-config" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-config_source')" id="l_method-i-config_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L510" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-config_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 510</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">config</span>
+  <span class="ruby-ivar">@config</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Engine</span><span class="ruby-operator">::</span><span class="ruby-constant">Configuration</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">find_root_with_flag</span>(<span class="ruby-string">&quot;lib&quot;</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-eager_load-21">
+            
+              <b>eager_load!</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-eager_load-21" name="method-i-eager_load-21" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-eager_load-21_source')" id="l_method-i-eager_load-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L433" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-eager_load-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 433</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">eager_load!</span>
+  <span class="ruby-identifier">railties</span>.<span class="ruby-identifier">all</span>(&amp;<span class="ruby-value">:eager_load!</span>)
+
+  <span class="ruby-identifier">config</span>.<span class="ruby-identifier">eager_load_paths</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">load_path</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">matcher</span> = <span class="ruby-node">/\A#{Regexp.escape(load_path)}\/(.*)\.rb\Z/</span>
+    <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-node">&quot;#{load_path}/**/*.rb&quot;</span>).<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">require_dependency</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-identifier">matcher</span>, <span class="ruby-string">'\1'</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-endpoint">
+            
+              <b>endpoint</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-endpoint" name="method-i-endpoint" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-endpoint_source')" id="l_method-i-endpoint_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L474" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-endpoint_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 474</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">endpoint</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">endpoint</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">routes</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-env_config">
+            
+              <b>env_config</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-env_config" name="method-i-env_config" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-env_config_source')" id="l_method-i-env_config_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L482" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-env_config_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 482</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">env_config</span>
+  <span class="ruby-ivar">@env_config</span> <span class="ruby-operator">||=</span> {
+    <span class="ruby-string">'action_dispatch.routes'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">routes</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-helpers">
+            
+              <b>helpers</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-helpers" name="method-i-helpers" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-helpers_source')" id="l_method-i-helpers_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L448" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-helpers_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 448</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">helpers</span>
+  <span class="ruby-ivar">@helpers</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">helpers</span> = <span class="ruby-constant">Module</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">all</span> = <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">all_helpers_from_path</span>(<span class="ruby-identifier">helpers_paths</span>)
+    <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">modules_for_helpers</span>(<span class="ruby-identifier">all</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mod</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">helpers</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:include</span>, <span class="ruby-identifier">mod</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">helpers</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-helpers_paths">
+            
+              <b>helpers_paths</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-helpers_paths" name="method-i-helpers_paths" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-helpers_paths_source')" id="l_method-i-helpers_paths_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L459" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-helpers_paths_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 459</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">helpers_paths</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;app/helpers&quot;</span>].<span class="ruby-identifier">existent</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-initializers">
+            
+              <b>initializers</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-initializers" name="method-i-initializers" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-initializers_source')" id="l_method-i-initializers_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L498" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-initializers_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 498</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initializers</span>
+  <span class="ruby-identifier">initializers</span> = []
+  <span class="ruby-identifier">ordered_railties</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">r</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>
+      <span class="ruby-identifier">initializers</span> <span class="ruby-operator">+=</span> <span class="ruby-keyword">super</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">initializers</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">initializers</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">initializers</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-load_console">
+            
+              <b>load_console</b>(app=self)
+            
+            <a href="../../classes/Rails/Engine.html#method-i-load_console" name="method-i-load_console" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-load_console_source')" id="l_method-i-load_console_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L428" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-load_console_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 428</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">load_console</span>(<span class="ruby-identifier">app</span>=<span class="ruby-keyword">self</span>)
+  <span class="ruby-identifier">railties</span>.<span class="ruby-identifier">all</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">load_console</span>(<span class="ruby-identifier">app</span>) }
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-load_generators">
+            
+              <b>load_generators</b>(app=self)
+            
+            <a href="../../classes/Rails/Engine.html#method-i-load_generators" name="method-i-load_generators" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-load_generators_source')" id="l_method-i-load_generators_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L348" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-load_generators_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 348</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">load_generators</span>(<span class="ruby-identifier">app</span>=<span class="ruby-keyword">self</span>)
+  <span class="ruby-identifier">initialize_generators</span>
+  <span class="ruby-identifier">railties</span>.<span class="ruby-identifier">all</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">load_generators</span>(<span class="ruby-identifier">app</span>) }
+  <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Generators</span>.<span class="ruby-identifier">configure!</span>(<span class="ruby-identifier">app</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">generators</span>)
+  <span class="ruby-keyword">super</span>
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-load_seed">
+            
+              <b>load_seed</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-load_seed" name="method-i-load_seed" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Load data from db/seeds.rb file. It can be used in to load engines’ seeds,
+e.g.:</p>
+
+<p>Blog::Engine.load_seed</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-load_seed_source')" id="l_method-i-load_seed_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L518" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-load_seed_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 518</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">load_seed</span>
+  <span class="ruby-identifier">seed_file</span> = <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;db/seeds&quot;</span>].<span class="ruby-identifier">existent</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">load</span>(<span class="ruby-identifier">seed_file</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">seed_file</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-load_tasks">
+            
+              <b>load_tasks</b>(app=self)
+            
+            <a href="../../classes/Rails/Engine.html#method-i-load_tasks" name="method-i-load_tasks" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-load_tasks_source')" id="l_method-i-load_tasks_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L422" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-load_tasks_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 422</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">load_tasks</span>(<span class="ruby-identifier">app</span>=<span class="ruby-keyword">self</span>)
+  <span class="ruby-identifier">railties</span>.<span class="ruby-identifier">all</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">load_tasks</span>(<span class="ruby-identifier">app</span>) }
+  <span class="ruby-keyword">super</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;lib/tasks&quot;</span>].<span class="ruby-identifier">existent</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ext</span><span class="ruby-operator">|</span> <span class="ruby-identifier">load</span>(<span class="ruby-identifier">ext</span>) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-ordered_railties">
+            
+              <b>ordered_railties</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-ordered_railties" name="method-i-ordered_railties" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-ordered_railties_source')" id="l_method-i-ordered_railties_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L494" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-ordered_railties_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 494</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ordered_railties</span>
+  <span class="ruby-identifier">railties</span>.<span class="ruby-identifier">all</span> <span class="ruby-operator">+</span> [<span class="ruby-keyword">self</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-railties">
+            
+              <b>railties</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-railties" name="method-i-railties" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-railties_source')" id="l_method-i-railties_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L444" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-railties_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 444</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">railties</span>
+  <span class="ruby-ivar">@railties</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">Railties</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">config</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-routes">
+            
+              <b>routes</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-routes" name="method-i-routes" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-routes_source')" id="l_method-i-routes_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L488" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-routes_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 488</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">routes</span>
+  <span class="ruby-ivar">@routes</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">Routing</span><span class="ruby-operator">::</span><span class="ruby-constant">RouteSet</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@routes</span>.<span class="ruby-identifier">append</span>(&amp;<span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+  <span class="ruby-ivar">@routes</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-routes_url_helpers">
+            
+              <b>routes_url_helpers</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-routes_url_helpers" name="method-i-routes_url_helpers" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-routes_url_helpers_source')" id="l_method-i-routes_url_helpers_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L463" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-routes_url_helpers_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 463</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">routes_url_helpers</span>
+  <span class="ruby-identifier">routes</span>.<span class="ruby-identifier">url_helpers</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-_all_autoload_once_paths">
+            
+              <b>_all_autoload_once_paths</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-_all_autoload_once_paths" name="method-i-_all_autoload_once_paths" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-_all_autoload_once_paths_source')" id="l_method-i-_all_autoload_once_paths_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L645" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-_all_autoload_once_paths_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 645</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">_all_autoload_once_paths</span>
+  <span class="ruby-identifier">config</span>.<span class="ruby-identifier">autoload_once_paths</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-_all_autoload_paths">
+            
+              <b>_all_autoload_paths</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-_all_autoload_paths" name="method-i-_all_autoload_paths" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-_all_autoload_paths_source')" id="l_method-i-_all_autoload_paths_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L649" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-_all_autoload_paths_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 649</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">_all_autoload_paths</span>
+  <span class="ruby-ivar">@_all_autoload_paths</span> <span class="ruby-operator">||=</span> (<span class="ruby-identifier">config</span>.<span class="ruby-identifier">autoload_paths</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">eager_load_paths</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">autoload_once_paths</span>).<span class="ruby-identifier">uniq</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-_all_load_paths">
+            
+              <b>_all_load_paths</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-_all_load_paths" name="method-i-_all_load_paths" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-_all_load_paths_source')" id="l_method-i-_all_load_paths_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L653" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-_all_load_paths_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 653</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">_all_load_paths</span>
+  <span class="ruby-ivar">@_all_load_paths</span> <span class="ruby-operator">||=</span> (<span class="ruby-identifier">config</span>.<span class="ruby-identifier">paths</span>.<span class="ruby-identifier">load_paths</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">_all_autoload_paths</span>).<span class="ruby-identifier">uniq</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-default_middleware_stack">
+            
+              <b>default_middleware_stack</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-default_middleware_stack" name="method-i-default_middleware_stack" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-default_middleware_stack_source')" id="l_method-i-default_middleware_stack_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L641" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-default_middleware_stack_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 641</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">default_middleware_stack</span>
+  <span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">MiddlewareStack</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-find_root_with_flag">
+            
+              <b>find_root_with_flag</b>(flag, default=nil)
+            
+            <a href="../../classes/Rails/Engine.html#method-i-find_root_with_flag" name="method-i-find_root_with_flag" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-find_root_with_flag_source')" id="l_method-i-find_root_with_flag_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L626" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-find_root_with_flag_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 626</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">find_root_with_flag</span>(<span class="ruby-identifier">flag</span>, <span class="ruby-identifier">default</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">root_path</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">called_from</span>
+
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">root_path</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">root_path</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-node">&quot;#{root_path}/#{flag}&quot;</span>)
+    <span class="ruby-identifier">parent</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">root_path</span>)
+    <span class="ruby-identifier">root_path</span> = <span class="ruby-identifier">parent</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">root_path</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">parent</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">root</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-node">&quot;#{root_path}/#{flag}&quot;</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">root_path</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">default</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Could not find root path for #{self}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">root</span>
+
+  <span class="ruby-constant">RbConfig</span><span class="ruby-operator">::</span><span class="ruby-constant">CONFIG</span>[<span class="ruby-string">'host_os'</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">/mswin|mingw/</span> <span class="ruby-operator">?</span>
+    <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">root</span>).<span class="ruby-identifier">expand_path</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">root</span>).<span class="ruby-identifier">realpath</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-has_migrations-3F">
+            
+              <b>has_migrations?</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-has_migrations-3F" name="method-i-has_migrations-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-has_migrations-3F_source')" id="l_method-i-has_migrations-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L622" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-has_migrations-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 622</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">has_migrations?</span>
+  <span class="ruby-identifier">paths</span>[<span class="ruby-string">&quot;db/migrate&quot;</span>].<span class="ruby-identifier">existent</span>.<span class="ruby-identifier">any?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-initialize_generators">
+            
+              <b>initialize_generators</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-initialize_generators" name="method-i-initialize_generators" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-initialize_generators_source')" id="l_method-i-initialize_generators_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L614" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-initialize_generators_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 614</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_generators</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;rails/generators&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-routes-3F">
+            
+              <b>routes?</b>()
+            
+            <a href="../../classes/Rails/Engine.html#method-i-routes-3F" name="method-i-routes-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-routes-3F_source')" id="l_method-i-routes-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/22a8433631744f4f2b1debbf210d2c1135c9e9d9/railties/lib/rails/engine.rb#L618" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-routes-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/engine.rb, line 618</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">routes?</span>
+  <span class="ruby-keyword">defined?</span>(<span class="ruby-ivar">@routes</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

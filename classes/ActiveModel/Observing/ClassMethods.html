@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::Observing::ClassMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveModel::Observing::ClassMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activemodel/lib/active_model/observing_rb.html">activemodel/lib/active_model/observing.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-add_observer">add_observer</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-count_observers">count_observers</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-inherited">inherited</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-instantiate_observers">instantiate_observers</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-notify_observers">notify_observers</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-observer_instances">observer_instances</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-observers">observers</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-observers-3D">observers=</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-add_observer">
+            
+              <b>add_observer</b>(observer)
+            
+            <a href="../../../classes/ActiveModel/Observing/ClassMethods.html#method-i-add_observer" name="method-i-add_observer" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Add a new observer to the pool. The new observer needs to respond to
+‘update’, otherwise it raises an <code>ArgumentError</code> exception.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-add_observer_source')" id="l_method-i-add_observer_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4cef581fcf83f161edcd681bbda1461d5f7d5f33/activemodel/lib/active_model/observing.rb#L65" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-add_observer_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observing.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">add_observer</span>(<span class="ruby-identifier">observer</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">observer</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:update</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;observer needs to respond to `update'&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">observer_instances</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">observer</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-count_observers">
+            
+              <b>count_observers</b>()
+            
+            <a href="../../../classes/ActiveModel/Observing/ClassMethods.html#method-i-count_observers" name="method-i-count_observers" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Total number of observers.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-count_observers_source')" id="l_method-i-count_observers_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4cef581fcf83f161edcd681bbda1461d5f7d5f33/activemodel/lib/active_model/observing.rb#L78" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-count_observers_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observing.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">count_observers</span>
+  <span class="ruby-identifier">observer_instances</span>.<span class="ruby-identifier">size</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-instantiate_observers">
+            
+              <b>instantiate_observers</b>()
+            
+            <a href="../../../classes/ActiveModel/Observing/ClassMethods.html#method-i-instantiate_observers" name="method-i-instantiate_observers" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Instantiate the global observers.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-instantiate_observers_source')" id="l_method-i-instantiate_observers_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4cef581fcf83f161edcd681bbda1461d5f7d5f33/activemodel/lib/active_model/observing.rb#L58" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-instantiate_observers_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observing.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">instantiate_observers</span>
+  <span class="ruby-identifier">observers</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span> <span class="ruby-identifier">instantiate_observer</span>(<span class="ruby-identifier">o</span>) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-notify_observers">
+            
+              <b>notify_observers</b>(*arg)
+            
+            <a href="../../../classes/ActiveModel/Observing/ClassMethods.html#method-i-notify_observers" name="method-i-notify_observers" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Notify list of observers of a change.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-notify_observers_source')" id="l_method-i-notify_observers_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4cef581fcf83f161edcd681bbda1461d5f7d5f33/activemodel/lib/active_model/observing.rb#L73" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-notify_observers_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observing.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">notify_observers</span>(*<span class="ruby-identifier">arg</span>)
+  <span class="ruby-identifier">observer_instances</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">observer</span><span class="ruby-operator">|</span> <span class="ruby-identifier">observer</span>.<span class="ruby-identifier">update</span>(*<span class="ruby-identifier">arg</span>) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-observer_instances">
+            
+              <b>observer_instances</b>()
+            
+            <a href="../../../classes/ActiveModel/Observing/ClassMethods.html#method-i-observer_instances" name="method-i-observer_instances" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Gets the current observer instances.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-observer_instances_source')" id="l_method-i-observer_instances_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4cef581fcf83f161edcd681bbda1461d5f7d5f33/activemodel/lib/active_model/observing.rb#L53" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-observer_instances_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observing.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">observer_instances</span>
+  <span class="ruby-ivar">@observer_instances</span> <span class="ruby-operator">||=</span> []
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-observers">
+            
+              <b>observers</b>()
+            
+            <a href="../../../classes/ActiveModel/Observing/ClassMethods.html#method-i-observers" name="method-i-observers" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Gets an array of observers observing this model. The array also provides
+<code>enable</code> and <code>disable</code> methods that allow you to
+selectively enable and disable observers. (see
+<code>ActiveModel::ObserverArray.enable</code> and
+<code>ActiveModel::ObserverArray.disable</code> for more on this)</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-observers_source')" id="l_method-i-observers_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4cef581fcf83f161edcd681bbda1461d5f7d5f33/activemodel/lib/active_model/observing.rb#L48" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-observers_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observing.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">observers</span>
+  <span class="ruby-ivar">@observers</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">ObserverArray</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-observers-3D">
+            
+              <b>observers=</b>(*values)
+            
+            <a href="../../../classes/ActiveModel/Observing/ClassMethods.html#method-i-observers-3D" name="method-i-observers-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h2 id="method-i-observers-3D-label-Active+Model+Observers+Activation">Active Model Observers Activation</h2>
+
+<p>Activates the observers assigned. Examples:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">ORM</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">ActiveModel</span><span class="ruby-operator">::</span><span class="ruby-constant">Observing</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-comment"># Calls PersonObserver.instance</span>
+<span class="ruby-constant">ORM</span>.<span class="ruby-identifier">observers</span> = :<span class="ruby-identifier">person_observer</span>
+
+<span class="ruby-comment"># Calls Cacher.instance and GarbageCollector.instance</span>
+<span class="ruby-constant">ORM</span>.<span class="ruby-identifier">observers</span> = :<span class="ruby-identifier">cacher</span>, :<span class="ruby-identifier">garbage_collector</span>
+
+<span class="ruby-comment"># Same as above, just using explicit class references</span>
+<span class="ruby-constant">ORM</span>.<span class="ruby-identifier">observers</span> = <span class="ruby-constant">Cacher</span>, <span class="ruby-constant">GarbageCollector</span>
+</pre>
+
+<p>Note: Setting this does not instantiate the observers yet.
+<code>instantiate_observers</code> is called during startup, and before
+each development request.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-observers-3D_source')" id="l_method-i-observers-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4cef581fcf83f161edcd681bbda1461d5f7d5f33/activemodel/lib/active_model/observing.rb#L39" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-observers-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observing.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">observers=</span>(*<span class="ruby-identifier">values</span>)
+  <span class="ruby-identifier">observers</span>.<span class="ruby-identifier">replace</span>(<span class="ruby-identifier">values</span>.<span class="ruby-identifier">flatten</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-inherited">
+            
+              <b>inherited</b>(subclass)
+            
+            <a href="../../../classes/ActiveModel/Observing/ClassMethods.html#method-i-inherited" name="method-i-inherited" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Notify observers when the observed class is subclassed.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-inherited_source')" id="l_method-i-inherited_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4cef581fcf83f161edcd681bbda1461d5f7d5f33/activemodel/lib/active_model/observing.rb#L99" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-inherited_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/observing.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">inherited</span>(<span class="ruby-identifier">subclass</span>)
+  <span class="ruby-keyword">super</span>
+  <span class="ruby-identifier">notify_observers</span> <span class="ruby-value">:observed_class_inherited</span>, <span class="ruby-identifier">subclass</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

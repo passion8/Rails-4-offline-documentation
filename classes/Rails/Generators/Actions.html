@@ -1,0 +1,1106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Rails::Generators::Actions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            Rails::Generators::Actions 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/railties/lib/rails/generators/actions_rb.html">railties/lib/rails/generators/actions.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-add_source">add_source</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-application">application</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-capify-21">capify!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-environment">environment</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-extify">extify</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>G</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-gem">gem</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-gem_group">gem_group</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-generate">generate</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-git">git</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-initializer">initializer</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>L</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-lib">lib</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-log">log</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-plugin">plugin</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-rake">rake</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-rakefile">rakefile</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-readme">readme</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-route">route</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-vendor">vendor</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-add_source">
+            
+              <b>add_source</b>(source, options={})
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-add_source" name="method-i-add_source" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Add the given source to Gemfile</p>
+
+<h4 id="method-i-add_source-label-Example">Example</h4>
+
+<pre>add_source &quot;http://gems.github.com/&quot;</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-add_source_source')" id="l_method-i-add_source_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L107" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-add_source_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">add_source</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-identifier">log</span> <span class="ruby-value">:source</span>, <span class="ruby-identifier">source</span>
+
+  <span class="ruby-identifier">in_root</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">prepend_file</span> <span class="ruby-string">&quot;Gemfile&quot;</span>, <span class="ruby-node">&quot;source #{source.inspect}\n&quot;</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-application">
+            
+              <b>application</b>(data=nil, options={}, &amp;block)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-application" name="method-i-application" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-capify-21">
+            
+              <b>capify!</b>()
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-capify-21" name="method-i-capify-21" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Just run the capify command in root</p>
+
+<h4 id="method-i-capify-21-label-Example">Example</h4>
+
+<pre>capify!</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-capify-21_source')" id="l_method-i-capify-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L268" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-capify-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 268</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">capify!</span>
+  <span class="ruby-identifier">log</span> <span class="ruby-value">:capify</span>, <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">in_root</span> { <span class="ruby-identifier">run</span>(<span class="ruby-node">&quot;#{extify(:capify)} .&quot;</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-environment">
+            
+              <b>environment</b>(data=nil, options={}, &amp;block)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-environment" name="method-i-environment" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Adds a line inside the <a href="../Application.html">Application</a> class
+for config/application.rb.</p>
+
+<p>If options :env is specified, the line is appended to the corresponding
+file in config/environments.</p>
+            </div>
+          
+          
+          
+            <div class="aka">
+              Also aliased as: <a href="Actions.html#method-i-application">application</a>
+            </div>
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-environment_source')" id="l_method-i-environment_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L120" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-environment_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 120</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">environment</span>(<span class="ruby-identifier">data</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span>={}, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">sentinel</span> = <span class="ruby-regexp">/class [a-z_:]+ &lt; Rails::Application/</span>
+  <span class="ruby-identifier">env_file_sentinel</span> = <span class="ruby-regexp">/::Application\.configure do/</span>
+  <span class="ruby-identifier">data</span> = <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">data</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-identifier">in_root</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:env</span>].<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">inject_into_file</span> <span class="ruby-string">'config/application.rb'</span>, <span class="ruby-node">&quot;\n    #{data}&quot;</span>, <span class="ruby-value">:after</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sentinel</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-constant">Array</span>.<span class="ruby-identifier">wrap</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:env</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">env</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">inject_into_file</span> <span class="ruby-node">&quot;config/environments/#{env}.rb&quot;</span>, <span class="ruby-node">&quot;\n  #{data}&quot;</span>, <span class="ruby-value">:after</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">env_file_sentinel</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-gem">
+            
+              <b>gem</b>(*args)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-gem" name="method-i-gem" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Adds an entry into Gemfile for the supplied gem. If env is specified, add
+the gem to the given environment.</p>
+
+<h4 id="method-i-gem-label-Example">Example</h4>
+
+<pre class="ruby"><span class="ruby-identifier">gem</span> <span class="ruby-string">&quot;rspec&quot;</span>, :<span class="ruby-identifier">group</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">test</span>
+<span class="ruby-identifier">gem</span> <span class="ruby-string">&quot;technoweenie-restful-authentication&quot;</span>, :<span class="ruby-identifier">lib</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;restful-authentication&quot;</span>, :<span class="ruby-identifier">source</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;http://gems.github.com/&quot;</span>
+<span class="ruby-identifier">gem</span> <span class="ruby-string">&quot;rails&quot;</span>, <span class="ruby-string">&quot;3.0&quot;</span>, :<span class="ruby-identifier">git</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;git://github.com/rails/rails&quot;</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-gem_source')" id="l_method-i-gem_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L52" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-gem_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">gem</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">extract_options!</span>
+  <span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span> = <span class="ruby-identifier">args</span>
+
+  <span class="ruby-comment"># Set the message to be shown in logs. Uses the git repo if one is given,</span>
+  <span class="ruby-comment"># otherwise use name (version).</span>
+  <span class="ruby-identifier">parts</span>, <span class="ruby-identifier">message</span> = [ <span class="ruby-identifier">name</span>.<span class="ruby-identifier">inspect</span> ], <span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:version</span>)
+    <span class="ruby-identifier">parts</span>   <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">version</span>.<span class="ruby-identifier">inspect</span>
+    <span class="ruby-identifier">message</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; (#{version})&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">message</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:git</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:git</span>]
+
+  <span class="ruby-identifier">log</span> <span class="ruby-value">:gemfile</span>, <span class="ruby-identifier">message</span>
+
+  <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">parts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;:#{option} =&gt; #{value.inspect}&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">in_root</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">str</span> = <span class="ruby-node">&quot;gem #{parts.join(&quot;, &quot;)}&quot;</span>
+    <span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;  &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">str</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@in_group</span>
+    <span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">str</span>
+    <span class="ruby-identifier">append_file</span> <span class="ruby-string">&quot;Gemfile&quot;</span>, <span class="ruby-identifier">str</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-gem_group">
+            
+              <b>gem_group</b>(*names, &amp;block)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-gem_group" name="method-i-gem_group" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Wraps gem entries inside a group.</p>
+
+<h4 id="method-i-gem_group-label-Example">Example</h4>
+
+<pre>gem_group :development, :test do
+  gem &quot;rspec-rails&quot;
+end</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-gem_group_source')" id="l_method-i-gem_group_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L87" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-gem_group_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">gem_group</span>(*<span class="ruby-identifier">names</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">name</span> = <span class="ruby-identifier">names</span>.<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:inspect</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;, &quot;</span>)
+  <span class="ruby-identifier">log</span> <span class="ruby-value">:gemfile</span>, <span class="ruby-node">&quot;group #{name}&quot;</span>
+
+  <span class="ruby-identifier">in_root</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">append_file</span> <span class="ruby-string">&quot;Gemfile&quot;</span>, <span class="ruby-node">&quot;\ngroup #{name} do&quot;</span>, <span class="ruby-value">:force</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+
+    <span class="ruby-ivar">@in_group</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">instance_eval</span>(&amp;<span class="ruby-identifier">block</span>)
+    <span class="ruby-ivar">@in_group</span> = <span class="ruby-keyword">false</span>
+
+    <span class="ruby-identifier">append_file</span> <span class="ruby-string">&quot;Gemfile&quot;</span>, <span class="ruby-string">&quot;\nend\n&quot;</span>, <span class="ruby-value">:force</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-generate">
+            
+              <b>generate</b>(what, *args)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-generate" name="method-i-generate" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Generate something using a generator from <a
+href="../../Rails.html">Rails</a> or a plugin. The second parameter is the
+argument string that is passed to the generator or an <a
+href="../../Array.html">Array</a> that is joined.</p>
+
+<h4 id="method-i-generate-label-Example">Example</h4>
+
+<pre>generate(:authenticated, &quot;user session&quot;)</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-generate_source')" id="l_method-i-generate_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L240" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-generate_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 240</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">generate</span>(<span class="ruby-identifier">what</span>, *<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">log</span> <span class="ruby-value">:generate</span>, <span class="ruby-identifier">what</span>
+  <span class="ruby-identifier">argument</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">to_s</span> }.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>)
+
+  <span class="ruby-identifier">in_root</span> { <span class="ruby-identifier">run_ruby_script</span>(<span class="ruby-node">&quot;script/rails generate #{what} #{argument}&quot;</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-git">
+            
+              <b>git</b>(commands={})
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-git" name="method-i-git" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Run a command in git.</p>
+
+<h4 id="method-i-git-label-Examples">Examples</h4>
+
+<pre class="ruby"><span class="ruby-identifier">git</span> :<span class="ruby-identifier">init</span>
+<span class="ruby-identifier">git</span> :<span class="ruby-identifier">add</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;this.file that.rb&quot;</span>
+<span class="ruby-identifier">git</span> :<span class="ruby-identifier">add</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;onefile.rb&quot;</span>, :<span class="ruby-identifier">rm</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;badfile.cxx&quot;</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-git_source')" id="l_method-i-git_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L145" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-git_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 145</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">git</span>(<span class="ruby-identifier">commands</span>={})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">commands</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>)
+    <span class="ruby-identifier">run</span> <span class="ruby-node">&quot;git #{commands}&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">commands</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">run</span> <span class="ruby-node">&quot;git #{cmd} #{options}&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-initializer">
+            
+              <b>initializer</b>(filename, data=nil, &amp;block)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-initializer" name="method-i-initializer" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Create a new initializer with the provided code (either in a block or a
+string).</p>
+
+<h4 id="method-i-initializer-label-Examples">Examples</h4>
+
+<pre class="ruby"><span class="ruby-identifier">initializer</span>(<span class="ruby-string">&quot;globals.rb&quot;</span>) <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">data</span> = <span class="ruby-string">&quot;&quot;</span>
+
+  [<span class="ruby-string">'MY_WORK'</span>, <span class="ruby-string">'ADMINS'</span>, <span class="ruby-string">'BEST_COMPANY_EVAR'</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">const</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{const} = :entp\n&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">data</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">initializer</span>(<span class="ruby-string">&quot;api.rb&quot;</span>, <span class="ruby-string">&quot;API_KEY = '123456'&quot;</span>)
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-initializer_source')" id="l_method-i-initializer_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L227" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-initializer_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 227</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initializer</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">data</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">log</span> <span class="ruby-value">:initializer</span>, <span class="ruby-identifier">filename</span>
+  <span class="ruby-identifier">create_file</span>(<span class="ruby-node">&quot;config/initializers/#{filename}&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>, &amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-lib">
+            
+              <b>lib</b>(filename, data=nil, &amp;block)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-lib" name="method-i-lib" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Create a new file in the lib/ directory. Code can be specified in a block
+or a data string can be given.</p>
+
+<h4 id="method-i-lib-label-Examples">Examples</h4>
+
+<pre>lib(&quot;crypto.rb&quot;) do
+  &quot;crypted_special_value = '#{rand}--#{Time.now}--#{rand(1337)}--'&quot;
+end
+
+lib(&quot;foreign.rb&quot;, &quot;# Foreign code is fun&quot;)</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-lib_source')" id="l_method-i-lib_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L183" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-lib_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 183</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">lib</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">data</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">log</span> <span class="ruby-value">:lib</span>, <span class="ruby-identifier">filename</span>
+  <span class="ruby-identifier">create_file</span>(<span class="ruby-node">&quot;lib/#{filename}&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>, &amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-plugin">
+            
+              <b>plugin</b>(name, options)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-plugin" name="method-i-plugin" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Install a plugin. You must provide either a Subversion url or Git url.</p>
+
+<p>For a Git-hosted plugin, you can specify a branch and whether it should be
+added as a submodule instead of cloned.</p>
+
+<p>For a Subversion-hosted plugin you can specify a revision.</p>
+
+<h4 id="method-i-plugin-label-Examples">Examples</h4>
+
+<pre class="ruby"><span class="ruby-identifier">plugin</span> <span class="ruby-string">'restful-authentication'</span>, :<span class="ruby-identifier">git</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'git://github.com/technoweenie/restful-authentication.git'</span>
+<span class="ruby-identifier">plugin</span> <span class="ruby-string">'restful-authentication'</span>, :<span class="ruby-identifier">git</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'git://github.com/technoweenie/restful-authentication.git'</span>, :<span class="ruby-identifier">branch</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'stable'</span>
+<span class="ruby-identifier">plugin</span> <span class="ruby-string">'restful-authentication'</span>, :<span class="ruby-identifier">git</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'git://github.com/technoweenie/restful-authentication.git'</span>, :<span class="ruby-identifier">submodule</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+<span class="ruby-identifier">plugin</span> <span class="ruby-string">'restful-authentication'</span>, :<span class="ruby-identifier">svn</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'svn://svnhub.com/technoweenie/restful-authentication/trunk'</span>
+<span class="ruby-identifier">plugin</span> <span class="ruby-string">'restful-authentication'</span>, :<span class="ruby-identifier">svn</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'svn://svnhub.com/technoweenie/restful-authentication/trunk'</span>, :<span class="ruby-identifier">revision</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1234</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-plugin_source')" id="l_method-i-plugin_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L24" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-plugin_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">plugin</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">log</span> <span class="ruby-value">:plugin</span>, <span class="ruby-identifier">name</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:git</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:submodule</span>]
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:git</span>] = <span class="ruby-node">&quot;-b #{options[:branch]} #{options[:git]}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:branch</span>]
+    <span class="ruby-identifier">in_root</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">run</span> <span class="ruby-node">&quot;git submodule add #{options[:git]} vendor/plugins/#{name}&quot;</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:git</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:svn</span>]
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:git</span>] = <span class="ruby-node">&quot;-b #{options[:branch]} #{options[:git]}&quot;</span>   <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:branch</span>]
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:svn</span>] = <span class="ruby-node">&quot;-r #{options[:revision]} #{options[:svn]}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:revision</span>]
+    <span class="ruby-identifier">in_root</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">run_ruby_script</span> <span class="ruby-node">&quot;script/rails plugin install #{options[:svn] || options[:git]}&quot;</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">log</span> <span class="ruby-node">&quot;! no git or svn provided for #{name}. Skipping...&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-rake">
+            
+              <b>rake</b>(command, options={})
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-rake" name="method-i-rake" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Runs the supplied rake task</p>
+
+<h4 id="method-i-rake-label-Example">Example</h4>
+
+<pre class="ruby"><span class="ruby-identifier">rake</span>(<span class="ruby-string">&quot;db:migrate&quot;</span>)
+<span class="ruby-identifier">rake</span>(<span class="ruby-string">&quot;db:migrate&quot;</span>, :<span class="ruby-identifier">env</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;production&quot;</span>)
+<span class="ruby-identifier">rake</span>(<span class="ruby-string">&quot;gems:install&quot;</span>, :<span class="ruby-identifier">sudo</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-rake_source')" id="l_method-i-rake_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L255" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-rake_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 255</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">rake</span>(<span class="ruby-identifier">command</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-identifier">log</span> <span class="ruby-value">:rake</span>, <span class="ruby-identifier">command</span>
+  <span class="ruby-identifier">env</span>  = <span class="ruby-identifier">options</span>[<span class="ruby-value">:env</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;RAILS_ENV&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-string">'development'</span>
+  <span class="ruby-identifier">sudo</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:sudo</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">RbConfig</span><span class="ruby-operator">::</span><span class="ruby-constant">CONFIG</span>[<span class="ruby-string">'host_os'</span>] <span class="ruby-operator">!~</span> <span class="ruby-regexp">/mswin|mingw/</span> <span class="ruby-operator">?</span> <span class="ruby-string">'sudo '</span> <span class="ruby-operator">:</span> <span class="ruby-string">''</span>
+  <span class="ruby-identifier">in_root</span> { <span class="ruby-identifier">run</span>(<span class="ruby-node">&quot;#{sudo}#{extify(:rake)} #{command} RAILS_ENV=#{env}&quot;</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-rakefile">
+            
+              <b>rakefile</b>(filename, data=nil, &amp;block)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-rakefile" name="method-i-rakefile" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Create a new Rakefile with the provided code (either in a block or a
+string).</p>
+
+<h4 id="method-i-rakefile-label-Examples">Examples</h4>
+
+<pre>rakefile(&quot;bootstrap.rake&quot;) do
+  project = ask(&quot;What is the UNIX name of your project?&quot;)
+
+  &lt;&lt;-TASK
+    namespace :#{project} do
+      task :bootstrap do
+        puts &quot;i like boots!&quot;
+      end
+    end
+  TASK
+end
+
+rakefile(&quot;seed.rake&quot;, &quot;puts 'im plantin ur seedz'&quot;)</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-rakefile_source')" id="l_method-i-rakefile_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L206" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-rakefile_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 206</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">rakefile</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">data</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">log</span> <span class="ruby-value">:rakefile</span>, <span class="ruby-identifier">filename</span>
+  <span class="ruby-identifier">create_file</span>(<span class="ruby-node">&quot;lib/tasks/#{filename}&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>, &amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-readme">
+            
+              <b>readme</b>(path)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-readme" name="method-i-readme" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Reads the given file at the source root and prints it in the console.</p>
+
+<h3 id="method-i-readme-label-Example">Example</h3>
+
+<pre>readme &quot;README&quot;</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-readme_source')" id="l_method-i-readme_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L294" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-readme_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 294</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">readme</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">log</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">find_in_source_paths</span>(<span class="ruby-identifier">path</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-route">
+            
+              <b>route</b>(routing_code)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-route" name="method-i-route" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Make an entry in <a href="../../Rails.html">Rails</a> routing file
+config/routes.rb</p>
+
+<h3 id="method-i-route-label-Example">Example</h3>
+
+<pre class="ruby"><span class="ruby-identifier">route</span> <span class="ruby-string">&quot;root :to =&gt; 'welcome'&quot;</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-route_source')" id="l_method-i-route_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L279" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-route_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 279</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">route</span>(<span class="ruby-identifier">routing_code</span>)
+  <span class="ruby-identifier">log</span> <span class="ruby-value">:route</span>, <span class="ruby-identifier">routing_code</span>
+  <span class="ruby-identifier">sentinel</span> = <span class="ruby-regexp">/\.routes\.draw do(?:\s*\|map\|)?\s*$/</span>
+
+  <span class="ruby-identifier">in_root</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">inject_into_file</span> <span class="ruby-string">'config/routes.rb'</span>, <span class="ruby-node">&quot;\n  #{routing_code}\n&quot;</span>, { <span class="ruby-value">:after</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sentinel</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-vendor">
+            
+              <b>vendor</b>(filename, data=nil, &amp;block)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-vendor" name="method-i-vendor" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Create a new file in the vendor/ directory. Code can be specified in a
+block or a data string can be given.</p>
+
+<h4 id="method-i-vendor-label-Examples">Examples</h4>
+
+<pre>vendor(&quot;sekrit.rb&quot;) do
+  sekrit_salt = &quot;#{Time.now}--#{3.years.ago}--#{rand}--&quot;
+  &quot;salt = '#{sekrit_salt}'&quot;
+end
+
+vendor(&quot;foreign.rb&quot;, &quot;# Foreign code is fun&quot;)</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-vendor_source')" id="l_method-i-vendor_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L167" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-vendor_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 167</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">vendor</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">data</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">log</span> <span class="ruby-value">:vendor</span>, <span class="ruby-identifier">filename</span>
+  <span class="ruby-identifier">create_file</span>(<span class="ruby-node">&quot;vendor/#{filename}&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-value">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>, &amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-extify">
+            
+              <b>extify</b>(name)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-extify" name="method-i-extify" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Add an extension to the given name based on the platform.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-extify_source')" id="l_method-i-extify_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L315" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-extify_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 315</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extify</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">RbConfig</span><span class="ruby-operator">::</span><span class="ruby-constant">CONFIG</span>[<span class="ruby-string">'host_os'</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">/mswin|mingw/</span>
+    <span class="ruby-node">&quot;#{name}.bat&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-log">
+            
+              <b>log</b>(*args)
+            
+            <a href="../../../classes/Rails/Generators/Actions.html#method-i-log" name="method-i-log" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Define log for backwards compatibility. If just one argument is sent,
+invoke say, otherwise invoke say_status. Differently from say and similarly
+to say_status, this method respects the quiet? option given.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-log_source')" id="l_method-i-log_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/d246da1603a9833532a5eebb3836be25a87dfaa6/railties/lib/rails/generators/actions.rb#L304" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-log_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/actions.rb, line 304</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-number">1</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">quiet?</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">behavior</span> <span class="ruby-operator">==</span> <span class="ruby-value">:invoke</span> <span class="ruby-operator">?</span> <span class="ruby-value">:green</span> <span class="ruby-operator">:</span> <span class="ruby-value">:red</span>)
+    <span class="ruby-identifier">say_status</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

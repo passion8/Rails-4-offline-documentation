@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::Caching::Pages::ClassMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActionController::Caching::Pages::ClassMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/actionpack/lib/action_controller/caching/pages_rb.html">actionpack/lib/action_controller/caching/pages.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-cache_page">cache_page</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-caches_page">caches_page</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-expire_page">expire_page</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-cache_page">
+            
+              <b>cache_page</b>(content, path, extension = nil, gzip = Zlib::BEST_COMPRESSION)
+            
+            <a href="../../../../classes/ActionController/Caching/Pages/ClassMethods.html#method-i-cache_page" name="method-i-cache_page" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Manually cache the <code>content</code> in the key determined by
+<code>path</code>. Example:</p>
+
+<pre>cache_page &quot;I'm the cached content&quot;, &quot;/lists/show&quot;</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-cache_page_source')" id="l_method-i-cache_page_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c4ef3d34ee4b901a591af8b48012c9233e2fe4a3/actionpack/lib/action_controller/caching/pages.rb#L77" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-cache_page_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/caching/pages.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cache_page</span>(<span class="ruby-identifier">content</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">extension</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">gzip</span> = <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">BEST_COMPRESSION</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">perform_caching</span>
+  <span class="ruby-identifier">path</span> = <span class="ruby-identifier">page_cache_path</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">extension</span>)
+
+  <span class="ruby-identifier">instrument_page_cache</span> <span class="ruby-value">:write_page</span>, <span class="ruby-identifier">path</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">makedirs</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">path</span>))
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-string">&quot;wb+&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">content</span>) }
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">gzip</span>
+      <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">GzipWriter</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span> <span class="ruby-operator">+</span> <span class="ruby-string">'.gz'</span>, <span class="ruby-identifier">gzip</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">content</span>) }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-caches_page">
+            
+              <b>caches_page</b>(*actions)
+            
+            <a href="../../../../classes/ActionController/Caching/Pages/ClassMethods.html#method-i-caches_page" name="method-i-caches_page" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Caches the <code>actions</code> using the page-caching approach that’ll
+store the cache in a path within the page_cache_directory that matches the
+triggering url.</p>
+
+<p>You can also pass a :gzip option to override the class configuration one.</p>
+
+<p>Usage:</p>
+
+<pre class="ruby"><span class="ruby-comment"># cache the index action</span>
+<span class="ruby-identifier">caches_page</span> :<span class="ruby-identifier">index</span>
+
+<span class="ruby-comment"># cache the index action except for JSON requests</span>
+<span class="ruby-identifier">caches_page</span> :<span class="ruby-identifier">index</span>, :<span class="ruby-keyword">if</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">c</span>.<span class="ruby-identifier">request</span>.<span class="ruby-identifier">format</span>.<span class="ruby-identifier">json?</span> }
+
+<span class="ruby-comment"># don't gzip images</span>
+<span class="ruby-identifier">caches_page</span> :<span class="ruby-identifier">image</span>, :<span class="ruby-identifier">gzip</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-caches_page_source')" id="l_method-i-caches_page_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c4ef3d34ee4b901a591af8b48012c9233e2fe4a3/actionpack/lib/action_controller/caching/pages.rb#L106" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-caches_page_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/caching/pages.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">caches_page</span>(*<span class="ruby-identifier">actions</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">perform_caching</span>
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">actions</span>.<span class="ruby-identifier">extract_options!</span>
+
+  <span class="ruby-identifier">gzip_level</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-value">:gzip</span>, <span class="ruby-identifier">page_cache_compression</span>)
+  <span class="ruby-identifier">gzip_level</span> = <span class="ruby-keyword">case</span> <span class="ruby-identifier">gzip_level</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Symbol</span>
+    <span class="ruby-constant">Zlib</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">gzip_level</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">upcase</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Fixnum</span>
+    <span class="ruby-identifier">gzip_level</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">BEST_COMPRESSION</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">after_filter</span>({<span class="ruby-value">:only</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">actions</span>}.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">c</span>.<span class="ruby-identifier">cache_page</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">gzip_level</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-expire_page">
+            
+              <b>expire_page</b>(path)
+            
+            <a href="../../../../classes/ActionController/Caching/Pages/ClassMethods.html#method-i-expire_page" name="method-i-expire_page" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Expires the page that was cached with the <code>path</code> as a key.
+Example:</p>
+
+<pre>expire_page &quot;/lists/show&quot;</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-expire_page_source')" id="l_method-i-expire_page_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/c4ef3d34ee4b901a591af8b48012c9233e2fe4a3/actionpack/lib/action_controller/caching/pages.rb#L65" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-expire_page_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/caching/pages.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">expire_page</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">perform_caching</span>
+  <span class="ruby-identifier">path</span> = <span class="ruby-identifier">page_cache_path</span>(<span class="ruby-identifier">path</span>)
+
+  <span class="ruby-identifier">instrument_page_cache</span> <span class="ruby-value">:expire_page</span>, <span class="ruby-identifier">path</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">path</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">path</span>)
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">path</span> <span class="ruby-operator">+</span> <span class="ruby-string">'.gz'</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">path</span> <span class="ruby-operator">+</span> <span class="ruby-string">'.gz'</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

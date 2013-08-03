@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::MassAssignmentSecurity</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveModel::MassAssignmentSecurity 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activemodel/lib/active_model/mass_assignment_security_rb.html">activemodel/lib/active_model/mass_assignment_security.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/mass_assignment_security/permission_set_rb.html">activemodel/lib/active_model/mass_assignment_security/permission_set.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/mass_assignment_security/sanitizer_rb.html">activemodel/lib/active_model/mass_assignment_security/sanitizer.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h1 id="label-Active+Model+Mass-Assignment+Security">Active Model Mass-Assignment Security</h1>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="MassAssignmentSecurity/ClassMethods.html">ActiveModel::MassAssignmentSecurity::ClassMethods</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="MassAssignmentSecurity/BlackList.html">ActiveModel::MassAssignmentSecurity::BlackList</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="MassAssignmentSecurity/Error.html">ActiveModel::MassAssignmentSecurity::Error</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="MassAssignmentSecurity/LoggerSanitizer.html">ActiveModel::MassAssignmentSecurity::LoggerSanitizer</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="MassAssignmentSecurity/PermissionSet.html">ActiveModel::MassAssignmentSecurity::PermissionSet</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="MassAssignmentSecurity/Sanitizer.html">ActiveModel::MassAssignmentSecurity::Sanitizer</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="MassAssignmentSecurity/StrictSanitizer.html">ActiveModel::MassAssignmentSecurity::StrictSanitizer</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="MassAssignmentSecurity/WhiteList.html">ActiveModel::MassAssignmentSecurity::WhiteList</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-mass_assignment_authorizer">mass_assignment_authorizer</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-sanitize_for_mass_assignment">sanitize_for_mass_assignment</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-mass_assignment_authorizer">
+            
+              <b>mass_assignment_authorizer</b>(role)
+            
+            <a href="../../classes/ActiveModel/MassAssignmentSecurity.html#method-i-mass_assignment_authorizer" name="method-i-mass_assignment_authorizer" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-mass_assignment_authorizer_source')" id="l_method-i-mass_assignment_authorizer_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/e63f04cc0c7d517010f1d6840680b46e69dc75a9/activemodel/lib/active_model/mass_assignment_security.rb#L233" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-mass_assignment_authorizer_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security.rb, line 233</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mass_assignment_authorizer</span>(<span class="ruby-identifier">role</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">active_authorizer</span>[<span class="ruby-identifier">role</span> <span class="ruby-operator">||</span> <span class="ruby-value">:default</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-sanitize_for_mass_assignment">
+            
+              <b>sanitize_for_mass_assignment</b>(attributes, role = nil)
+            
+            <a href="../../classes/ActiveModel/MassAssignmentSecurity.html#method-i-sanitize_for_mass_assignment" name="method-i-sanitize_for_mass_assignment" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-sanitize_for_mass_assignment_source')" id="l_method-i-sanitize_for_mass_assignment_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/e63f04cc0c7d517010f1d6840680b46e69dc75a9/activemodel/lib/active_model/mass_assignment_security.rb#L229" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-sanitize_for_mass_assignment_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/mass_assignment_security.rb, line 229</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">sanitize_for_mass_assignment</span>(<span class="ruby-identifier">attributes</span>, <span class="ruby-identifier">role</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">_mass_assignment_sanitizer</span>.<span class="ruby-identifier">sanitize</span>(<span class="ruby-identifier">attributes</span>, <span class="ruby-identifier">mass_assignment_authorizer</span>(<span class="ruby-identifier">role</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

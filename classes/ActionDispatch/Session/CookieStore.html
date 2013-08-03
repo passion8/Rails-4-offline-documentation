@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionDispatch::Session::CookieStore</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActionDispatch::Session::CookieStore 
+            
+                <span class="parent">&lt; 
+                    
+                    Rack::Session::Cookie
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_dispatch/middleware/session/cookie_store_rb.html">actionpack/lib/action_dispatch/middleware/session/cookie_store.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>This cookie-based session store is the <a href="../../Rails.html">Rails</a>
+default. Sessions typically contain at most a user_id and flash message;
+both fit within the 4K cookie size limit. Cookie-based sessions are
+dramatically faster than the alternatives.</p>
+
+<p>If you have more than 4K of session data or don’t want your data to be
+visible to the user, pick another session store.</p>
+
+<p>CookieOverflow is raised if you attempt to store more than 4K of data.</p>
+
+<p>A message digest is included with the cookie to ensure data integrity: a
+user cannot alter his <code>user_id</code> without knowing the secret key
+included in the hash. New apps are generated with a pregenerated secret in
+config/environment.rb. Set your own for old apps you’re upgrading.</p>
+
+<p><a href="../Session.html">Session</a> options:</p>
+<ul><li>
+<p><code>:secret</code>: An application-wide key string. It's important that
+the secret is not vulnerable to a dictionary attack. Therefore, you should
+choose a secret consisting of random numbers and letters and more than 30
+characters.</p>
+
+<pre class="ruby">:<span class="ruby-identifier">secret</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'449fe2e7daee471bffae2fd8dc02313d'</span>
+</pre>
+</li><li>
+<p><code>:digest</code>: The message digest algorithm used to verify session
+integrity defaults to 'SHA1' but may be any digest provided by OpenSSL,
+such as 'MD5', 'RIPEMD160', 'SHA256', etc.</p>
+</li></ul>
+
+<p>To generate a secret key for an existing application, run “rake secret” and
+set the key in config/initializers/secret_token.rb.</p>
+
+<p>Note that changing digest or secret invalidates all existing sessions!</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+    <!-- Includes -->
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+      
+        <li>
+          
+            <a href="Compatibility.html">
+              ActionDispatch::Session::Compatibility
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="StaleSessionCheck.html">
+              ActionDispatch::Session::StaleSessionCheck
+            </a>
+          
+        </li>
+      
+    </ul>
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>    

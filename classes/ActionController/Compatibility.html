@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::Compatibility</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActionController::Compatibility 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionpack/lib/action_controller/metal/compatibility_rb.html">actionpack/lib/action_controller/metal/compatibility.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>#</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-_handle_method_missing">_handle_method_missing</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-_normalize_options">_normalize_options</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-assign_shortcuts">assign_shortcuts</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-default_charset-3D">default_charset=</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-initialize_template_class">initialize_template_class</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-method_for_action">method_for_action</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-render_to_body">render_to_body</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-rescue_action">rescue_action</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">UnknownAction</td>
+            <td>=</td>
+            <td class="attr-value">ActiveSupport::Deprecation::DeprecatedConstantProxy.new('ActionController::UnknownAction', '::AbstractController::ActionNotFound')</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">DoubleRenderError</td>
+            <td>=</td>
+            <td class="attr-value">ActiveSupport::Deprecation::DeprecatedConstantProxy.new('ActionController::DoubleRenderError', '::AbstractController::DoubleRenderError')</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-default_charset-3D">
+            
+              <b>default_charset=</b>(new_charset)
+            
+            <a href="../../classes/ActionController/Compatibility.html#method-c-default_charset-3D" name="method-c-default_charset-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-default_charset-3D_source')" id="l_method-c-default_charset-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/979e198c14a95010aca17b6e640f386961360794/actionpack/lib/action_controller/metal/compatibility.rb#L16" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-default_charset-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/metal/compatibility.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">default_charset=</span>(<span class="ruby-identifier">new_charset</span>)
+  <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;Setting default charset at controller level&quot;</span>            <span class="ruby-string">&quot; is deprecated, please use `config.action_dispatch.default_charset` instead&quot;</span>, <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">Response</span>.<span class="ruby-identifier">default_charset</span> = <span class="ruby-identifier">new_charset</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-_handle_method_missing">
+            
+              <b>_handle_method_missing</b>()
+            
+            <a href="../../classes/ActionController/Compatibility.html#method-i-_handle_method_missing" name="method-i-_handle_method_missing" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-_handle_method_missing_source')" id="l_method-i-_handle_method_missing_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/979e198c14a95010aca17b6e640f386961360794/actionpack/lib/action_controller/metal/compatibility.rb#L53" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-_handle_method_missing_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/metal/compatibility.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">_handle_method_missing</span>
+  <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;Using `method_missing` to handle non&quot;</span>          <span class="ruby-string">&quot; existing actions is deprecated and will be removed in Rails 4.0, &quot;</span>          <span class="ruby-string">&quot; please use `action_missing` instead.&quot;</span>, <span class="ruby-identifier">caller</span>
+  <span class="ruby-identifier">method_missing</span>(<span class="ruby-ivar">@_action_name</span>.<span class="ruby-identifier">to_sym</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-_normalize_options">
+            
+              <b>_normalize_options</b>(options)
+            
+            <a href="../../classes/ActionController/Compatibility.html#method-i-_normalize_options" name="method-i-_normalize_options" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-_normalize_options_source')" id="l_method-i-_normalize_options_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/979e198c14a95010aca17b6e640f386961360794/actionpack/lib/action_controller/metal/compatibility.rb#L42" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-_normalize_options_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/metal/compatibility.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">_normalize_options</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:text</span>] = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:nothing</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:text</span>] = <span class="ruby-string">&quot; &quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value">:text</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:text</span>].<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-assign_shortcuts">
+            
+              <b>assign_shortcuts</b>(*)
+            
+            <a href="../../classes/ActionController/Compatibility.html#method-i-assign_shortcuts" name="method-i-assign_shortcuts" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-assign_shortcuts_source')" id="l_method-i-assign_shortcuts_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/979e198c14a95010aca17b6e640f386961360794/actionpack/lib/action_controller/metal/compatibility.rb#L38" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-assign_shortcuts_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/metal/compatibility.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assign_shortcuts</span>(*)
+  <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;Calling `assign_shortcuts` is deprecated and has no effect anymore.&quot;</span>, <span class="ruby-identifier">caller</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-initialize_template_class">
+            
+              <b>initialize_template_class</b>(*)
+            
+            <a href="../../classes/ActionController/Compatibility.html#method-i-initialize_template_class" name="method-i-initialize_template_class" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>For old tests</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-initialize_template_class_source')" id="l_method-i-initialize_template_class_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/979e198c14a95010aca17b6e640f386961360794/actionpack/lib/action_controller/metal/compatibility.rb#L34" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-initialize_template_class_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/metal/compatibility.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_template_class</span>(*)
+  <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;Calling `initialize_template_class` is deprecated and has no effect anymore.&quot;</span>, <span class="ruby-identifier">caller</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-method_for_action">
+            
+              <b>method_for_action</b>(action_name)
+            
+            <a href="../../classes/ActionController/Compatibility.html#method-i-method_for_action" name="method-i-method_for_action" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-method_for_action_source')" id="l_method-i-method_for_action_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/979e198c14a95010aca17b6e640f386961360794/actionpack/lib/action_controller/metal/compatibility.rb#L60" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-method_for_action_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/metal/compatibility.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">method_for_action</span>(<span class="ruby-identifier">action_name</span>)
+  <span class="ruby-keyword">super</span> <span class="ruby-operator">||</span> ((<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">public_method_defined?</span>(<span class="ruby-value">:method_missing</span>) <span class="ruby-operator">||</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">protected_method_defined?</span>(<span class="ruby-value">:method_missing</span>)) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-string">&quot;_handle_method_missing&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-render_to_body">
+            
+              <b>render_to_body</b>(options)
+            
+            <a href="../../classes/ActionController/Compatibility.html#method-i-render_to_body" name="method-i-render_to_body" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-render_to_body_source')" id="l_method-i-render_to_body_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/979e198c14a95010aca17b6e640f386961360794/actionpack/lib/action_controller/metal/compatibility.rb#L48" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-render_to_body_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/metal/compatibility.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">render_to_body</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:template</span>].<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/^\//</span>, <span class="ruby-string">''</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value">:template</span>)
+  <span class="ruby-keyword">super</span> <span class="ruby-operator">||</span> <span class="ruby-string">&quot; &quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-rescue_action">
+            
+              <b>rescue_action</b>(env)
+            
+            <a href="../../classes/ActionController/Compatibility.html#method-i-rescue_action" name="method-i-rescue_action" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-rescue_action_source')" id="l_method-i-rescue_action_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/979e198c14a95010aca17b6e640f386961360794/actionpack/lib/action_controller/metal/compatibility.rb#L27" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-rescue_action_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_controller/metal/compatibility.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">rescue_action</span>(<span class="ruby-identifier">env</span>)
+  <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;Calling `rescue_action` is deprecated and will be removed in Rails 4.0.&quot;</span>, <span class="ruby-identifier">caller</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-identifier">env</span>[<span class="ruby-string">&quot;action_dispatch.rescue.exception&quot;</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

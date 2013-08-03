@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>freeze.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            freeze.rb
+        </h1>
+        <ul class="files">
+            
+            <li>
+                activesupport/lib/active_support/core_ext/date/freeze.rb
+                
+                    <a href="https://github.com/rails/rails/blob/dd3e7a6a349263e4f77736438b62d12c43c73ce3/activesupport/lib/active_support/core_ext/date/freeze.rb" target="_blank" class="github_url">on GitHub</a>
+                
+            </li>
+            <li>Last modified: 2013-08-03 14:59:47 +0530</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><a href="../../../../../../classes/Date.html">Date</a> memoizes some
+instance methods using metaprogramming to wrap the methods with one that
+caches the result in an instance variable.</p>
+
+<p>If a <a href="../../../../../../classes/Date.html">Date</a> is frozen but
+the memoized method hasn’t been called, the first call will result in a
+frozen object error since the memo instance variable is uninitialized.</p>
+
+<p>Work around by eagerly memoizing before the first freeze.</p>
+
+<p>Ruby 1.9 uses a preinitialized instance variable so it’s unaffected. This
+hack is as close as we can get to feature detection:</p>
+
+    </div>
+  
+
+
+  
+    <!-- File only: requires -->
+    <div class="sectiontitle">Required Files</div>
+    <ul>
+      
+        <li>date</li>
+      
+    </ul>
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="../../../../../../classes/Date.html">Date</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

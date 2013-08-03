@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::SecurePassword::InstanceMethodsOnActivation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveModel::SecurePassword::InstanceMethodsOnActivation 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activemodel/lib/active_model/secure_password_rb.html">activemodel/lib/active_model/secure_password.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-authenticate">authenticate</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-password-3D">password=</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-authenticate">
+            
+              <b>authenticate</b>(unencrypted_password)
+            
+            <a href="../../../classes/ActiveModel/SecurePassword/InstanceMethodsOnActivation.html#method-i-authenticate" name="method-i-authenticate" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns self if the password is correct, otherwise false.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-authenticate_source')" id="l_method-i-authenticate_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/826a85069627060c11baf932423702b1228dd4df/activemodel/lib/active_model/secure_password.rb#L57" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-authenticate_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/secure_password.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">authenticate</span>(<span class="ruby-identifier">unencrypted_password</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">BCrypt</span><span class="ruby-operator">::</span><span class="ruby-constant">Password</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">password_digest</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">unencrypted_password</span>
+    <span class="ruby-keyword">self</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-password-3D">
+            
+              <b>password=</b>(unencrypted_password)
+            
+            <a href="../../../classes/ActiveModel/SecurePassword/InstanceMethodsOnActivation.html#method-i-password-3D" name="method-i-password-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Encrypts the password into the password_digest attribute.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-password-3D_source')" id="l_method-i-password-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/826a85069627060c11baf932423702b1228dd4df/activemodel/lib/active_model/secure_password.rb#L66" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-password-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/secure_password.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">password=</span>(<span class="ruby-identifier">unencrypted_password</span>)
+  <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">unencrypted_password</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">unencrypted_password</span>.<span class="ruby-identifier">blank?</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">password_digest</span> = <span class="ruby-constant">BCrypt</span><span class="ruby-operator">::</span><span class="ruby-constant">Password</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">unencrypted_password</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::MessageEncryptor</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveSupport::MessageEncryptor 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activesupport/lib/active_support/message_encryptor_rb.html">activesupport/lib/active_support/message_encryptor.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><a href="MessageEncryptor.html">MessageEncryptor</a> is a simple way to
+encrypt values which get stored somewhere you don't trust.</p>
+
+<p>The cipher text and initialization vector are base64 encoded and returned
+to you.</p>
+
+<p>This can be used in situations similar to the <code>MessageVerifier</code>,
+but where you don’t want users to be able to determine the value of the
+payload.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="MessageEncryptor/InvalidMessage.html">ActiveSupport::MessageEncryptor::InvalidMessage</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-decrypt">decrypt</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-decrypt_and_verify">decrypt_and_verify</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-encrypt">encrypt</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-encrypt_and_sign">encrypt_and_sign</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">OpenSSLCipherError</td>
+            <td>=</td>
+            <td class="attr-value">OpenSSL::Cipher.const_defined?(:CipherError) ? OpenSSL::Cipher::CipherError : OpenSSL::CipherError</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(secret, options = {})
+            
+            <a href="../../classes/ActiveSupport/MessageEncryptor.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4f440a38330deea048e8328431c0984a04a90bfa/activesupport/lib/active_support/message_encryptor.rb#L26" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/message_encryptor.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">secret</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+    <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;The second parameter should be an options hash. Use :cipher =&gt; 'algorithm' to specify the cipher algorithm.&quot;</span>
+    <span class="ruby-identifier">options</span> = { <span class="ruby-value">:cipher</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span> }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@secret</span> = <span class="ruby-identifier">secret</span>
+  <span class="ruby-ivar">@cipher</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:cipher</span>] <span class="ruby-operator">||</span> <span class="ruby-string">'aes-256-cbc'</span>
+  <span class="ruby-ivar">@verifier</span> = <span class="ruby-constant">MessageVerifier</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@secret</span>, <span class="ruby-value">:serializer</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">NullSerializer</span>)
+  <span class="ruby-ivar">@serializer</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:serializer</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Marshal</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-decrypt">
+            
+              <b>decrypt</b>(value)
+            
+            <a href="../../classes/ActiveSupport/MessageEncryptor.html#method-i-decrypt" name="method-i-decrypt" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-decrypt_source')" id="l_method-i-decrypt_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4f440a38330deea048e8328431c0984a04a90bfa/activesupport/lib/active_support/message_encryptor.rb#L44" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-decrypt_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/message_encryptor.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">decrypt</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;MessageEncryptor#decrypt is deprecated as it is not safe without a signature. &quot;</span>          <span class="ruby-node">&quot;Please use MessageEncryptor#decrypt_and_verify instead.&quot;</span>
+  <span class="ruby-identifier">_decrypt</span>(<span class="ruby-identifier">value</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-decrypt_and_verify">
+            
+              <b>decrypt_and_verify</b>(value)
+            
+            <a href="../../classes/ActiveSupport/MessageEncryptor.html#method-i-decrypt_and_verify" name="method-i-decrypt_and_verify" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Decrypt and verify a message. We need to verify the message in order to
+avoid padding attacks. Reference: <a
+href="http://www.limited-entropy.com/padding-oracle-attacks">www.limited-entropy.com/padding-oracle-attacks</a></p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-decrypt_and_verify_source')" id="l_method-i-decrypt_and_verify_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4f440a38330deea048e8328431c0984a04a90bfa/activesupport/lib/active_support/message_encryptor.rb#L58" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-decrypt_and_verify_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/message_encryptor.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">decrypt_and_verify</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">_decrypt</span>(<span class="ruby-identifier">verifier</span>.<span class="ruby-identifier">verify</span>(<span class="ruby-identifier">value</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-encrypt">
+            
+              <b>encrypt</b>(value)
+            
+            <a href="../../classes/ActiveSupport/MessageEncryptor.html#method-i-encrypt" name="method-i-encrypt" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-encrypt_source')" id="l_method-i-encrypt_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4f440a38330deea048e8328431c0984a04a90bfa/activesupport/lib/active_support/message_encryptor.rb#L38" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-encrypt_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/message_encryptor.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">encrypt</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;MessageEncryptor#encrypt is deprecated as it is not safe without a signature. &quot;</span>          <span class="ruby-node">&quot;Please use MessageEncryptor#encrypt_and_sign instead.&quot;</span>
+  <span class="ruby-identifier">_encrypt</span>(<span class="ruby-identifier">value</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-encrypt_and_sign">
+            
+              <b>encrypt_and_sign</b>(value)
+            
+            <a href="../../classes/ActiveSupport/MessageEncryptor.html#method-i-encrypt_and_sign" name="method-i-encrypt_and_sign" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Encrypt and sign a message. We need to sign the message in order to avoid
+padding attacks. Reference: <a
+href="http://www.limited-entropy.com/padding-oracle-attacks">www.limited-entropy.com/padding-oracle-attacks</a></p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-encrypt_and_sign_source')" id="l_method-i-encrypt_and_sign_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4f440a38330deea048e8328431c0984a04a90bfa/activesupport/lib/active_support/message_encryptor.rb#L52" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-encrypt_and_sign_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/message_encryptor.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">encrypt_and_sign</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">verifier</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">_encrypt</span>(<span class="ruby-identifier">value</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

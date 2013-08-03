@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::SpawnMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveRecord::SpawnMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activerecord/lib/active_record/relation/spawn_methods_rb.html">activerecord/lib/active_record/relation/spawn_methods.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-apply_finder_options">apply_finder_options</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-except">except</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-merge">merge</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-only">only</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">VALID_FIND_OPTIONS</td>
+            <td>=</td>
+            <td class="attr-value">[ :conditions, :include, :joins, :limit, :offset, :extend,
+:order, :select, :readonly, :group, :having, :from, :lock ]</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-apply_finder_options">
+            
+              <b>apply_finder_options</b>(options)
+            
+            <a href="../../classes/ActiveRecord/SpawnMethods.html#method-i-apply_finder_options" name="method-i-apply_finder_options" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-apply_finder_options_source')" id="l_method-i-apply_finder_options_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/da5e5c5f779355a2e99e63a90612cbeaeb0fc986/activerecord/lib/active_record/relation/spawn_methods.rb#L128" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-apply_finder_options_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/relation/spawn_methods.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">apply_finder_options</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">clone</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">relation</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>
+
+  <span class="ruby-identifier">options</span>.<span class="ruby-identifier">assert_valid_keys</span>(<span class="ruby-constant">VALID_FIND_OPTIONS</span>)
+  <span class="ruby-identifier">finders</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-identifier">finders</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">!=</span> <span class="ruby-value">:limit</span> }
+
+  ([<span class="ruby-value">:joins</span>, <span class="ruby-value">:select</span>, <span class="ruby-value">:group</span>, <span class="ruby-value">:order</span>, <span class="ruby-value">:having</span>, <span class="ruby-value">:limit</span>, <span class="ruby-value">:offset</span>, <span class="ruby-value">:from</span>, <span class="ruby-value">:lock</span>, <span class="ruby-value">:readonly</span>] &amp; <span class="ruby-identifier">finders</span>.<span class="ruby-identifier">keys</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">finder</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">finder</span>, <span class="ruby-identifier">finders</span>[<span class="ruby-identifier">finder</span>])
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">finders</span>[<span class="ruby-value">:conditions</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:conditions</span>)
+  <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-identifier">finders</span>[<span class="ruby-value">:include</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:include</span>)
+  <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">extending</span>(<span class="ruby-identifier">finders</span>[<span class="ruby-value">:extend</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:extend</span>)
+
+  <span class="ruby-identifier">relation</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-except">
+            
+              <b>except</b>(*skips)
+            
+            <a href="../../classes/ActiveRecord/SpawnMethods.html#method-i-except" name="method-i-except" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Removes from the query the condition(s) specified in <code>skips</code>.</p>
+
+<p>Example:</p>
+
+<pre>Post.order('id asc').except(:order)                  # discards the order condition
+Post.where('id &gt; 10').order('id asc').except(:where) # discards the where condition but keeps the order</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-except_source')" id="l_method-i-except_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/da5e5c5f779355a2e99e63a90612cbeaeb0fc986/activerecord/lib/active_record/relation/spawn_methods.rb#L82" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-except_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/relation/spawn_methods.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">except</span>(*<span class="ruby-identifier">skips</span>)
+  <span class="ruby-identifier">result</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@klass</span>, <span class="ruby-identifier">table</span>)
+  <span class="ruby-identifier">result</span>.<span class="ruby-identifier">default_scoped</span> = <span class="ruby-identifier">default_scoped</span>
+
+  ((<span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">ASSOCIATION_METHODS</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">MULTI_VALUE_METHODS</span>) <span class="ruby-operator">-</span> <span class="ruby-identifier">skips</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_values=&quot;</span>, <span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_values&quot;</span>))
+  <span class="ruby-keyword">end</span>
+
+  (<span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">SINGLE_VALUE_METHODS</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">skips</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_value=&quot;</span>, <span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_value&quot;</span>))
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Apply scope extension modules</span>
+  <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:apply_modules</span>, <span class="ruby-identifier">extensions</span>)
+
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-merge">
+            
+              <b>merge</b>(r)
+            
+            <a href="../../classes/ActiveRecord/SpawnMethods.html#method-i-merge" name="method-i-merge" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-merge_source')" id="l_method-i-merge_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/da5e5c5f779355a2e99e63a90612cbeaeb0fc986/activerecord/lib/active_record/relation/spawn_methods.rb#L5" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-merge_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/relation/spawn_methods.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">merge</span>(<span class="ruby-identifier">r</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">r</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">to_a</span> &amp; <span class="ruby-identifier">r</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+
+  <span class="ruby-identifier">merged_relation</span> = <span class="ruby-identifier">clone</span>
+
+  <span class="ruby-identifier">r</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">with_default_scope</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">default_scoped?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">klass</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">klass</span>
+
+  <span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">ASSOCIATION_METHODS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">value</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_values&quot;</span>)
+
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">method</span> <span class="ruby-operator">==</span> <span class="ruby-value">:includes</span>
+        <span class="ruby-identifier">merged_relation</span> = <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-identifier">value</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_values=&quot;</span>, <span class="ruby-identifier">value</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  (<span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">MULTI_VALUE_METHODS</span> <span class="ruby-operator">-</span> [<span class="ruby-value">:joins</span>, <span class="ruby-value">:where</span>, <span class="ruby-value">:order</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">value</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_values&quot;</span>)
+    <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_values=&quot;</span>, <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_values&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">value</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">present?</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">joins_values</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">joins_values</span>
+
+  <span class="ruby-identifier">merged_wheres</span> = <span class="ruby-ivar">@where_values</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">where_values</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@where_values</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-comment"># Remove duplicates, last one wins.</span>
+    <span class="ruby-identifier">seen</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">table</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">table</span>] = {} }
+    <span class="ruby-identifier">merged_wheres</span> = <span class="ruby-identifier">merged_wheres</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">w</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">nuke</span> = <span class="ruby-keyword">false</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">w</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:operator</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">w</span>.<span class="ruby-identifier">operator</span> <span class="ruby-operator">==</span> <span class="ruby-value">:==</span>
+        <span class="ruby-identifier">name</span>              = <span class="ruby-identifier">w</span>.<span class="ruby-identifier">left</span>.<span class="ruby-identifier">name</span>
+        <span class="ruby-identifier">table</span>             = <span class="ruby-identifier">w</span>.<span class="ruby-identifier">left</span>.<span class="ruby-identifier">relation</span>.<span class="ruby-identifier">name</span>
+        <span class="ruby-identifier">nuke</span>              = <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">table</span>][<span class="ruby-identifier">name</span>]
+        <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">table</span>][<span class="ruby-identifier">name</span>] = <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">nuke</span>
+    }.<span class="ruby-identifier">reverse</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">where_values</span> = <span class="ruby-identifier">merged_wheres</span>
+
+  (<span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">SINGLE_VALUE_METHODS</span> <span class="ruby-operator">-</span> [<span class="ruby-value">:lock</span>, <span class="ruby-value">:create_with</span>, <span class="ruby-value">:reordering</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">value</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_value&quot;</span>)
+    <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_value=&quot;</span>, <span class="ruby-identifier">value</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">lock_value</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">lock_value</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">lock_value</span>
+
+  <span class="ruby-identifier">merged_relation</span> = <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">create_with</span>(<span class="ruby-identifier">r</span>.<span class="ruby-identifier">create_with_value</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">create_with_value</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">r</span>.<span class="ruby-identifier">reordering_value</span>)
+    <span class="ruby-comment"># override any order specified in the original relation</span>
+    <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">reordering_value</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">order_values</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">order_values</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-comment"># merge in order_values from r</span>
+    <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">order_values</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">order_values</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Apply scope extension modules</span>
+  <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:apply_modules</span>, <span class="ruby-identifier">r</span>.<span class="ruby-identifier">extensions</span>
+
+  <span class="ruby-identifier">merged_relation</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-only">
+            
+              <b>only</b>(*onlies)
+            
+            <a href="../../classes/ActiveRecord/SpawnMethods.html#method-i-only" name="method-i-only" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Removes any condition from the query other than the one(s) specified in
+<code>onlies</code>.</p>
+
+<p>Example:</p>
+
+<pre>Post.order('id asc').only(:where)         # discards the order condition
+Post.order('id asc').only(:where, :order) # uses the specified order</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-only_source')" id="l_method-i-only_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/da5e5c5f779355a2e99e63a90612cbeaeb0fc986/activerecord/lib/active_record/relation/spawn_methods.rb#L107" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-only_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/relation/spawn_methods.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">only</span>(*<span class="ruby-identifier">onlies</span>)
+  <span class="ruby-identifier">result</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@klass</span>, <span class="ruby-identifier">table</span>)
+  <span class="ruby-identifier">result</span>.<span class="ruby-identifier">default_scoped</span> = <span class="ruby-identifier">default_scoped</span>
+
+  ((<span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">ASSOCIATION_METHODS</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">MULTI_VALUE_METHODS</span>) &amp; <span class="ruby-identifier">onlies</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_values=&quot;</span>, <span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_values&quot;</span>))
+  <span class="ruby-keyword">end</span>
+
+  (<span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">SINGLE_VALUE_METHODS</span> &amp; <span class="ruby-identifier">onlies</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_value=&quot;</span>, <span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{method}_value&quot;</span>))
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Apply scope extension modules</span>
+  <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:apply_modules</span>, <span class="ruby-identifier">extensions</span>)
+
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

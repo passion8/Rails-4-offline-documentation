@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveResource::HttpMock</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveResource::HttpMock 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activeresource/lib/active_resource/http_mock_rb.html">activeresource/lib/active_resource/http_mock.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>One thing that has always been a pain with remote web services is testing. 
+The <a href="HttpMock.html">HttpMock</a> class makes it easy to test your
+Active Resource models by creating a set of mock responses to specific
+requests.</p>
+
+<p>To test your Active Resource model, you simply call the <a
+href="HttpMock.html#method-c-respond_to">::respond_to</a> method with an
+attached block. The block declares a set of URIs with expected input, and
+the output each request should return. The passed in block has any number
+of entries in the following generalized format:</p>
+
+<pre>mock.http_method(path, request_headers = {}, body = nil, status = 200, response_headers = {})</pre>
+<ul><li>
+<p><code>http_method</code> - The HTTP method to listen for.  This can be
+<code>get</code>, <code>post</code>, <code>put</code>, <code>delete</code>
+or <code>head</code>.</p>
+</li><li>
+<p><code>path</code> - A string, starting with a "/", defining the <a
+href="../URI.html">URI</a> that is expected to be called.</p>
+</li><li>
+<p><code>request_headers</code> - Headers that are expected along with the
+request.  This argument uses a hash format, such as <code>{
+&quot;Content-Type&quot; =&gt; &quot;application/json&quot; }</code>.  This
+mock will only trigger if your tests sends a request with identical
+headers.</p>
+</li><li>
+<p><code>body</code> - The data to be returned.  This should be a string of
+Active Resource parseable content, such as Json.</p>
+</li><li>
+<p><code>status</code> - The HTTP response code, as an integer, to return with
+the response.</p>
+</li><li>
+<p><code>response_headers</code> - Headers to be returned with the response. 
+Uses the same hash format as <code>request_headers</code> listed above.</p>
+</li></ul>
+
+<p>In order for a mock to deliver its content, the incoming request must match
+by the <code>http_method</code>, <code>path</code> and
+<code>request_headers</code>. If no match is found an
+<code>InvalidRequestError</code> exception will be raised showing you what
+request it could not find a response for and also what requests and
+response pairs have been recorded so you can create a new mock for that
+request.</p>
+
+<h4 id="label-Example">Example</h4>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">setup</span>
+  <span class="ruby-ivar">@matz</span>  = { :<span class="ruby-identifier">person</span> =<span class="ruby-operator">&gt;</span> { :<span class="ruby-identifier">id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, :<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Matz&quot;</span> } }.<span class="ruby-identifier">to_json</span>
+  <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mock</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">mock</span>.<span class="ruby-identifier">post</span>   <span class="ruby-string">&quot;/people.json&quot;</span>,   {}, <span class="ruby-ivar">@matz</span>, <span class="ruby-value">201</span>, <span class="ruby-string">&quot;Location&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;/people/1.json&quot;</span>
+    <span class="ruby-identifier">mock</span>.<span class="ruby-identifier">get</span>    <span class="ruby-string">&quot;/people/1.json&quot;</span>, {}, <span class="ruby-ivar">@matz</span>
+    <span class="ruby-identifier">mock</span>.<span class="ruby-identifier">put</span>    <span class="ruby-string">&quot;/people/1.json&quot;</span>, {}, <span class="ruby-keyword">nil</span>, <span class="ruby-value">204</span>
+    <span class="ruby-identifier">mock</span>.<span class="ruby-identifier">delete</span> <span class="ruby-string">&quot;/people/1.json&quot;</span>, {}, <span class="ruby-keyword">nil</span>, <span class="ruby-value">200</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_get_matz</span>
+  <span class="ruby-identifier">person</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">1</span>)
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&quot;Matz&quot;</span>, <span class="ruby-identifier">person</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-delete_responses_to_replace">delete_responses_to_replace</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-requests">requests</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-reset-21">reset!</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-respond_to">respond_to</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-responses">responses</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-delete_responses_to_replace">
+            
+              <b>delete_responses_to_replace</b>(new_responses)
+            
+            <a href="../../classes/ActiveResource/HttpMock.html#method-c-delete_responses_to_replace" name="method-c-delete_responses_to_replace" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-delete_responses_to_replace_source')" id="l_method-c-delete_responses_to_replace_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/71d18ce48ebcb6b3380309a225af12aba2aeb8ed/activeresource/lib/active_resource/http_mock.rb#L205" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-delete_responses_to_replace_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/http_mock.rb, line 205</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">delete_responses_to_replace</span>(<span class="ruby-identifier">new_responses</span>)
+  <span class="ruby-identifier">new_responses</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">nr</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">request_to_remove</span> = <span class="ruby-identifier">nr</span>[<span class="ruby-number">0</span>]
+    <span class="ruby-identifier">@@responses</span> = <span class="ruby-identifier">responses</span>.<span class="ruby-identifier">delete_if</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>[<span class="ruby-number">0</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">request_to_remove</span>}
+  }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-requests">
+            
+              <b>requests</b>()
+            
+            <a href="../../classes/ActiveResource/HttpMock.html#method-c-requests" name="method-c-requests" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns an array of all request objects that have been sent to the mock.
+You can use this to check if your model actually sent an HTTP request.</p>
+
+<h4 id="method-c-requests-label-Example">Example</h4>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">setup</span>
+  <span class="ruby-ivar">@matz</span>  = { :<span class="ruby-identifier">person</span> =<span class="ruby-operator">&gt;</span> { :<span class="ruby-identifier">id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, :<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Matz&quot;</span> } }.<span class="ruby-identifier">to_json</span>
+  <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mock</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">mock</span>.<span class="ruby-identifier">get</span> <span class="ruby-string">&quot;/people/1.json&quot;</span>, {}, <span class="ruby-ivar">@matz</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_should_request_remote_service</span>
+  <span class="ruby-identifier">person</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">1</span>)  <span class="ruby-comment"># Call the remote service</span>
+
+  <span class="ruby-comment"># This request object has the same HTTP method and path as declared by the mock</span>
+  <span class="ruby-identifier">expected_request</span> = <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(:<span class="ruby-identifier">get</span>, <span class="ruby-string">&quot;/people/1.json&quot;</span>)
+
+  <span class="ruby-comment"># Assert that the mock received, and responded to, the expected request from the model</span>
+  <span class="ruby-identifier">assert</span> <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">requests</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">expected_request</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-requests_source')" id="l_method-c-requests_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/71d18ce48ebcb6b3380309a225af12aba2aeb8ed/activeresource/lib/active_resource/http_mock.rb#L103" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-requests_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/http_mock.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">requests</span>
+  <span class="ruby-identifier">@@requests</span> <span class="ruby-operator">||=</span> []
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-reset-21">
+            
+              <b>reset!</b>()
+            
+            <a href="../../classes/ActiveResource/HttpMock.html#method-c-reset-21" name="method-c-reset-21" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Deletes all logged requests and responses.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-reset-21_source')" id="l_method-c-reset-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/71d18ce48ebcb6b3380309a225af12aba2aeb8ed/activeresource/lib/active_resource/http_mock.rb#L213" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-reset-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/http_mock.rb, line 213</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">reset!</span>
+  <span class="ruby-identifier">requests</span>.<span class="ruby-identifier">clear</span>
+  <span class="ruby-identifier">responses</span>.<span class="ruby-identifier">clear</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-respond_to">
+            
+              <b>respond_to</b>(*args)
+            
+            <a href="../../classes/ActiveResource/HttpMock.html#method-c-respond_to" name="method-c-respond_to" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Accepts a block which declares a set of requests and responses for the <a
+href="HttpMock.html">HttpMock</a> to respond to in the following format:</p>
+
+<pre>mock.http_method(path, request_headers = {}, body = nil, status = 200, response_headers = {})</pre>
+
+<h3 id="method-c-respond_to-label-Example">Example</h3>
+
+<pre class="ruby"><span class="ruby-ivar">@matz</span>  = { :<span class="ruby-identifier">person</span> =<span class="ruby-operator">&gt;</span> { :<span class="ruby-identifier">id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, :<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Matz&quot;</span> } }.<span class="ruby-identifier">to_json</span>
+<span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mock</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">mock</span>.<span class="ruby-identifier">post</span>   <span class="ruby-string">&quot;/people.json&quot;</span>,   {}, <span class="ruby-ivar">@matz</span>, <span class="ruby-value">201</span>, <span class="ruby-string">&quot;Location&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;/people/1.json&quot;</span>
+  <span class="ruby-identifier">mock</span>.<span class="ruby-identifier">get</span>    <span class="ruby-string">&quot;/people/1.json&quot;</span>, {}, <span class="ruby-ivar">@matz</span>
+  <span class="ruby-identifier">mock</span>.<span class="ruby-identifier">put</span>    <span class="ruby-string">&quot;/people/1.json&quot;</span>, {}, <span class="ruby-keyword">nil</span>, <span class="ruby-value">204</span>
+  <span class="ruby-identifier">mock</span>.<span class="ruby-identifier">delete</span> <span class="ruby-string">&quot;/people/1.json&quot;</span>, {}, <span class="ruby-keyword">nil</span>, <span class="ruby-value">200</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Alternatively, accepts a hash of <code>{Request =&gt; Response}</code>
+pairs allowing you to generate these the following format:</p>
+
+<pre>ActiveResource::Request.new(method, path, body, request_headers)
+ActiveResource::Response.new(body, status, response_headers)</pre>
+
+<h3 id="method-c-respond_to-label-Example">Example</h3>
+
+<p><a
+href="Request.html#method-c-new">ActiveResource::Request.new</a>(:#{method},
+path, nil, request_headers)</p>
+
+<pre class="ruby"><span class="ruby-ivar">@matz</span>  = { :<span class="ruby-identifier">person</span> =<span class="ruby-operator">&gt;</span> { :<span class="ruby-identifier">id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, :<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Matz&quot;</span> } }.<span class="ruby-identifier">to_json</span>
+
+<span class="ruby-identifier">create_matz</span>      = <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(:<span class="ruby-identifier">post</span>, <span class="ruby-string">'/people.json'</span>, <span class="ruby-ivar">@matz</span>, {})
+<span class="ruby-identifier">created_response</span> = <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-value">201</span>, {<span class="ruby-string">&quot;Location&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;/people/1.json&quot;</span>})
+<span class="ruby-identifier">get_matz</span>         = <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(:<span class="ruby-identifier">get</span>, <span class="ruby-string">'/people/1.json'</span>, <span class="ruby-keyword">nil</span>)
+<span class="ruby-identifier">ok_response</span>      = <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-value">200</span>, {})
+
+<span class="ruby-identifier">pairs</span> = {<span class="ruby-identifier">create_matz</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">created_response</span>, <span class="ruby-identifier">get_matz</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ok_response</span>}
+
+<span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">respond_to</span>(<span class="ruby-identifier">pairs</span>)
+</pre>
+
+<p>Note, by default, every time you call <code>respond_to</code>, any previous
+request and response pairs stored in <a href="HttpMock.html">HttpMock</a>
+will be deleted giving you a clean slate to work on.</p>
+
+<p>If you want to override this behavior, pass in <code>false</code> as the
+last argument to <code>respond_to</code></p>
+
+<h3 id="method-c-respond_to-label-Example">Example</h3>
+
+<pre class="ruby"><span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mock</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">mock</span>.<span class="ruby-identifier">send</span>(:<span class="ruby-identifier">get</span>, <span class="ruby-string">&quot;/people/1&quot;</span>, {}, <span class="ruby-string">&quot;JSON1&quot;</span>)
+<span class="ruby-keyword">end</span>
+<span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">responses</span>.<span class="ruby-identifier">length</span> <span class="ruby-comment">#=&gt; 1</span>
+
+<span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">respond_to</span>(<span class="ruby-keyword">false</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mock</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">mock</span>.<span class="ruby-identifier">send</span>(:<span class="ruby-identifier">get</span>, <span class="ruby-string">&quot;/people/2&quot;</span>, {}, <span class="ruby-string">&quot;JSON2&quot;</span>)
+<span class="ruby-keyword">end</span>
+<span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">responses</span>.<span class="ruby-identifier">length</span> <span class="ruby-comment">#=&gt; 2</span>
+</pre>
+
+<p>This also works with passing in generated pairs of requests and responses,
+again, just pass in false as the last argument:</p>
+
+<h3 id="method-c-respond_to-label-Example">Example</h3>
+
+<pre class="ruby"><span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mock</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">mock</span>.<span class="ruby-identifier">send</span>(:<span class="ruby-identifier">get</span>, <span class="ruby-string">&quot;/people/1&quot;</span>, {}, <span class="ruby-string">&quot;JSON1&quot;</span>)
+<span class="ruby-keyword">end</span>
+<span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">responses</span>.<span class="ruby-identifier">length</span> <span class="ruby-comment">#=&gt; 1</span>
+
+<span class="ruby-identifier">get_matz</span>         = <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(:<span class="ruby-identifier">get</span>, <span class="ruby-string">'/people/1.json'</span>, <span class="ruby-keyword">nil</span>)
+<span class="ruby-identifier">ok_response</span>      = <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-value">200</span>, {})
+
+<span class="ruby-identifier">pairs</span> = {<span class="ruby-identifier">get_matz</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ok_response</span>}
+
+<span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">respond_to</span>(<span class="ruby-identifier">pairs</span>, <span class="ruby-keyword">false</span>)
+<span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">responses</span>.<span class="ruby-identifier">length</span> <span class="ruby-comment">#=&gt; 2</span>
+
+<span class="ruby-comment"># If you add a response with an existing request, it will be replaced</span>
+
+<span class="ruby-identifier">fail_response</span>      = <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-value">404</span>, {})
+<span class="ruby-identifier">pairs</span> = {<span class="ruby-identifier">get_matz</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fail_response</span>}
+
+<span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">respond_to</span>(<span class="ruby-identifier">pairs</span>, <span class="ruby-keyword">false</span>)
+<span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpMock</span>.<span class="ruby-identifier">responses</span>.<span class="ruby-identifier">length</span> <span class="ruby-comment">#=&gt; 2</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-respond_to_source')" id="l_method-c-respond_to_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/71d18ce48ebcb6b3380309a225af12aba2aeb8ed/activeresource/lib/active_resource/http_mock.rb#L192" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-respond_to_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/http_mock.rb, line 192</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">respond_to</span>(*<span class="ruby-identifier">args</span>) <span class="ruby-comment">#:yields: mock</span>
+  <span class="ruby-identifier">pairs</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">||</span> {}
+  <span class="ruby-identifier">reset!</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">FalseClass</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-constant">Responder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">responses</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">delete_responses_to_replace</span> <span class="ruby-identifier">pairs</span>.<span class="ruby-identifier">to_a</span>
+    <span class="ruby-identifier">responses</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">pairs</span>.<span class="ruby-identifier">to_a</span>
+    <span class="ruby-constant">Responder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">responses</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-responses">
+            
+              <b>responses</b>()
+            
+            <a href="../../classes/ActiveResource/HttpMock.html#method-c-responses" name="method-c-responses" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns the list of requests and their mocked responses. Look up a response
+for a request using <code>responses.assoc(request)</code>.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-responses_source')" id="l_method-c-responses_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/71d18ce48ebcb6b3380309a225af12aba2aeb8ed/activeresource/lib/active_resource/http_mock.rb#L109" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-responses_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activeresource/lib/active_resource/http_mock.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">responses</span>
+  <span class="ruby-identifier">@@responses</span> <span class="ruby-operator">||=</span> []
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                        </div>
+
+    </div>
+  </body>
+</html>    

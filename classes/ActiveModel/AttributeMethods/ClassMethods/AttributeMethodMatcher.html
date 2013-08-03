@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::AttributeMethods::ClassMethods::AttributeMethodMatcher</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveModel::AttributeMethods::ClassMethods::AttributeMethodMatcher 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/activemodel/lib/active_model/attribute_methods_rb.html">activemodel/lib/active_model/attribute_methods.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-match">match</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-method_name">method_name</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-plain-3F">plain?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">AttributeMethodMatch</td>
+            <td>=</td>
+            <td class="attr-value">Struct.new(:target, :attr_name, :method_name)</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>method_missing_target</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>prefix</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>suffix</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(options = {})
+            
+            <a href="../../../../classes/ActiveModel/AttributeMethods/ClassMethods/AttributeMethodMatcher.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/060bb7250b963609a0d8a5d0559e36b99d2402c6/activemodel/lib/active_model/attribute_methods.rb#L355" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/attribute_methods.rb, line 355</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">options</span>.<span class="ruby-identifier">symbolize_keys!</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:prefix</span>] <span class="ruby-operator">==</span> <span class="ruby-string">''</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:suffix</span>] <span class="ruby-operator">==</span> <span class="ruby-string">''</span>
+    <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span>(
+      <span class="ruby-string">&quot;Specifying an empty prefix/suffix for an attribute method is no longer &quot;</span>                  <span class="ruby-string">&quot;necessary. If the un-prefixed/suffixed version of the method has not been &quot;</span>                  <span class="ruby-string">&quot;defined when `define_attribute_methods` is called, it will be defined &quot;</span>                  <span class="ruby-string">&quot;automatically.&quot;</span>
+    )
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@prefix</span>, <span class="ruby-ivar">@suffix</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:prefix</span>] <span class="ruby-operator">||</span> <span class="ruby-string">''</span>, <span class="ruby-identifier">options</span>[<span class="ruby-value">:suffix</span>] <span class="ruby-operator">||</span> <span class="ruby-string">''</span>
+  <span class="ruby-ivar">@regex</span> = <span class="ruby-node">/\A(#{Regexp.escape(@prefix)})(.+?)(#{Regexp.escape(@suffix)})\z/</span>
+  <span class="ruby-ivar">@method_missing_target</span> = <span class="ruby-node">&quot;#{@prefix}attribute#{@suffix}&quot;</span>
+  <span class="ruby-ivar">@method_name</span> = <span class="ruby-node">&quot;#{prefix}%s#{suffix}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-match">
+            
+              <b>match</b>(method_name)
+            
+            <a href="../../../../classes/ActiveModel/AttributeMethods/ClassMethods/AttributeMethodMatcher.html#method-i-match" name="method-i-match" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-match_source')" id="l_method-i-match_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/060bb7250b963609a0d8a5d0559e36b99d2402c6/activemodel/lib/active_model/attribute_methods.rb#L373" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-match_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/attribute_methods.rb, line 373</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">match</span>(<span class="ruby-identifier">method_name</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@regex</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">method_name</span>
+    <span class="ruby-constant">AttributeMethodMatch</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">method_missing_target</span>, <span class="ruby-node">$2</span>, <span class="ruby-identifier">method_name</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-method_name">
+            
+              <b>method_name</b>(attr_name)
+            
+            <a href="../../../../classes/ActiveModel/AttributeMethods/ClassMethods/AttributeMethodMatcher.html#method-i-method_name" name="method-i-method_name" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-method_name_source')" id="l_method-i-method_name_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/060bb7250b963609a0d8a5d0559e36b99d2402c6/activemodel/lib/active_model/attribute_methods.rb#L381" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-method_name_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/attribute_methods.rb, line 381</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">method_name</span>(<span class="ruby-identifier">attr_name</span>)
+  <span class="ruby-ivar">@method_name</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">attr_name</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-plain-3F">
+            
+              <b>plain?</b>()
+            
+            <a href="../../../../classes/ActiveModel/AttributeMethods/ClassMethods/AttributeMethodMatcher.html#method-i-plain-3F" name="method-i-plain-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-plain-3F_source')" id="l_method-i-plain-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/060bb7250b963609a0d8a5d0559e36b99d2402c6/activemodel/lib/active_model/attribute_methods.rb#L385" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-plain-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/attribute_methods.rb, line 385</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">plain?</span>
+  <span class="ruby-identifier">prefix</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">suffix</span>.<span class="ruby-identifier">empty?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

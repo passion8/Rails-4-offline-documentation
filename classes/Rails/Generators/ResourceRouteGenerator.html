@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Rails::Generators::ResourceRouteGenerator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            Rails::Generators::ResourceRouteGenerator 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="NamedBase.html">Rails::Generators::NamedBase</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/railties/lib/rails/generators/rails/resource_route/resource_route_generator_rb.html">railties/lib/rails/generators/rails/resource_route/resource_route_generator.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-add_resource_route">add_resource_route</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-add_resource_route">
+            
+              <b>add_resource_route</b>()
+            
+            <a href="../../../classes/Rails/Generators/ResourceRouteGenerator.html#method-i-add_resource_route" name="method-i-add_resource_route" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Properly nests namespaces passed into a generator</p>
+
+<pre>$ rails generate resource admin/users/products</pre>
+
+<p>should give you</p>
+
+<pre>namespace :admin do
+  namespace :users
+    resources :products
+  end
+end</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-add_resource_route_source')" id="l_method-i-add_resource_route_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/a02f67b39b0ca02a8dd871b75c9f2a9db3a40c7b/railties/lib/rails/generators/rails/resource_route/resource_route_generator.rb#L16" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-add_resource_route_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File railties/lib/rails/generators/rails/resource_route/resource_route_generator.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">add_resource_route</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:actions</span>].<span class="ruby-identifier">present?</span>
+
+  <span class="ruby-comment"># iterates over all namespaces and opens up blocks</span>
+  <span class="ruby-identifier">regular_class_path</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">write</span>(<span class="ruby-node">&quot;namespace :#{namespace} do&quot;</span>, <span class="ruby-identifier">index</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># inserts the primary resource</span>
+  <span class="ruby-identifier">write</span>(<span class="ruby-node">&quot;resources :#{file_name.pluralize}&quot;</span>, <span class="ruby-identifier">route_length</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>)
+
+  <span class="ruby-comment"># ends blocks</span>
+  <span class="ruby-identifier">regular_class_path</span>.<span class="ruby-identifier">each_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;end&quot;</span>, <span class="ruby-identifier">route_length</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">index</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># route prepends two spaces onto the front of the string that is passed, this corrects that</span>
+  <span class="ruby-identifier">route</span> <span class="ruby-identifier">route_string</span>[<span class="ruby-number">2</span><span class="ruby-operator">..</span><span class="ruby-number">-1</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

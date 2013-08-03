@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::Store</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ActiveRecord::Store 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activerecord/lib/active_record/store_rb.html">activerecord/lib/active_record/store.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><a href="Store.html">Store</a> gives you a thin wrapper around serialize
+for the purpose of storing hashes in a single column. It's like a simple
+key/value store backed into your record when you don't care about being
+able to query that store outside the context of a single record.</p>
+
+<p>You can then declare accessors to this store that are then accessible just
+like any other attribute of the model. This is very helpful for easily
+exposing store keys to a form or elsewhere that’s already built around just
+accessing attributes on the model.</p>
+
+<p>Make sure that you declare the database column used for the serialized
+store as a text, so there’s plenty of room.</p>
+
+<p>Examples:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">User</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-identifier">store</span> :<span class="ruby-identifier">settings</span>, <span class="ruby-identifier">accessors</span><span class="ruby-operator">:</span> [ :<span class="ruby-identifier">color</span>, :<span class="ruby-identifier">homepage</span> ]
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">u</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">color</span><span class="ruby-operator">:</span> <span class="ruby-string">'black'</span>, <span class="ruby-identifier">homepage</span><span class="ruby-operator">:</span> <span class="ruby-string">'37signals.com'</span>)
+<span class="ruby-identifier">u</span>.<span class="ruby-identifier">color</span>                          <span class="ruby-comment"># Accessor stored attribute</span>
+<span class="ruby-identifier">u</span>.<span class="ruby-identifier">settings</span>[:<span class="ruby-identifier">country</span>] = <span class="ruby-string">'Denmark'</span> <span class="ruby-comment"># Any attribute, even if not specified with an accessor</span>
+
+<span class="ruby-comment"># Add additional accessors to an existing store through store_accessor</span>
+<span class="ruby-keyword">class</span> <span class="ruby-constant">SuperUser</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">User</span>
+  <span class="ruby-identifier">store_accessor</span> :<span class="ruby-identifier">settings</span>, :<span class="ruby-identifier">privileges</span>, :<span class="ruby-identifier">servants</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="Store/ClassMethods.html">ActiveRecord::Store::ClassMethods</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>    

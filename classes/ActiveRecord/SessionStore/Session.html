@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::SessionStore::Session</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveRecord::SessionStore::Session 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Base.html">ActiveRecord::Base</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/session_store_rb.html">activerecord/lib/active_record/session_store.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>The default Active Record class.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-data">data</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-data_column_name">data_column_name</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-data_column_size_limit">data_column_size_limit</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-find_by_session_id">find_by_session_id</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>L</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-loaded-3F">loaded?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [W]
+            </td>
+            <td class='attr-name'>data</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-data_column_name">
+            
+              <b>data_column_name</b>
+            
+            <a href="../../../classes/ActiveRecord/SessionStore/Session.html#method-c-data_column_name" name="method-c-data_column_name" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Customizable data column name. Defaults to ‘data’.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-data_column_name_source')" id="l_method-c-data_column_name_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/bf1645613e3482040cbc72f0c11aaf9461914cb8/activerecord/lib/active_record/session_store.rb#L85" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-data_column_name_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/session_store.rb, line 85</span>
+<span class="ruby-identifier">cattr_accessor</span> <span class="ruby-value">:data_column_name</span>
+</pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-data_column_size_limit">
+            
+              <b>data_column_size_limit</b>()
+            
+            <a href="../../../classes/ActiveRecord/SessionStore/Session.html#method-c-data_column_size_limit" name="method-c-data_column_size_limit" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-data_column_size_limit_source')" id="l_method-c-data_column_size_limit_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/bf1645613e3482040cbc72f0c11aaf9461914cb8/activerecord/lib/active_record/session_store.rb#L94" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-data_column_size_limit_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/session_store.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">data_column_size_limit</span>
+  <span class="ruby-ivar">@data_column_size_limit</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">columns_hash</span>[<span class="ruby-identifier">data_column_name</span>].<span class="ruby-identifier">limit</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-find_by_session_id">
+            
+              <b>find_by_session_id</b>(session_id)
+            
+            <a href="../../../classes/ActiveRecord/SessionStore/Session.html#method-c-find_by_session_id" name="method-c-find_by_session_id" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Hook to set up sessid compatibility.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-find_by_session_id_source')" id="l_method-c-find_by_session_id_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/bf1645613e3482040cbc72f0c11aaf9461914cb8/activerecord/lib/active_record/session_store.rb#L99" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-find_by_session_id_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/session_store.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">find_by_session_id</span>(<span class="ruby-identifier">session_id</span>)
+  <span class="ruby-identifier">setup_sessid_compatibility!</span>
+  <span class="ruby-identifier">find_by_session_id</span>(<span class="ruby-identifier">session_id</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(attributes = nil, options = {})
+            
+            <a href="../../../classes/ActiveRecord/SessionStore/Session.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/bf1645613e3482040cbc72f0c11aaf9461914cb8/activerecord/lib/active_record/session_store.rb#L130" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/session_store.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">attributes</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-ivar">@data</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-data">
+            
+              <b>data</b>()
+            
+            <a href="../../../classes/ActiveRecord/SessionStore/Session.html#method-i-data" name="method-i-data" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Lazy-unmarshal session state.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-data_source')" id="l_method-i-data_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/bf1645613e3482040cbc72f0c11aaf9461914cb8/activerecord/lib/active_record/session_store.rb#L136" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-data_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/session_store.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">data</span>
+  <span class="ruby-ivar">@data</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">unmarshal</span>(<span class="ruby-identifier">read_attribute</span>(<span class="ruby-identifier">@@data_column_name</span>)) <span class="ruby-operator">||</span> {}
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-loaded-3F">
+            
+              <b>loaded?</b>()
+            
+            <a href="../../../classes/ActiveRecord/SessionStore/Session.html#method-i-loaded-3F" name="method-i-loaded-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Has the session been loaded yet?</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-loaded-3F_source')" id="l_method-i-loaded-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/bf1645613e3482040cbc72f0c11aaf9461914cb8/activerecord/lib/active_record/session_store.rb#L143" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-loaded-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/session_store.rb, line 143</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">loaded?</span>
+  <span class="ruby-ivar">@data</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::Validations::LengthValidator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ActiveModel::Validations::LengthValidator 
+            
+                <span class="parent">&lt; 
+                    
+                    EachValidator
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/length_rb.html">activemodel/lib/active_model/validations/length.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-check_validity-21">check_validity!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-validate_each">validate_each</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">MESSAGES</td>
+            <td>=</td>
+            <td class="attr-value">{ :is =&gt; :wrong_length, :minimum =&gt; :too_short, :maximum =&gt; :too_long }.freeze</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">CHECKS</td>
+            <td>=</td>
+            <td class="attr-value">{ :is =&gt; :==, :minimum =&gt; :&gt;=, :maximum =&gt; :&lt;= }.freeze</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">RESERVED_OPTIONS</td>
+            <td>=</td>
+            <td class="attr-value">[:minimum, :maximum, :within, :is, :tokenizer, :too_short, :too_long]</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(options)
+            
+            <a href="../../../classes/ActiveModel/Validations/LengthValidator.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4bbd05c90e5a62c0316307b3ca7c2262ed98b567/activemodel/lib/active_model/validations/length.rb#L12" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/validations/length.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">range</span> = (<span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:in</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:within</span>))
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;:in and :within must be a Range&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">range</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Range</span>)
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:minimum</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:maximum</span>] = <span class="ruby-identifier">range</span>.<span class="ruby-identifier">begin</span>, <span class="ruby-identifier">range</span>.<span class="ruby-identifier">end</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:maximum</span>] <span class="ruby-operator">-=</span> <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">range</span>.<span class="ruby-identifier">exclude_end?</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-check_validity-21">
+            
+              <b>check_validity!</b>()
+            
+            <a href="../../../classes/ActiveModel/Validations/LengthValidator.html#method-i-check_validity-21" name="method-i-check_validity-21" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-check_validity-21_source')" id="l_method-i-check_validity-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4bbd05c90e5a62c0316307b3ca7c2262ed98b567/activemodel/lib/active_model/validations/length.rb#L22" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-check_validity-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/validations/length.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">check_validity!</span>
+  <span class="ruby-identifier">keys</span> = <span class="ruby-constant">CHECKS</span>.<span class="ruby-identifier">keys</span> &amp; <span class="ruby-identifier">options</span>.<span class="ruby-identifier">keys</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">'Range unspecified. Specify the :in, :within, :maximum, :minimum, or :is option.'</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">value</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">key</span>]
+
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Integer</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-number">0</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;:#{key} must be a nonnegative Integer&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-validate_each">
+            
+              <b>validate_each</b>(record, attribute, value)
+            
+            <a href="../../../classes/ActiveModel/Validations/LengthValidator.html#method-i-validate_each" name="method-i-validate_each" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-validate_each_source')" id="l_method-i-validate_each_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/4bbd05c90e5a62c0316307b3ca7c2262ed98b567/activemodel/lib/active_model/validations/length.rb#L38" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-validate_each_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activemodel/lib/active_model/validations/length.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">value</span> = <span class="ruby-identifier">tokenize</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">value_length</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:length</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">length</span>
+
+  <span class="ruby-constant">CHECKS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">validity_check</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">check_value</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">key</span>]
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value_length</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">validity_check</span>, <span class="ruby-identifier">check_value</span>)
+
+    <span class="ruby-identifier">errors_options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">except</span>(*<span class="ruby-constant">RESERVED_OPTIONS</span>)
+    <span class="ruby-identifier">errors_options</span>[<span class="ruby-value">:count</span>] = <span class="ruby-identifier">check_value</span>
+
+    <span class="ruby-identifier">default_message</span> = <span class="ruby-identifier">options</span>[<span class="ruby-constant">MESSAGES</span>[<span class="ruby-identifier">key</span>]]
+    <span class="ruby-identifier">errors_options</span>[<span class="ruby-value">:message</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">default_message</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">default_message</span>
+
+    <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-constant">MESSAGES</span>[<span class="ruby-identifier">key</span>], <span class="ruby-identifier">errors_options</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    
